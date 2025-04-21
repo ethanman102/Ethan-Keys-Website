@@ -1,12 +1,12 @@
 import React from "react"
-import {useNavigate} from "react-router-dom"
+import "../styles/Shortcut.css"
 
 const Shortcut = ({title,icon}) => {
 
     return (
         <div className="shortcutContainer">
             <img className="shortcutImage" src={icon} />
-            <h5>{title}</h5>
+            <h5 className="shortcutTitle">{title}</h5>
         </div>
     );
 }

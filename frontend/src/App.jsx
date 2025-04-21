@@ -9,7 +9,7 @@ function App() {
     <>
     <Shortcut title="Home" icon="none"/>
     <Shortcut title="Projects" icon="none"/>
-    <Shortcut title="Blog" icon="none"/>
+    <Shortcut title="Blog" icon="/blog.png"/>
     <Shortcut title="Games" icon="none"/>
     </>
   )

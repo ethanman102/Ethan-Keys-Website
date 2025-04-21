@@ -1,0 +1,41 @@
+/* ShortCut Container
+* - Use outline to not effect other elements when hovered
+* - autoing the margins of a block element centers it
+* - hover effects for clicking on the correct retro shortcut elements
+* - USED IN: Usage for the sidebar that should appear in other pages...
+*/
+
+.shortcutContainer{
+    width: fit-content;
+    margin-bottom: 2ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+}
+
+.shortcutContainer:hover{
+    outline: 2px solid rgb(17, 142, 226);
+    background-color: rgba(17, 142, 226, 0.288);
+    cursor: pointer;
+}
+
+.shortcutImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 7ch;
+    height: 7ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    margin-top: 1ch;
+}
+
+.shortcutTitle{
+    color: rgb(250, 250, 250);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-top: 1ch;
+    margin-bottom: 1ch;
+    font-size: 1.4ch;
+}
