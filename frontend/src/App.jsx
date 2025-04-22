@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Shortcut from './components/Shortcut'
+import BottomNav from './components/BottomNav';
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <Shortcut title="Projects" icon="none"/>
     <Shortcut title="Blog" icon="/blog.png"/>
     <Shortcut title="Games" icon="none"/>
+    <BottomNav/>
     </>
   )
 }

@@ -1,0 +1,43 @@
+.bottomNavContainer{
+    background-color: rgb(219, 219, 219);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    box-shadow: -1px -4px 0px 0px rgba(117, 117, 117, 0.75);
+    -webkit-box-shadow: -1px -4px 0px 0px rgba(107, 107, 107, 0.75);
+    -moz-box-shadow: -1px -4px 0px 0px rgba(179, 179, 179, 0.75);
+    border-top: 1px solid white;
+}
+
+#menuButtonContainer{
+    margin-left: 1ch;
+    margin-top: 0.5ch;
+    margin-bottom: 0.5ch;
+    width: fit-content;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 4px 4px 0px -1px rgba(141, 141, 141, 0.75);
+    padding-left: 1ch;
+    padding-right: 1ch;
+    display: flex;
+
+
+}
+
+#menuButtonContainer:hover{
+    box-shadow: none; 
+    cursor: pointer;
+    background-color: rgb(158, 158, 158);
+    outline: 1px solid white;
+}
+
+#menuButton{
+    border: none;
+    background-color: transparent;
+    margin-left: 1ch;
+    padding: 0;
+    color: rgb(247, 247, 247);
+}
+
+#menuImage{
+    display: inline;
+}
