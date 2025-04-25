@@ -1,5 +1,5 @@
 .bottomNavContainer{
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(216, 215, 215);
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -12,11 +12,13 @@
 
 #menuButtonContainer{
     margin-left: 1ch;
-    margin-right: 4ch;
+    margin-right: 2ch;
     margin-top: 0.5ch;
     margin-bottom: 0.5ch;
     width: fit-content;
     background-color: rgb(202, 202, 202);
+    border-top: 2px solid white;
+    border-left: 2px solid white;
     box-shadow: 4px 4px 0px -1px rgba(141, 141, 141, 0.75);
     padding-left: 1ch;
     padding-right: 1ch;
@@ -30,6 +32,8 @@
     cursor: pointer;
     background-color: rgb(158, 158, 158);
     outline: 1px solid white;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
 }
 
 #menuButton{
@@ -37,7 +41,7 @@
     background-color: transparent;
     margin-left: 1ch;
     padding: 0;
-    color: rgb(247, 247, 247);
+    color: black;
     cursor: pointer;
 }
 

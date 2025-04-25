@@ -2,7 +2,8 @@
     display: flex;
     background-color: rgb(202, 202, 202);
     box-shadow: 4px 4px 0px -1px rgba(141, 141, 141, 0.75);
-    margin-left: 1ch;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
     margin-right: 1ch;
     margin-top: 0.5ch;
     margin-bottom: 0.5ch;
@@ -16,25 +17,29 @@
     cursor: pointer;
     background-color: rgb(158, 158, 158);
     outline: 1px solid white;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
 }
 
 
 .closeTabButton{
-    color: white;
-    background-color: rgb(243, 45, 45);
+    padding-top: 0.5ch;
+    padding-bottom: 0.25ch;
+    color: black;
+    border-top: solid 2px white;
+    border-left: solid white 2px;
+    background-color: rgb(223, 223, 223);
     margin-left: auto;
     margin-right: 1ch;
     transition: scale 0.3s ease;
-    box-shadow: 4px 4px 0px -1px rgba(102, 102, 102, 0.75);
-    border: none;
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
 .closeTabButton:hover{
     scale: 1.2;
     cursor: pointer;
-    background-color: rgb(173, 32, 32);
-    box-shadow: none;
-    outline: 1px solid white
+    background-color: rgb(110, 110, 110);
+    
 }
 
 
@@ -47,6 +52,8 @@
     padding: 0;
     margin: 0;
     vertical-align: middle;
-    color: white;
+    color: black;
     margin-left: 2ch;
+    font-weight: normal;
+    font-size: 1.75ch;
 }

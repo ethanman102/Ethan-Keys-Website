@@ -31,10 +31,10 @@ const DesktopManager = () =>{
     return(
         <>
         
-        <Shortcut title="Home" icon="none" onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Projects" icon="none" onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Blog" icon="/blog.png" onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Games" icon="none" onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Projects" icon="none" description="Learn about the cool projects I have worked on!" onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" onShortcutClick={onShortcutClicked}/>
 
         {/* Wrap in the context provider to allow tabs to communicate to manager when the X button closes tab. */}
         <TabContext.Provider value={onShortcutClosed}>

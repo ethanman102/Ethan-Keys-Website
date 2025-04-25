@@ -1,0 +1,67 @@
+.blurbBox{
+    position: absolute;
+    display: inline;
+    max-width: 30ch;
+    margin-left: 4ch;
+    margin-top: -2ch;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    animation: appearBlurb .3s;
+    border-top: solid white 1px;
+    border-left: solid white 1px;
+}
+
+.blurbMessage{
+    font-size: 1.5ch;
+    text-wrap: wrap;
+    margin-top: 0.5ch;
+    /*Have to add padding to message instead of container to allow for background*/
+    padding-left: 1ch;
+    padding-right: 1ch;
+    color: black;
+}
+
+.blurbTitleContainer{
+    background-color: rgb(145, 145, 145); 
+    display: flex;
+    border-bottom: solid white 1px;
+}
+
+.blurbButtonContainer{
+    margin-left: auto;
+    margin-right: 0.25ch;
+}
+
+.blurbTitle{
+    margin: 0;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    background-color: rgb(145, 145, 145);
+    color: rgb(243, 243, 243);
+    /*Have to add padding to title instead of container to allow for background*/
+    padding-left: 1ch;
+    padding-right: 1ch;
+    font-weight: normal;
+    display: inline;
+    width: fit-content;
+}
+
+.blurbButton{
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    color: black;
+    font-weight: bold;
+    font-size: 1ch;
+    border-top: solid 2px white;
+    border-left: solid white 2px;
+    background-color: rgb(223, 223, 223);
+}
+
+@keyframes appearBlurb {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }

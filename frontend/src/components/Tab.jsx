@@ -7,7 +7,7 @@ import "../styles/Tab.css"
 // Effects -> Show on Click of a Shortcut, Order most recent to oldest, Remove self from Bottom Nav when Close button is clicked
 const Tab = ({title,icon}) => {
 
-    const closeTabCallback = useContext(TabContext);
+    const closeTabCallback = useContext(TabContext); // Context provided from DesktopManager
 
     // Onclick function to relay to the desktopmanager that the tab needs to be removed from the bottomnav
     const onCloseClick = () => {
