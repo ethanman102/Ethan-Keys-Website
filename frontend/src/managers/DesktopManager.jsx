@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, createContext} from 'react'
 import React from "react"
 import Shortcut from '../components/Shortcut'
 import BottomNav from '../components/BottomNav';
+
+export const TabContext = createContext();
 
 const DesktopManager = () =>{
 
@@ -20,9 +22,9 @@ const DesktopManager = () =>{
     }
 
     // Utilized as a callback function to modify the state of the desktop tabs based on whether a tab was closed
-    const onShortcutClosed = (shortcutObject) => {
+    const onShortcutClosed = (tabObject) => {
         // can simply find by the title...
-        let newTabs = openTabs.filter((tab) => {return tab.title !== shortcutObject.title});
+        let newTabs = openTabs.filter((tab) => {return tab.title !== tabObject.title});
         setOpenTabs(newTabs);
     }
 
@@ -33,7 +35,11 @@ const DesktopManager = () =>{
         <Shortcut title="Projects" icon="none" onShortcutClick={onShortcutClicked}/>
         <Shortcut title="Blog" icon="/blog.png" onShortcutClick={onShortcutClicked}/>
         <Shortcut title="Games" icon="none" onShortcutClick={onShortcutClicked}/>
-        <BottomNav openTabs={openTabs}/> 
+
+        {/* Wrap in the context provider to allow tabs to communicate to manager when the X button closes tab. */}
+        <TabContext.Provider value={onShortcutClosed}>
+            <BottomNav openTabs={openTabs}/> 
+        </TabContext.Provider>
         
         </>
     )

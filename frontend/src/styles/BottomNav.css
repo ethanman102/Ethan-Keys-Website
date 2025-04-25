@@ -12,6 +12,7 @@
 
 #menuButtonContainer{
     margin-left: 1ch;
+    margin-right: 4ch;
     margin-top: 0.5ch;
     margin-bottom: 0.5ch;
     width: fit-content;
@@ -37,6 +38,7 @@
     margin-left: 1ch;
     padding: 0;
     color: rgb(247, 247, 247);
+    cursor: pointer;
 }
 
 #menuImage{
