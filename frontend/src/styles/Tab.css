@@ -39,6 +39,11 @@
     scale: 1.2;
     cursor: pointer;
     background-color: rgb(110, 110, 110);
+    border-top: solid 2px black;
+    border-left: solid black 2px;
+    box-shadow: 1px 1px 0px 0px rgb(255, 255, 255);
+    border-bottom: none;
+    border-right: none;
     
 }
 

@@ -32,6 +32,14 @@
     cursor: pointer;
 }
 
+.emailButton:hover{    
+    background-color: gray;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-top: 2px solid  black;
+    border-left: 2px solid black;
+    color: white;}
+
 .inputBox{
     display: block;
     background-color: rgb(255, 255, 255);
@@ -44,6 +52,10 @@
     margin-left: 1.5ch;
     margin-right: 1.5ch;
     min-width: 40ch;
+}
+
+.inputBox:focus{
+    background-color: rgb(219, 250, 255);
 }
 
 .inputMessage{
@@ -59,6 +71,50 @@
     padding-left: 1ch;
     display: inline;
     
+}
+
+.emailBoxFooter{
+    
+    display: flex;
+    padding-bottom: 1ch;
+}
+
+.emailBoxDivit{
+    width: 75%;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    margin-left: 1.75ch;
+    font-weight: normal;
+    font-size: 75%;
+    padding-left: 2ch;
+    padding-top: 0.25ch;
+}
+
+.emailSendButton{
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    color: black;
+    font-weight: bold;
+    font-size: 1.5ch;
+    border-top: solid 2px white;
+    border-left: solid white 2px;
+    background-color: rgb(223, 223, 223);
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 2ch;
+    font-weight: normal;
+    margin-left: 0.5ch;
+}
+
+.emailSendButton:hover{
+    background-color: gray;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-top: 2px solid  black;
+    border-left: 2px solid black;
+    color: white;
 }
 
 @keyframes appearPopup {
