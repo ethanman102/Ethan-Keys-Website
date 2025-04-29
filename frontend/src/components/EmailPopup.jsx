@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import "../styles/EmailPopup.css"
 
-const EmailPopup = () => {
+const EmailPopup = ({closeCallback}) => {
 
     const [characterCount, setCharacterCount] = useState(0);
 
@@ -10,7 +10,7 @@ const EmailPopup = () => {
             <div className="emailHeaderContainer">
             <h5 className="emailHeader">Email Me</h5>
             <div className="emailButtonContainer">
-                <button className="emailButton">_</button>
+                <button className="emailButton" onClick={}>_</button>
                 <button className="emailButton">□</button>
                 <button className="emailButton">X</button>
             </div>
