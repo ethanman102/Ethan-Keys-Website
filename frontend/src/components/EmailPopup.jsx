@@ -10,9 +10,9 @@ const EmailPopup = ({closeCallback}) => {
             <div className="emailHeaderContainer">
             <h5 className="emailHeader">Email Me</h5>
             <div className="emailButtonContainer">
-                <button className="emailButton" onClick={}>_</button>
-                <button className="emailButton">□</button>
-                <button className="emailButton">X</button>
+                <button className="emailButton" onClick={e => closeCallback(false)}>_</button>
+                <button className="emailButton" onClick={e => closeCallback(false)}>□</button>
+                <button className="emailButton" onClick={e => closeCallback(false)}>X</button>
             </div>
         </div>
             <input className="inputBox" placeholder="Your Name" type="text"/>

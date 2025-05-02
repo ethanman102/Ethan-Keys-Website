@@ -14,7 +14,7 @@ const BottomNav = ({openTabs}) =>{
                 <img id="menuImage" src="/blog.png"/>
                 <button id="menuButton">Contact Me</button>
             </div>
-            {showPopup && <EmailPopup/>}
+            {showPopup && <EmailPopup closeCallback={setShowPopup}/>}
             {openTabs.map((tab) => {return <Tab key={tab.title} title={tab.title} icon={tab.icon}/>})}
         </div>
     )
