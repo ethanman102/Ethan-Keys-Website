@@ -1,7 +1,13 @@
-import { useState, createContext} from 'react'
-import React from "react"
-import Shortcut from '../components/Shortcut'
+import { useState, createContext} from 'react';
+import React from "react";
+import Shortcut from '../components/Shortcut';
 import BottomNav from '../components/BottomNav';
+import HomePage from '../pages/HomePage';
+import GamesPage from '../pages/GamesPage';
+import BlogPage from '../pages/BlogPage';
+import ProjectsPage from '../pages/ProjectsPage';
+
+import { Route, Routes } from "react-router-dom";
 
 export const TabContext = createContext();
 
@@ -31,10 +37,17 @@ const DesktopManager = () =>{
     return(
         <>
         
-        <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Projects" icon="none" description="Learn about the cool projects I have worked on!" onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Projects" icon="none" description="Learn about the cool projects I have worked on!" path='/projects/' onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path='/blog/' onShortcutClick={onShortcutClicked}/>
+        <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" path='/games/' onShortcutClick={onShortcutClicked}/>
+
+        <Routes>
+            <Route path='/' element={<HomePage/>}/>
+            <Route path='/blog/' element={<BlogPage/>}/>
+            <Route path='/games/' element={<GamesPage/>}/>
+            <Route path='/projects/' element={<ProjectsPage/>}/>
+        </Routes>
 
         {/* Wrap in the context provider to allow tabs to communicate to manager when the X button closes tab. */}
         <TabContext.Provider value={onShortcutClosed}>

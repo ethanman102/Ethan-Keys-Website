@@ -15,7 +15,7 @@ const BottomNav = ({openTabs}) =>{
                 <button id="menuButton">Contact Me</button>
             </div>
             {showPopup && <EmailPopup closeCallback={setShowPopup}/>}
-            {openTabs.map((tab) => {return <Tab key={tab.title} title={tab.title} icon={tab.icon}/>})}
+            {openTabs.map((tab) => {return <Tab key={tab.title} title={tab.title} icon={tab.icon} path={tab.title.toLowerCase() == 'home' ? '/' : `/${tab.title.toLowerCase()}/`}/>})}
         </div>
     )
 }
