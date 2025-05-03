@@ -1,5 +1,6 @@
 import { useState, createContext} from 'react';
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import Shortcut from '../components/Shortcut';
 import BottomNav from '../components/BottomNav';
 import HomePage from '../pages/HomePage';
@@ -14,6 +15,7 @@ export const TabContext = createContext();
 const DesktopManager = () =>{
 
     const [openTabs,setOpenTabs] = useState([]);
+    let navigate = useNavigate();
 
     // Utilized as a callback function to add a new tab to the front of the opened shortcuts (regardless if opened on not already)
     const onShortcutClicked = (shortcutObject) => {
@@ -32,6 +34,15 @@ const DesktopManager = () =>{
         // can simply find by the title...
         let newTabs = openTabs.filter((tab) => {return tab.title !== tabObject.title});
         setOpenTabs(newTabs);
+
+        // When we close a tab we should simply need to navigate to the first tab if one exists
+        let toNavigateTo = '/';
+        // If we have no tabs after closing then we should simply navigate to the home tab 
+        if (newTabs.length > 0 && newTabs.at(0).title.toLowerCase() !== 'home'){
+            toNavigateTo = toNavigateTo + `${newTabs.at(0).title.toLowerCase()}/`;
+        }
+        navigate(toNavigateTo);
+        
     }
 
     return(
