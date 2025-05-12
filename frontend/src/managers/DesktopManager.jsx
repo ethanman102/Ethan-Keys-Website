@@ -7,6 +7,7 @@ import HomePage from '../pages/HomePage';
 import GamesPage from '../pages/GamesPage';
 import BlogPage from '../pages/BlogPage';
 import ProjectsPage from '../pages/ProjectsPage';
+import '../styles/DesktopManager.css'
 
 import { Route, Routes } from "react-router-dom";
 
@@ -47,19 +48,22 @@ const DesktopManager = () =>{
 
     return(
         <>
-        
-        <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Projects" icon="none" description="Learn about the cool projects I have worked on!" path='/projects/' onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path='/blog/' onShortcutClick={onShortcutClicked}/>
-        <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" path='/games/' onShortcutClick={onShortcutClicked}/>
-
-        <Routes>
-            <Route path='/' element={<HomePage/>}/>
-            <Route path='/blog/' element={<BlogPage/>}/>
-            <Route path='/games/' element={<GamesPage/>}/>
-            <Route path='/projects/' element={<ProjectsPage/>}/>
-        </Routes>
-
+        <div className='desktopContainer'>
+            <div className='shortcutsContainer'>
+                <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
+                <Shortcut title="Projects" icon="none" description="Learn about the cool projects I have worked on!" path='/projects/' onShortcutClick={onShortcutClicked}/>
+                <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path='/blog/' onShortcutClick={onShortcutClicked}/>
+                <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" path='/games/' onShortcutClick={onShortcutClicked}/>
+            </div>
+            <div className='pageFlexContainer'>
+                <Routes>
+                    <Route path='/' element={<HomePage/>}/>
+                    <Route path='/blog/' element={<BlogPage/>}/>
+                    <Route path='/games/' element={<GamesPage/>}/>
+                    <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
+                </Routes>
+            </div>
+        </div>
         {/* Wrap in the context provider to allow tabs to communicate to manager when the X button closes tab. */}
         <TabContext.Provider value={onShortcutClosed}>
             <BottomNav openTabs={openTabs}/> 

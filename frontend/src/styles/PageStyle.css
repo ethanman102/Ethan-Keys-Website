@@ -1,0 +1,77 @@
+.pageContainer{
+    margin-top: 10ch;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    border-top: solid white 1px;
+    border-left: solid white 1px;
+    padding-bottom: 1ch;
+}
+
+.pageMessage{
+    font-size: 1.5ch;
+    text-wrap: wrap;
+    margin-top: 0.5ch;
+    /*Have to add padding to message instead of container to allow for background*/
+    padding-left: 1ch;
+    padding-right: 1ch;
+    color: black;
+}
+
+.pageTitleContainer{
+    background-color: rgb(145, 145, 145); 
+    display: flex;
+    border-bottom: solid white 1px;
+}
+
+.pageButtonContainer{
+    margin-left: auto;
+    margin-right: 0.25ch;
+}
+
+.pageTitle{
+    margin: 0;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    background-color: rgb(145, 145, 145);
+    color: rgb(243, 243, 243);
+    /*Have to add padding to title instead of container to allow for background*/
+    padding-left: 1ch;
+    padding-right: 1ch;
+    font-weight: normal;
+    display: inline;
+    width: fit-content;
+}
+
+.pageButton{
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    color: black;
+    font-weight: bold;
+    font-size: 1ch;
+    border-top: solid 2px white;
+    border-left: solid white 2px;
+    background-color: rgb(223, 223, 223);
+}
+
+.pageFooter{
+    display: flex;
+    gap: 1ch;
+}
+
+.pageBoxDivit{
+    border-top: gray solid 3px;
+    border-left: gray solid 3px;
+    border-bottom: white solid 3px;
+    border-right: white solid 3px;
+    padding-top: 2ch;
+    width: 50%;
+    margin-top: 1ch;
+}
+
+.pageBoxDivitLeft{
+    margin-left: 2ch;
+}
+
+.pageBoxDivitRight{
+    margin-right: 2ch;
+}
