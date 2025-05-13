@@ -15,7 +15,14 @@ const ProjectsPage = ({title}) => {
                     <button className="pageButton">X</button>
                 </div>
             </div>
-            <h2>Projects I have dabbled within</h2>
+            <div className="dropDownProjectsTabs">
+                <p className="dropdownTab"><u>S</u>ee</p>
+                <p className="dropdownTab">S<u>o</u>me</p>
+                <p className="dropdownTab"><u>O</u>f</p>
+                <p className="dropdownTab"><u>M</u>y</p>
+                <p className="dropdownTab"><u>N</u>ewest</p>
+                <p className="dropdownTab"><u>P</u>rojects</p>
+            </div>
             <div className="projectsShortcutContainer">
                 <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path='/blog/' />
                 <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" path='/games/'/>

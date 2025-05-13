@@ -9,11 +9,18 @@
     display: flex;
     gap: 4ch;
     padding-left: 1ch;
-
+    margin-top: 1ch;
     padding-top: 1ch;
     
 }
 
 .projectsShortcutContainer .shortcutTitle{
     color: rgb(110, 110, 110);
+}
+
+.dropdownTab{
+    display: inline;
+    width: fit-content;
+    margin-left: 2ch;
+    
 }
