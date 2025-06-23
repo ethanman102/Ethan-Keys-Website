@@ -7,6 +7,7 @@ import HomePage from '../pages/HomePage';
 import GamesPage from '../pages/GamesPage';
 import BlogPage from '../pages/BlogPage';
 import ProjectsPage from '../pages/ProjectsPage';
+import SingularProjectsPage from '../pages/SingularProjectsPage';
 import '../styles/DesktopManager.css'
 
 import { Route, Routes } from "react-router-dom";
@@ -61,7 +62,7 @@ const DesktopManager = () =>{
                     <Route path='/blog/' element={<BlogPage/>}/>
                     <Route path='/games/' element={<GamesPage/>}/>
                     <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
-                    <Route path='/projects/:projectID/' element={<p>hi</p>}/>
+                    <Route path='/projects/:projectID/' element={<SingularProjectsPage/>}/>
                 </Routes>
             </div>
         </div>

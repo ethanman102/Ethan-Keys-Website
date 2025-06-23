@@ -1,0 +1,40 @@
+.singularProjectTitleContainer{
+    padding-right: 3ch;
+}
+
+.projectDescriptionLeft{
+    
+    background-color:  rgb(202, 202, 202);
+    margin-bottom: 1ch;
+    margin-left: 3ch;
+    border-bottom: 2px solid rgb(80, 80, 80);
+    border-right: 2px solid rgb(80, 80, 80);
+    animation: pulse 4s infinite;
+}
+
+.projectInformationHeader{
+    background-color: rgb(145, 145, 145); 
+    margin: 0;
+    color: rgb(224, 224, 224);
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    padding-right: 0.25ch;
+    padding-left: 0.25ch;
+    border-bottom: 2px solid rgb(80, 80, 80);
+
+    border-top: solid 2px gray;
+    border-left: solid 2px gray;
+
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+        }
+    100% {
+        transform: scale(1);
+        }
+}
