@@ -1,6 +1,6 @@
 import "../styles/PageStyle.css"
 import "../styles/ProjectsPage.css"
-import Shortcut from "../components/Shortcut";
+import Folder from "../components/Folder";
 
 const ProjectsPage = ({title}) => {
 
@@ -24,8 +24,8 @@ const ProjectsPage = ({title}) => {
                 <p className="dropdownTab"><u>P</u>rojects</p>
             </div>
             <div className="projectsShortcutContainer">
-                <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path='/blog/' />
-                <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" path='/games/'/>
+                <Folder projectTitle="hi" projectID="1"/>
+                <Folder projectTitle="hi" projectID="1"/>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

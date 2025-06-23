@@ -61,6 +61,7 @@ const DesktopManager = () =>{
                     <Route path='/blog/' element={<BlogPage/>}/>
                     <Route path='/games/' element={<GamesPage/>}/>
                     <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
+                    <Route path='/projects/:projectID/' element={<p>hi</p>}/>
                 </Routes>
             </div>
         </div>

@@ -57,11 +57,3 @@
     background-color: rgb(223, 223, 223);
 }
 
-@keyframes appearBlurb {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-  }

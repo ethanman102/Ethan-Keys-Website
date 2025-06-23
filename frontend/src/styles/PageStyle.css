@@ -1,4 +1,14 @@
+@keyframes appear {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
 .pageContainer{
+    animation: appear 0.1s ease-in;
     margin-top: 10ch;
     background-color: rgb(202, 202, 202);
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
