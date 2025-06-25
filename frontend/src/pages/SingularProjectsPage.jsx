@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import "../styles/SingularProjectsPage.css"
 
+
 const SingularProjectsPage = () =>{
 
     let params = useParams();
@@ -28,13 +29,16 @@ const SingularProjectsPage = () =>{
             </div>
             <div className="projectsShortcutContainer">
                 <div className="projectDescriptionLeft">
-                <h6 className="projectInformationHeader">Project Information</h6>
+                <div className="projectInformationBar">
+                    <h6 className="projectInformationHeader">Project Information</h6>
+                    <button className="projectInfoX">X</button>
+                </div>
                 <div className="singularProjectTitleContainer">
                     <h1 className="singularProjectTitle">Project Title</h1>
                     <h2 className="singularProjectSubtitle">Project Type</h2>
                 </div>
                 <div className="projectTools">
-                    <p>The following tools were utilized to satisy this project<br/>and it's requirements</p>
+                    <p className="projectToolsDescription">The following tools were utilized to satisy this project and it's requirements</p>
                 </div>
                 </div>
             </div>
