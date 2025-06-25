@@ -33,13 +33,15 @@ const SingularProjectsPage = () =>{
                     <h6 className="projectInformationHeader">Project Information</h6>
                     <button className="projectInfoX">X</button>
                 </div>
+
                 <div className="singularProjectTitleContainer">
-                    <h1 className="singularProjectTitle">Project Title</h1>
-                    <h2 className="singularProjectSubtitle">Project Type</h2>
+                    <img src="/InfoBook.png" className="infoIcon"/>
+                    <div class="projectTitleText">
+                        <h1 className="singularProjectTitle">Project Title</h1>
+                        <h2 className="singularProjectSubtitle">Project Type</h2>
+                    </div>
                 </div>
-                <div className="projectTools">
-                    <p className="projectToolsDescription">The following tools were utilized to satisy this project and it's requirements</p>
-                </div>
+                <p className="uselessButton">That's Cool!</p>
                 </div>
             </div>
             <div className="pageFooter">
