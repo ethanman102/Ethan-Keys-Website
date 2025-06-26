@@ -1,0 +1,44 @@
+.paginatorButton, .paginatorMiddle{
+    display: inline;
+}
+
+.paginatorButton{
+    border-top: solid 2px white;
+    border-left: solid 2px white;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+    background-color: rgb(223, 223, 223);
+}
+
+.paginatorMiddle{
+    background-color: rgb(223, 223, 223);
+    border-bottom: solid black 2px;
+    padding-left:15ch;
+    padding-right: 15ch;
+}
+
+.paginatorDivitContainer{
+    background-color: rgb(223, 223, 223);
+    display: flex;
+    gap: 2ch;
+    justify-content: space-between;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+}
+
+.paginatorDivit{
+    width: 33%;
+    border-right: solid white 2px;
+    border-bottom: solid white 2px;
+    border-top: solid gray 2px;
+    border-left: solid gray 2px;
+    font-size: 1.75ch;
+}
+
+.paginatorContainer{
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    height: fit-content;
+}
+
