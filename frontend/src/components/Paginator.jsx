@@ -5,6 +5,7 @@ const Paginator = ({smallest,largest,selectionCallback}) => {
 
     return(
         <div className="paginatorContainer">
+            <p className="paginatorTitle">Paginate</p>
             <div className="arrowContainer">
                 <button className="paginatorButton">🢀</button>
                 <div className="paginatorMiddle"> </div>
