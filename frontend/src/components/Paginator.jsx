@@ -8,8 +8,7 @@ const Paginator = ({smallest,largest,selectionCallback}) => {
             <p className="paginatorTitle">Paginate</p>
             <div className="arrowContainer">
                 <button className="paginatorButton">🢀</button>
-                <div className="paginatorMiddle"> </div>
-                <button className="paginatorButton">🢂</button>
+                <button className="paginatorButton paginatorButtonRight">🢂</button>
             </div>
             <div className="paginatorDivitContainer">
                 <div className="paginatorDivit">1/5</div>

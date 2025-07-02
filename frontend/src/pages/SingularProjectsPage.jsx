@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "../styles/SingularProjectsPage.css"
-import Paginator from "../components/Paginator";
+
 import ImageDisplay from "../components/ImageDisplay";
 
 
@@ -45,7 +45,6 @@ const SingularProjectsPage = () =>{
                 </div>
                 <p className="uselessButton">That's Cool!</p>
                 </div>
-                <Paginator/>
                 <ImageDisplay/>
             </div>
             <div className="pageFooter">

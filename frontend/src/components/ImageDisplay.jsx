@@ -1,8 +1,10 @@
 import React from "react";
 import "../styles/ImageDisplay.css"
+import Paginator from "../components/Paginator";
 
 const ImageDisplay = () => {
     return(
+        <div>
         <div className="imageDisplayContainer">
             <div className="imageDisplayToolbar">
                 <p className="imageDisplayHeader">untitled - Pictures</p>
@@ -12,6 +14,7 @@ const ImageDisplay = () => {
                     <button className="idbutton">X</button>
                 </div>
             </div>
+            <p className="imageDisplayMenu"><u>S</u>ome&nbsp;&nbsp; <u>P</u>ictures&nbsp;&nbsp; <u>T</u>o&nbsp;&nbsp; <u>B</u>rowse</p>
             <div className="imageDisplayBody">
                 <div className="imageDisplayColorBar">
                     <div className="paintSquare" style={{background: 'red'}}> </div>
@@ -39,6 +42,8 @@ const ImageDisplay = () => {
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>
             </div>
+        </div>
+        <Paginator/>
         </div>
     )
 }

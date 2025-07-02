@@ -10,6 +10,7 @@
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     background-color: rgb(223, 223, 223);
     padding-bottom: 1ch;
+    margin-bottom: 2ch;
 }
 
 .imageDisplayToolbar{
@@ -38,6 +39,7 @@
     background-color: rgb(223, 223, 223);
 }
 
+
 .imageDisplayBody{
     display: flex;
     flex-direction: row;
@@ -60,6 +62,10 @@
    
 }
 
+.paintSquare:hover{
+    outline: solid blue 3px;
+}
+
 .imageDisplayColorBar {
   display: grid;
   grid-template-columns: repeat(2, 3ch); 
@@ -75,4 +81,9 @@
     border-right: solid white 2px;
     border-left: solid black 3px;
     background-color: white;
+}
+
+.imageDisplayMenu{
+    margin: 0;
+    padding-left: 1ch;
 }

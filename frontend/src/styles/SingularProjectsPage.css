@@ -11,6 +11,7 @@
     border-right: 2px solid rgb(0, 0, 0);
     animation: pulse 4s infinite;
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    height: fit-content;
 }
 
 .projectInformationHeader{
