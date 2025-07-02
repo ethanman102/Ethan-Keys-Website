@@ -100,3 +100,20 @@
         transform: scale(1);
         }
 }
+
+.projectDescriptionMiddle{
+    max-width: 49ch;
+}
+
+.projectDescriptionBody{
+    max-height: 60ch;
+    overflow-y: scroll;
+}
+
+.projectDescriptionBody::-webkit-scrollbar{
+    width: 1ch;
+}
+
+.projectDescriptionBody::-webkit-scrollbar-track{
+    background: rgb(145, 145, 145); ;
+}

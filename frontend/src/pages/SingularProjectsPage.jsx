@@ -31,19 +31,23 @@ const SingularProjectsPage = () =>{
             </div>
             <div className="projectsShortcutContainer">
                 <div className="projectDescriptionLeft">
-                <div className="projectInformationBar">
-                    <h6 className="projectInformationHeader">Project Information</h6>
-                    <button className="projectInfoX">X</button>
-                </div>
-
-                <div className="singularProjectTitleContainer">
-                    <img src="/InfoBook.png" className="infoIcon"/>
-                    <div class="projectTitleText">
-                        <h1 className="singularProjectTitle">Project Title</h1>
-                        <h2 className="singularProjectSubtitle">Project Type</h2>
+                    <div className="projectInformationBar">
+                        <h6 className="projectInformationHeader">Project Information</h6>
+                        <button className="projectInfoX">X</button>
                     </div>
+
+                    <div className="singularProjectTitleContainer">
+                        <img src="/InfoBook.png" className="infoIcon"/>
+                        <div class="projectTitleText">
+                            <h1 className="singularProjectTitle">Project Title</h1>
+                            <h2 className="singularProjectSubtitle">Project Type</h2>
+                        </div>
+                    </div>
+                    <p className="uselessButton">That's Cool!</p>
                 </div>
-                <p className="uselessButton">That's Cool!</p>
+                <div className="projectDescriptionMiddle">
+                    <h5 className="projectDescriptionHeader">About The Project</h5>
+                    <p className="projectDescriptionBody">orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 </div>
                 <ImageDisplay/>
             </div>
