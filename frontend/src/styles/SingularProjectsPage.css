@@ -6,7 +6,8 @@
     
     background: rgb(223, 223, 223);
     margin-bottom: 1ch;
-    
+    font-weight: 100;
+    font-size: larger;
     border-bottom: 2px solid rgb(0, 0, 0);
     border-right: 2px solid rgb(0, 0, 0);
     animation: pulse 4s infinite;
@@ -44,7 +45,7 @@
 .projectInformationBar{
     display: flex;
     background-color: rgb(145, 145, 145); 
-    border-bottom: 2px solid rgb(80, 80, 80);
+    border-bottom: 2px solid rgb(255, 255, 255);
     border-top: solid 2px rgb(255, 255, 255);
 }
 
@@ -181,7 +182,6 @@
     padding: 1ch;
     margin-left: 1ch;
     margin-right: 1ch;
-    margin-top: 1.5ch;
     border-top: 3px solid black;
     border-left: 3px solid black;
     border-bottom: 3px solid rgb(211, 211, 211);
@@ -198,5 +198,48 @@
 .projectToolsContainer{
     background: rgb(223, 223, 223);
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
-    margin-top: 2ch;
+    margin-top: 1ch;
+}
+
+.toolsTabs{
+    margin-left: 1ch;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    display: inline;
+}
+
+.pageBoxDivitFull{
+    width: 100%;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    margin-left: 1ch;
+    margin-top: 1ch;
+    margin-bottom: 1ch;
+    margin-right: 1ch;
+    border-bottom: solid 3px white;
+    border-right: solid 3px white;
+
+}
+
+.topDivit{
+    display: inline;
+    width: 100%;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    margin-left: 1ch;
+    margin-top: 1ch;
+    margin-bottom: 1ch;
+    margin-right: 1ch;
+    border-bottom: solid 3px white;
+    border-right: solid 3px white;
+}
+
+.toolsUsedTop{
+    display: flex;
+    align-items: center;
 }

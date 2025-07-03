@@ -48,14 +48,18 @@ const SingularProjectsPage = () =>{
                 </div>
                 <div className="projectToolsContainer">
                     <h5 className="projectDescriptionHeader">Tools Used</h5>
+                    <div className="toolsUsedTop">
+                        <p className="toolsTabs"><u>E</u>plore</p>
+                        <p className="toolsTabs"><u>D</u>evelopment</p>
+                        <div className=" topDivit"> </div>
+                    </div>
                     <div className="projectToolsContainer">
                         <div className="projectGithub">
                             <img src="/github-mark.png" className="githubLogo"/>
                             <a href="https://github.com/logos" className="githubLink">View the Code!</a>
                         </div>
-                                    <div className="pageFooter">
-                <div className="pageBoxDivit pageBoxDivitLeft"> </div>
-                <div className="pageBoxDivit pageBoxDivitRight"> </div>
+            <div className="pageFooter">
+                <div className="pageBoxDivitFull"> </div>
             </div>
                     </div>
                 </div>
