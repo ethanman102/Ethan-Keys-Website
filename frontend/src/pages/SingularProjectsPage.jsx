@@ -30,6 +30,7 @@ const SingularProjectsPage = () =>{
                 <p className="dropdownTab">T<u>h</u>is</p>
             </div>
             <div className="projectsShortcutContainer">
+                <div>
                 <div className="projectDescriptionLeft">
                     <div className="projectInformationBar">
                         <h6 className="projectInformationHeader">Project Information</h6>
@@ -44,6 +45,20 @@ const SingularProjectsPage = () =>{
                         </div>
                     </div>
                     <p className="uselessButton">That's Cool!</p>
+                </div>
+                <div className="projectToolsContainer">
+                    <h5 className="projectDescriptionHeader">Tools Used</h5>
+                    <div className="projectToolsContainer">
+                        <div className="projectGithub">
+                            <img src="/github-mark.png" className="githubLogo"/>
+                            <a href="https://github.com/logos" className="githubLink">View the Code!</a>
+                        </div>
+                                    <div className="pageFooter">
+                <div className="pageBoxDivit pageBoxDivitLeft"> </div>
+                <div className="pageBoxDivit pageBoxDivitRight"> </div>
+            </div>
+                    </div>
+                </div>
                 </div>
                 <div className="projectDescriptionMiddle">
                     <h5 className="projectDescriptionHeader">About The Project</h5>

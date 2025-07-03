@@ -6,7 +6,7 @@
     
     background: rgb(223, 223, 223);
     margin-bottom: 1ch;
-    margin-left: 3ch;
+    
     border-bottom: 2px solid rgb(0, 0, 0);
     border-right: 2px solid rgb(0, 0, 0);
     animation: pulse 4s infinite;
@@ -159,4 +159,44 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* TOOLS CSS */
+
+.githubLogo{
+    width: 75px;
+    height: 75px;
+}
+
+.githubLink{
+    padding: 0;
+    margin-left: 2ch;
+    margin-right: 2ch;
+}
+
+.projectGithub{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 1ch;
+    margin-left: 1ch;
+    margin-right: 1ch;
+    margin-top: 1.5ch;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-bottom: 3px solid rgb(211, 211, 211);
+    border-right: 3px solid rgb(211, 211, 211);
+}
+
+
+.projectGithub:hover{
+    outline: 2px solid rgb(17, 142, 226);
+    background-color: rgba(17, 142, 226, 0.288);
+    cursor: pointer;
+}
+
+.projectToolsContainer{
+    background: rgb(223, 223, 223);
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    margin-top: 2ch;
 }
