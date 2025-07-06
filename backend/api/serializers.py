@@ -24,3 +24,8 @@ class ProjectSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     
+class ProjectListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('id','title')
+    
