@@ -1,7 +1,9 @@
-from django.shortcuts import get_object_or_404
+from uuid import uuid4
+from django.conf import settings
+import boto3
 from rest_framework import viewsets,status
 from ..serializers import ProjectSerializer,ProjectListSerializer
-from ..models import Project
+from ..models import Project,Image
 from rest_framework.response import Response
 from django.db.models import F
 
@@ -18,13 +20,52 @@ class ProjectViewSet(viewsets.ModelViewSet):
             return ProjectListSerializer
         return ProjectSerializer
 
-    
+    # Overidden Create Method Utilized to create and store the images on AWS S3 bucket servers.
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
+        project = serializer.save()
+
+        # Now time to take the images and store them on the client...
+        images = request.FILES.getlist('images')
+
+        if images:
+            client = boto3.client(service_name='s3',
+                                  region_name=settings.AWS_REGION,
+                                  aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                                  aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
+            # upload
+            for image in images:
+                image_key = uuid4()
+                file_name = image.name + str(image_key)
+                client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
+                image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
+                Image.objects.create(project=project,image_key=file_name,url=image_url,image_type='P')
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data,status=status.HTTP_201_CREATED,headers=headers)
+    
+    def destroy(self, request, *args, **kwargs):
+        project = self.get_object()
+        images = project.images.all()
+
+        if images:
+            client = boto3.client(service_name='s3',
+                                  region_name=settings.AWS_REGION,
+                                  aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                                  aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
+
+            for image in images:
+                # remove all images from DB..
+                client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.image_key)         
+
+            
+        # images will cascade
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)   
+
     
     # List method retrieves only ids and titles to reduce query time and bandwidth for simple queries...
     def list(self, request, *args, **kwargs):
