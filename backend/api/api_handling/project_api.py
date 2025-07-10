@@ -38,8 +38,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
                                   aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
             # upload
             for image in images:
-                image_key = uuid4()
-                file_name = image.name + str(image_key)
+                file_name = image.name + str(uuid4())
                 client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
                 image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
                 Image.objects.create(project=project,image_key=file_name,url=image_url,image_type='P')
@@ -81,7 +80,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Project does not exist'},status=status.HTTP_404_NOT_FOUND)
         
         self.get_queryset().filter(id=key).update(views=F('views') + 1)
-        self.get_object()
+        project = self.get_object()
         serializer = self.get_serializer(project)
+        serializer.data[images] = project.images.all()
         return Response(serializer.data,status=status.HTTP_200_OK)
         

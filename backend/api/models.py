@@ -21,6 +21,7 @@ class Image(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey('Project',on_delete=models.CASCADE,null=True,related_name='images')
     blog = models.ForeignKey('Blog',on_delete=models.CASCADE,null=True,related_name='images')
+    image_key=models.CharField(max_length=1000,null=False,blank=False)
 
 
 class Blog(models.Model):
