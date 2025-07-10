@@ -1,9 +1,24 @@
 import "../styles/PageStyle.css"
 import "../styles/ProjectsPage.css"
 import Folder from "../components/Folder";
+import axios from "axios";
+import { useEffect,useState } from "react";
+import { apiURL } from "../../constants";
+import {SquareLoader} from "react-spinners";
+
 
 const ProjectsPage = ({title}) => {
 
+    const [projects,setProjects] = useState([]); // Empty projects until all are fetched
+    const [loading,setLoading] = useState(true);
+
+    useEffect( () => {
+        axios.get(`${apiURL}/api/projects/`)
+        .then((response) =>{
+            setProjects(response.data.projects)
+            setLoading(false)
+        })
+    },[])
 
     return(
         <div className="pageContainer">
@@ -24,8 +39,10 @@ const ProjectsPage = ({title}) => {
                 <p className="dropdownTab"><u>P</u>rojects</p>
             </div>
             <div className="projectsShortcutContainer">
-                <Folder projectTitle="hi" projectID="1"/>
-                <Folder projectTitle="hi" projectID="1"/>
+                
+                {loading ? <SquareLoader className="projectsLoader"/> : projects.map((project) => {
+                    <Folder key={project.id} projectID={project.id} projectTitle={project.title}/>
+                })}
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
