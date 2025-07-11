@@ -4,7 +4,7 @@ import Folder from "../components/Folder";
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { apiURL } from "../../constants";
-import {SquareLoader} from "react-spinners";
+import Loader from "../components/Loader";
 
 
 const ProjectsPage = ({title}) => {
@@ -40,7 +40,7 @@ const ProjectsPage = ({title}) => {
             </div>
             <div className="projectsShortcutContainer">
                 
-                {loading ? <SquareLoader className="projectsLoader"/> : projects.map((project) => {
+                {loading ? <Loader message="Loading"/> : projects.map((project) => {
                     <Folder key={project.id} projectID={project.id} projectTitle={project.title}/>
                 })}
             </div>
