@@ -21,6 +21,7 @@ const SingularProjectsPage = () =>{
         .then((response) =>{
             setProject(response.data)
             setLoading(false)
+            
         })
     },[])
 
@@ -85,8 +86,8 @@ const SingularProjectsPage = () =>{
                     
                     <p className="projectDescriptionBody">
                         {project.youtube_id && <iframe className="projectVideo"  src={`https://www.youtube.com/embed/${project.youtube_id}`}></iframe> }
-                        <b><u>Created On:</u></b> {
-                        Date(project.created_on).toString().split(" ").slice(1,4).join(" ")
+                        <b><u>Created On: </u></b> {
+                        new Date(project.created_on).toString().split(" ").slice(1,4).join(" ")
                         } <br/> <br/>
                         {project.description}</p>
                 <div className="pageFooter">
