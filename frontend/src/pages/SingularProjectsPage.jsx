@@ -5,6 +5,7 @@ import { useState,useEffect } from "react";
 import { apiURL } from "../../constants";
 import ImageDisplay from "../components/ImageDisplay";
 import Loader from "../components/Loader";
+import axios from "axios";
 
 
 const SingularProjectsPage = () =>{
@@ -43,8 +44,6 @@ const SingularProjectsPage = () =>{
                 <p className="dropdownTab">T<u>h</u>is</p>
             </div>
             <div className="projectsShortcutContainer">
-            {loading ? <Loader message="Loading"/> :  (
-                <>
                 <div>
                 <div className="projectDescriptionLeft">
                     <div className="projectInformationBar">
@@ -86,6 +85,9 @@ const SingularProjectsPage = () =>{
                     
                     <p className="projectDescriptionBody">
                         {project.youtube_id && <iframe className="projectVideo"  src={`https://www.youtube.com/embed/${project.youtube_id}`}></iframe> }
+                        <b><u>Created On:</u></b> {
+                        Date(project.created_on).toString().split(" ").slice(1,4).join(" ")
+                        } <br/> <br/>
                         {project.description}</p>
                 <div className="pageFooter">
                     <div className="pageBoxDivit pageBoxDivitLeft"> </div>
@@ -93,9 +95,6 @@ const SingularProjectsPage = () =>{
                 </div>
                 </div>
                 <ImageDisplay/>
-                            </>
-            )
-            }
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

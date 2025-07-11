@@ -17,6 +17,7 @@ const ProjectsPage = ({title}) => {
         .then((response) =>{
             setProjects(response.data.projects)
             setLoading(false)
+            console.log(response.data)
         })
     },[])
 
@@ -40,9 +41,9 @@ const ProjectsPage = ({title}) => {
             </div>
             <div className="projectsShortcutContainer">
                 
-                {loading ? <Loader message="Loading"/> : projects.map((project) => {
+                {loading ? <Loader message="Loading"/> : projects.map((project) => 
                     <Folder key={project.id} projectID={project.id} projectTitle={project.title}/>
-                })}
+                )}
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

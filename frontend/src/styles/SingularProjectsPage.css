@@ -53,9 +53,16 @@
     display: flex;
 }
 
-.singularProjectTitle, .singularProjectSubtitle{
+.singularProjectTitle{
     margin-bottom: 0;
     font-weight: normal;
+    font-size: 3ch;
+}
+
+.singularProjectSubtitle{
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 2.5ch;
 }
 
 .singularProjectSubtitle{
@@ -242,4 +249,16 @@
 .toolsUsedTop{
     display: flex;
     align-items: center;
+}
+
+.projectDescriptionMiddle{
+    height: fit-content;
+}
+
+.projectsShortcutContainer{
+    
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 65ch;
+    overflow-y: scroll;
 }

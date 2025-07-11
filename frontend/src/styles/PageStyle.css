@@ -9,7 +9,7 @@
 
 .pageContainer{
     animation: appear 0.1s ease-in;
-    margin-top: 10ch;
+    margin-top: 5ch;
     background-color: rgb(202, 202, 202);
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     border-top: solid white 1px;
