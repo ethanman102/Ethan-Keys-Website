@@ -1,14 +1,27 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "../styles/SingularProjectsPage.css"
-
+import { useState,useEffect } from "react";
+import { apiURL } from "../../constants";
 import ImageDisplay from "../components/ImageDisplay";
+import Loader from "../components/Loader";
 
 
 const SingularProjectsPage = () =>{
 
     let params = useParams();
     let projectID = params.projectID;
+
+    const [loading,setLoading] = useState(true);
+    const [project,setProject] = useState({});
+
+    useEffect( () => {
+        axios.get(`${apiURL}/api/projects/${projectID}/`)
+        .then((response) =>{
+            setProject(response.data)
+            setLoading(false)
+        })
+    },[])
 
 
     return(
@@ -30,6 +43,8 @@ const SingularProjectsPage = () =>{
                 <p className="dropdownTab">T<u>h</u>is</p>
             </div>
             <div className="projectsShortcutContainer">
+            {loading ? <Loader message="Loading"/> :  (
+                <>
                 <div>
                 <div className="projectDescriptionLeft">
                     <div className="projectInformationBar">
@@ -40,8 +55,8 @@ const SingularProjectsPage = () =>{
                     <div className="singularProjectTitleContainer">
                         <img src="/InfoBook.png" className="infoIcon"/>
                         <div class="projectTitleText">
-                            <h1 className="singularProjectTitle">Project Title</h1>
-                            <h2 className="singularProjectSubtitle">Project Type</h2>
+                            <h1 className="singularProjectTitle">{project.title}</h1>
+                            <h2 className="singularProjectSubtitle">{project.tagline}</h2>
                         </div>
                     </div>
                     <p className="uselessButton">That's Cool!</p>
@@ -54,10 +69,12 @@ const SingularProjectsPage = () =>{
                         <div className=" topDivit"> </div>
                     </div>
                     <div className="projectToolsContainer">
+                        { project.repository && 
                         <div className="projectGithub">
                             <img src="/github-mark.png" className="githubLogo"/>
-                            <a href="https://github.com/logos" className="githubLink">View the Code!</a>
+                            <a href={project.repository} className="githubLink">View the Code!</a>
                         </div>
+                        }                       
             <div className="pageFooter">
                 <div className="pageBoxDivitFull"> </div>
             </div>
@@ -68,14 +85,17 @@ const SingularProjectsPage = () =>{
                     <h5 className="projectDescriptionHeader">About The Project</h5>
                     
                     <p className="projectDescriptionBody">
-                        <iframe className="projectVideo"  src='https://www.youtube.com/embed/a3JW8tAOwhI'></iframe>
-                        orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        {project.youtube_id && <iframe className="projectVideo"  src={`https://www.youtube.com/embed/${project.youtube_id}`}></iframe> }
+                        {project.description}</p>
                 <div className="pageFooter">
                     <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                     <div className="pageBoxDivit pageBoxDivitRight"> </div>
                 </div>
                 </div>
                 <ImageDisplay/>
+                            </>
+            )
+            }
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
