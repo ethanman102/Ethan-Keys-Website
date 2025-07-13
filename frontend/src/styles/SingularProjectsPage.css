@@ -128,23 +128,6 @@
     border-right: 3px solid rgb(211, 211, 211);
 }
 
-.projectDescriptionBody::-webkit-scrollbar{
-    width: 1.5ch;
-}
-
-.projectDescriptionBody::-webkit-scrollbar-track{
-    background: rgb(145, 145, 145); 
-    border-left: solid 2px black;
-}
-
-.projectDescriptionBody::-webkit-scrollbar-thumb{
-    background: rgb(223, 223, 223);
-    border-top: 2px solid white;
-    border-left: 2px solid white;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-}
-
 .projectDescriptionMiddle{
     background-color: rgb(223, 223, 223);
     margin-bottom: 1ch;
@@ -281,36 +264,4 @@
     
 }
 
-.projectToolbox::-webkit-scrollbar{
-    width: 1.5ch;
-}
-
-.projectToolbox::-webkit-scrollbar-track{
-    background: rgb(145, 145, 145); 
-    border-left: solid 2px black;
-}
-
-.projectToolbox::-webkit-scrollbar-thumb{
-    background: rgb(223, 223, 223);
-    border-top: 2px solid white;
-    border-left: 2px solid white;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-}
-
-.projectsShortcutContainer::-webkit-scrollbar{
-    width: 1.5ch;
-}
-
-.projectsShortcutContainer::-webkit-scrollbar-track{
-    background: rgb(145, 145, 145); 
-    border-left: solid 2px black;
-}
-.projectsShortcutContainer::-webkit-scrollbar-thumb{
-    background: rgb(223, 223, 223);
-    border-top: 2px solid white;
-    border-left: 2px solid white;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-}
 

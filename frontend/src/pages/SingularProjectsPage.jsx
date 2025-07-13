@@ -7,6 +7,7 @@ import ImageDisplay from "../components/ImageDisplay";
 import Loader from "../components/Loader";
 import axios from "axios";
 import Tool from "../components/Tool";
+import "../styles/CustomScrollbar.css"
 
 
 const SingularProjectsPage = () =>{
@@ -22,6 +23,7 @@ const SingularProjectsPage = () =>{
         .then((response) =>{
             setProject(response.data)
             setLoading(false)
+            console.log(response.data)
 
         })
     },[])
@@ -45,7 +47,7 @@ const SingularProjectsPage = () =>{
                 <p className="dropdownTab">A<u>t</u></p>
                 <p className="dropdownTab">T<u>h</u>is</p>
             </div>
-            <div className="projectsShortcutContainer">
+            <div className="projectsShortcutContainer basicScrollbar">
                 <div>
                 <div className="projectDescriptionLeft">
                     <div className="projectInformationBar">
@@ -75,13 +77,22 @@ const SingularProjectsPage = () =>{
                             <img src="/github-mark.png" className="githubLogo"/>
                             <a href={project.repository} className="githubLink">View the Code!</a>
                         </div>
-                        }      
-                        <div className="projectToolbox">
-                            <Tool name="React" icon="NONE" description="hahaha"/>
-                                <Tool name="React" icon="NONE" description="hahaha"/>
-                                    <Tool name="React" icon="NONE" description="hahaha"/>
-                                        <Tool name="React" icon="NONE" description="hahaha"/>
-                                            <Tool name="React" icon="NONE" description="hahaha"/>
+                        } 
+
+                        <div className="projectToolbox basicScrollbar">
+                            {project.tools && project.tools.map((tool) => {
+                                let message
+                                switch (tool.type){
+                                    case "FROTNEND":
+                                        message = "Utilized to build the frontend"
+                                        break
+                                    case "BACKEND":
+                                        message = "Utilized to build the backend"
+                                        break
+                                }
+                                return <Tool name={tool.name} icon={tool.image.url} description={message}/> 
+                        })
+                        }
                         </div>                 
                         <div className="pageFooter">
                             <div className="pageBoxDivitFull"> </div>
@@ -93,7 +104,7 @@ const SingularProjectsPage = () =>{
                 <div className="projectDescriptionMiddle">
                     <h5 className="projectDescriptionHeader">About The Project</h5>
                     
-                    <p className="projectDescriptionBody">
+                    <p className="projectDescriptionBody basicScrollbar">
                         {project.youtube_id && <iframe className="projectVideo"  src={`https://www.youtube.com/embed/${project.youtube_id}`}></iframe> }
                         <b><u>Created On: </u></b> {
                         new Date(project.created_on).toString().split(" ").slice(1,4).join(" ")

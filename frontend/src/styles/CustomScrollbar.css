@@ -1,0 +1,15 @@
+.basicScrollbar::-webkit-scrollbar{
+    width: 1.5ch;
+}
+
+.basicScrollbar::-webkit-scrollbar-track{
+    background: rgb(145, 145, 145); 
+    border-left: solid 2px black;
+}
+.basicScrollbar::-webkit-scrollbar-thumb{
+    background: rgb(223, 223, 223);
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
