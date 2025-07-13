@@ -1,3 +1,10 @@
 const apiURL = 'http://127.0.0.1:8000/';
 
-export {apiURL}
+const pathNames = {
+    blog : "Blog",
+    projects : "Projects",
+    games : "Games",
+    home : "Home"
+}
+
+export {apiURL,pathNames}

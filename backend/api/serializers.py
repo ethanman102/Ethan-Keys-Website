@@ -16,9 +16,9 @@ class ProjectSerializer(serializers.ModelSerializer):
         return project
     
     def update(self, instance, validated_data):
+        # Notice views is removed in oerder to prevent views read only field from being defaulted back to 0.
         instance.title = validated_data.get('title','My Cool Project')
         instance.tagline = validated_data.get('tagline','A Personal Project')
-        instance.views = validated_data.get('views',0)
         instance.description = validated_data.get('description','This is a personal Project that I created to test out my coding capabilities and skills')
         instance.created_on = validated_data['created_on']
         instance.repository = validated_data.get('repository',None)

@@ -9,8 +9,9 @@ import BlogPage from '../pages/BlogPage';
 import ProjectsPage from '../pages/ProjectsPage';
 import SingularProjectsPage from '../pages/SingularProjectsPage';
 import '../styles/DesktopManager.css'
-
+import { useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
+import { pathNames } from '../../constants';
 
 export const TabContext = createContext();
 
@@ -18,6 +19,17 @@ const DesktopManager = () =>{
 
     const [openTabs,setOpenTabs] = useState([]);
     let navigate = useNavigate();
+
+    useEffect(() => {
+        let path = window.location.pathname.slice(1, -1)
+        console.log(path);
+        if (path in pathNames){
+            setOpenTabs([{
+                title : pathNames[path],
+                icon : "none"
+            }])
+        }
+    },[])
 
     // Utilized as a callback function to add a new tab to the front of the opened shortcuts (regardless if opened on not already)
     const onShortcutClicked = (shortcutObject) => {
@@ -52,9 +64,9 @@ const DesktopManager = () =>{
         <div className='desktopContainer'>
             <div className='shortcutsContainer'>
                 <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
-                <Shortcut title="Projects" icon="none" description="Learn about the cool projects I have worked on!" path='/projects/' onShortcutClick={onShortcutClicked}/>
-                <Shortcut title="Blog" icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path='/blog/' onShortcutClick={onShortcutClicked}/>
-                <Shortcut title="Games" icon="none" description="Play a game or two for some short time fun!" path='/games/' onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.projects} icon="none" description="Learn about the cool projects I have worked on!" path={`/${pathNames.projects}/`} onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.games} icon="none" description="Play a game or two for some short time fun!" path={`/${pathNames.games}/`} onShortcutClick={onShortcutClicked}/>
             </div>
             <div className='pageFlexContainer'>
                 <Routes>
