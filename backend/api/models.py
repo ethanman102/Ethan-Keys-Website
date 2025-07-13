@@ -2,7 +2,13 @@ from django.db import models
 
 IMAGE_TYPES = (
     ('P','Project'),
-    ('B','Blog')
+    ('B','Blog'),
+    ('T','Tool')
+)
+
+TOOL_TYPES = (
+    ('BACKEND','BACKEND'),
+    ('FRONTEND','FRONTEND')
 )
 # Create your models here.
 class Project(models.Model):
@@ -14,6 +20,10 @@ class Project(models.Model):
     views = models.IntegerField(default=0,blank=False, null=False)
     repository = models.URLField(blank=True,null=True,default=None)
     youtube_id = models.CharField(max_length=500,blank=True,null=True,default=None)
+    tools = models.ManyToManyField('Tool')
+
+    class Meta:
+        ordering = ['created_on']
 
 class Image(models.Model):
     image_type = models.CharField(max_length=1,null=False,blank=False,choices=IMAGE_TYPES)
@@ -21,6 +31,7 @@ class Image(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey('Project',on_delete=models.CASCADE,null=True,related_name='images')
     blog = models.ForeignKey('Blog',on_delete=models.CASCADE,null=True,related_name='images')
+    tool = models.OneToOneField('Tool',on_delete=models.CASCADE,null=True,related_name="image")
     image_key=models.CharField(max_length=1000,null=False,blank=False)
 
 
@@ -28,3 +39,8 @@ class Blog(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=250,blank=False,null=False)
     content = models.CharField(max_length=10000,null=False,blank=False)
+
+class Tool(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False,unique=True)
+    type = models.CharField(max_length=255,choices=TOOL_TYPES,blank=False,null=False)
+    created_on = models.DateTimeField(auto_now_add=True)
