@@ -9,6 +9,7 @@
     animation: appearBlurb .3s;
     border-top: solid white 1px;
     border-left: solid white 1px;
+    z-index: 1;
 }
 
 .blurbMessage{

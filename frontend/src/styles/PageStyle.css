@@ -9,12 +9,13 @@
 
 .pageContainer{
     animation: appear 0.1s ease-in;
-    margin-top: 5ch;
+    margin-top: 2ch;
     background-color: rgb(202, 202, 202);
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     border-top: solid white 1px;
     border-left: solid white 1px;
     padding-bottom: 1ch;
+    
 }
 
 .pageMessage{

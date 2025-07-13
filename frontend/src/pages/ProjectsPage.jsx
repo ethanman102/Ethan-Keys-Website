@@ -39,7 +39,7 @@ const ProjectsPage = ({title}) => {
                 <p className="dropdownTab"><u>N</u>ewest</p>
                 <p className="dropdownTab"><u>P</u>rojects</p>
             </div>
-            <div className="projectsShortcutContainer">
+            <div className="projectsShortcutContainerList">
                 
                 {loading ? <Loader message="Loading"/> : projects.map((project) => 
                     <Folder key={project.id} projectID={project.id} projectTitle={project.title}/>

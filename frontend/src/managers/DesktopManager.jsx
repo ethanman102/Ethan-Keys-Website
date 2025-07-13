@@ -22,7 +22,6 @@ const DesktopManager = () =>{
 
     useEffect(() => {
         let path = window.location.pathname.slice(1, -1)
-        console.log(path);
         if (path in pathNames){
             setOpenTabs([{
                 title : pathNames[path],

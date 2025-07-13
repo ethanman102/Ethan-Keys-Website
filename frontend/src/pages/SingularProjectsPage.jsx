@@ -6,6 +6,7 @@ import { apiURL } from "../../constants";
 import ImageDisplay from "../components/ImageDisplay";
 import Loader from "../components/Loader";
 import axios from "axios";
+import Tool from "../components/Tool";
 
 
 const SingularProjectsPage = () =>{
@@ -21,7 +22,7 @@ const SingularProjectsPage = () =>{
         .then((response) =>{
             setProject(response.data)
             setLoading(false)
-            
+
         })
     },[])
 
@@ -54,12 +55,12 @@ const SingularProjectsPage = () =>{
 
                     <div className="singularProjectTitleContainer">
                         <img src="/InfoBook.png" className="infoIcon"/>
-                        <div class="projectTitleText">
+                        <div className="projectTitleText">
                             <h1 className="singularProjectTitle">{project.title}</h1>
                             <h2 className="singularProjectSubtitle">{project.tagline}</h2>
                         </div>
                     </div>
-                    <p className="uselessButton">That's Cool!</p>
+                    <p className="uselessButton">{project.views} Views</p>
                 </div>
                 <div className="projectToolsContainer">
                     <h5 className="projectDescriptionHeader">Tools Used</h5>
@@ -74,10 +75,18 @@ const SingularProjectsPage = () =>{
                             <img src="/github-mark.png" className="githubLogo"/>
                             <a href={project.repository} className="githubLink">View the Code!</a>
                         </div>
-                        }                       
-            <div className="pageFooter">
-                <div className="pageBoxDivitFull"> </div>
-            </div>
+                        }      
+                        <div className="projectToolbox">
+                            <Tool name="React" icon="NONE" description="hahaha"/>
+                                <Tool name="React" icon="NONE" description="hahaha"/>
+                                    <Tool name="React" icon="NONE" description="hahaha"/>
+                                        <Tool name="React" icon="NONE" description="hahaha"/>
+                                            <Tool name="React" icon="NONE" description="hahaha"/>
+                        </div>                 
+                        <div className="pageFooter">
+                            <div className="pageBoxDivitFull"> </div>
+                        </div>
+
                     </div>
                 </div>
                 </div>

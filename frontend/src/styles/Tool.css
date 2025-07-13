@@ -1,0 +1,10 @@
+.toolIcon{
+    width: 75px;
+    height: 75px;
+}
+
+.toolContainer:hover{
+    outline: 2px solid rgb(17, 142, 226);
+    background-color: rgba(17, 142, 226, 0.288);
+    cursor: pointer;
+}

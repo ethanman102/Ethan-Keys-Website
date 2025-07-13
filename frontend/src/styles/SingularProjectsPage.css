@@ -172,21 +172,22 @@
 /* TOOLS CSS */
 
 .githubLogo{
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
 }
 
 .githubLink{
     padding: 0;
     margin-left: 2ch;
     margin-right: 2ch;
+
 }
 
 .projectGithub{
     display: flex;
     align-items: center;
     background-color: white;
-    padding: 1ch;
+    padding: 0.5ch;
     margin-left: 1ch;
     margin-right: 1ch;
     border-top: 3px solid black;
@@ -206,6 +207,7 @@
     background: rgb(223, 223, 223);
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     margin-top: 1ch;
+    margin-bottom: 1ch;
 }
 
 .toolsTabs{
@@ -231,20 +233,7 @@
 
 }
 
-.topDivit{
-    display: inline;
-    width: 100%;
-    padding-top: 1ch;
-    padding-bottom: 1ch;
-    border-top: 3px solid gray;
-    border-left: 3px solid gray;
-    margin-left: 1ch;
-    margin-top: 1ch;
-    margin-bottom: 1ch;
-    margin-right: 1ch;
-    border-bottom: solid 3px white;
-    border-right: solid 3px white;
-}
+
 
 .toolsUsedTop{
     display: flex;
@@ -259,6 +248,69 @@
     
     display: flex;
     flex-wrap: wrap;
-    max-height: 65ch;
+    background-color: white;
+    padding: 1ch;
     overflow-y: scroll;
+    justify-content: space-evenly;
+    gap:3ch;
+    max-height: 70dvh;
+        margin-left: 1ch;
+    margin-right: 1ch;
+        border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid rgb(170, 170, 170);
+    border-bottom: 2px solid rgb(221, 221, 221);
 }
+
+.projectToolbox{
+    margin-top: 1ch;
+    background-color: white;
+    margin-left: 1ch;
+    padding: 1ch;
+    margin-right: 1ch;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-bottom: 3px solid rgb(211, 211, 211);
+    border-right: 3px solid rgb(211, 211, 211);
+    grid-template-columns: repeat(3, 75px); 
+    column-gap: 2ch; 
+    row-gap: 1ch;
+    display: grid;
+    max-height: 20ch;
+    overflow-y: scroll;
+    
+}
+
+.projectToolbox::-webkit-scrollbar{
+    width: 1.5ch;
+}
+
+.projectToolbox::-webkit-scrollbar-track{
+    background: rgb(145, 145, 145); 
+    border-left: solid 2px black;
+}
+
+.projectToolbox::-webkit-scrollbar-thumb{
+    background: rgb(223, 223, 223);
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.projectsShortcutContainer::-webkit-scrollbar{
+    width: 1.5ch;
+}
+
+.projectsShortcutContainer::-webkit-scrollbar-track{
+    background: rgb(145, 145, 145); 
+    border-left: solid 2px black;
+}
+.projectsShortcutContainer::-webkit-scrollbar-thumb{
+    background: rgb(223, 223, 223);
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+

@@ -4,6 +4,6 @@
 
 .pageFlexContainer{
     flex: 1;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2ch;
+    margin-right: 2ch;
 }
