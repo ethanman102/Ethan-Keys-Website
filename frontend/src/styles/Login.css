@@ -1,0 +1,94 @@
+.loginContainer{
+    border-top: solid white 2px;
+    border-left: solid white 2px;
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    background-color: rgb(202, 202, 202);
+}
+
+.loginTitle{
+    display: inline;
+    font-weight: normal;
+    color: white;
+    margin: 0;
+    padding-left: 1ch;
+
+    
+}
+
+.pageButtonContainer{
+    display: inline;
+    margin-right: 0.25ch;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.loginHeader{
+    display: flex;
+    align-items: center;
+    background-color: rgb(145, 145, 145);
+    border-bottom: solid white 1px;
+}
+
+.loginInput{
+    display: block;
+    border-bottom: 3px solid rgb(190, 190, 190);
+    border-right: 3px solid rgb(190, 190, 190);
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loginForm{
+    margin-top: 1ch;
+}
+
+#loginForm > label {
+    color: white;
+    margin-left: 2ch;
+}
+
+.loginButton{
+    font-size: medium;
+    border-radius: 0;
+    border-top: solid 2px white;
+    border-left: solid 2px white;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+}
+
+.loginButton:hover{
+    background-color: rgb(138, 138, 138);
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-bottom: solid 2px white;
+    border-right: 2px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+.loginFooter{
+    display: flex;
+    margin-top: 1ch;
+    margin-left: 2ch;
+    margin-right: 2ch;
+    gap: 1ch;
+    padding-bottom: 1ch;
+
+}
+
+.loginDivit{
+    margin: 0;
+    padding: 0;
+    border-bottom: solid 2px white;
+    border-right: solid white 2px;
+    border-top: solid 2px black;
+    border-left: solid 2px black;
+    width: 100%;
+    
+
+}

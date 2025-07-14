@@ -15,7 +15,9 @@
     border-top: solid white 1px;
     border-left: solid white 1px;
     padding-bottom: 1ch;
-    
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pageMessage{
