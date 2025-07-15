@@ -1,0 +1,19 @@
+.toolSelectorContainer{
+    height: fit-content;
+}
+
+.toolList{
+    margin-left: 1ch;
+    margin-right: 1ch;
+    background-color: white;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid rgb(170, 170, 170);
+    border-bottom: 2px solid rgb(221, 221, 221);
+    padding-left: 3ch;
+    margin-top: 1ch;
+    padding-top: 1ch;
+    padding-right: 3ch;
+    max-height: 50ch;
+    overflow-y: scroll;
+}

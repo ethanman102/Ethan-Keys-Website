@@ -1,6 +1,8 @@
 import "../styles/PageStyle.css"
 import "../styles/ProjectCreation.css"
 import "../styles/AdminPage.css"
+import "../styles/ToolSelector.css"
+import ToolSelector from "../components/ToolSelector"
 
 const AdminPage = () =>{
     return(
@@ -46,6 +48,7 @@ const AdminPage = () =>{
                         <textarea className="projectInfoInput" id="projectDescriptionInput" cols="75" rows="25"/>
                     </div>
                 </div>
+                <ToolSelector/>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
@@ -53,6 +56,8 @@ const AdminPage = () =>{
             </div>
         
         </div>
+        
+        
         </>
     )
 }

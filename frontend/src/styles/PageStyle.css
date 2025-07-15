@@ -47,7 +47,6 @@
     margin: 0;
     padding-top: 1ch;
     padding-bottom: 1ch;
-    background-color: rgb(145, 145, 145);
     color: rgb(243, 243, 243);
     /*Have to add padding to title instead of container to allow for background*/
     padding-left: 1ch;
