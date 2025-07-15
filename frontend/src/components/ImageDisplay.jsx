@@ -1,8 +1,12 @@
 import React from "react";
 import "../styles/ImageDisplay.css"
 import Paginator from "../components/Paginator";
+import { mode } from "../../constants";
+import { useState } from "react";
 
-const ImageDisplay = () => {
+const ImageDisplay = ({images}) => {
+    const [currentImages,setCurrentImages] = useState()
+    const [currentIndex,setCurrentIndex] = useState(images.length)
     return(
         <div>
         <div className="imageDisplayContainer">
@@ -14,7 +18,10 @@ const ImageDisplay = () => {
                     <button className="idbutton">X</button>
                 </div>
             </div>
-            <p className="imageDisplayMenu"><u>S</u>ome&nbsp;&nbsp; <u>P</u>ictures&nbsp;&nbsp; <u>T</u>o&nbsp;&nbsp; <u>B</u>rowse</p>
+            <div id="imageMenuContainer">
+                <p className="imageDisplayMenu"><u>S</u>ome&nbsp;&nbsp; <u>P</u>ictures&nbsp;&nbsp; <u>T</u>o&nbsp;&nbsp; <u>B</u>rowse</p>
+
+            </div>
             <div className="imageDisplayBody">
                 <div className="imageDisplayColorBar">
                     <div className="paintSquare" style={{background: 'red'}}> </div>
@@ -36,7 +43,7 @@ const ImageDisplay = () => {
                     <div className="paintSquare" style={{background: 'gray'}}> </div>
                     <div className="paintSquare" style={{background: 'lightblue'}}> </div>
                 </div>
-                <img className="imageDisplayContent"/>
+                <img src={ images.length > 0 ? images[0].url : undefined} className="imageDisplayContent"/>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

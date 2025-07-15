@@ -11,6 +11,7 @@
     background-color: rgb(223, 223, 223);
     padding-bottom: 1ch;
     margin-bottom: 2ch;
+    
 }
 
 .imageDisplayToolbar{
@@ -86,4 +87,10 @@
 .imageDisplayMenu{
     margin: 0;
     padding-left: 1ch;
+    display: inline;
+}
+
+
+#imageMenuContainer{
+    display: flex;
 }

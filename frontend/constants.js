@@ -7,4 +7,9 @@ const pathNames = {
     home : "Home"
 }
 
-export {apiURL,pathNames}
+const mode = {
+    EDIT: 'E',
+    VIEW: 'V'
+}
+
+export {apiURL,pathNames,mode}

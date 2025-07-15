@@ -2,6 +2,7 @@
     background-color: rgb(145, 145, 145); 
     margin-right: 1ch;
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    height: fit-content;
     
 }
 
@@ -76,4 +77,48 @@
 
 .inputTopContainer input {
     width: 100%;
+}
+
+.creationLayout{
+    margin-left: 1ch;
+    margin-right: 1ch;
+    background-color: white;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid rgb(170, 170, 170);
+    border-bottom: 2px solid rgb(221, 221, 221);
+    display: flex;
+     max-height: 70dvh;
+     overflow-y: scroll;
+    flex-direction: column;
+    gap: 4ch;
+    padding-left: 1ch;
+    margin-top: 1ch;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+}
+
+.textToolsCreationLayout{
+    display: flex;
+    margin-right: 1ch;
+    gap: 5ch;
+}
+
+
+.mediaProjectContainer{
+    
+    width: fit-content;
+    display: flex;
+    gap: 2ch;
+}
+
+.projectCreationText{
+    margin: 0;
+    padding: 0;
+}
+
+.imageUploadContainer{
+    background-color: rgb(145, 145, 145); 
+    height: fit-content;
+    margin-left: 1ch;
 }
