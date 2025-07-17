@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/ImageDisplay.css"
 import Paginator from "../components/Paginator";
 import { mode } from "../../constants";
 import { useState } from "react";
 
 const ImageDisplay = ({images}) => {
-    const [currentImages,setCurrentImages] = useState()
-    const [currentIndex,setCurrentIndex] = useState(images.length)
+    
+    const [currentIndex,setCurrentIndex] = useState(0)
+
+    const handlePagination = (jump) => {
+        setCurrentIndex(currentIndex + jump)
+    }
+
+    useEffect(() =>{
+
+        setCurrentIndex(0)
+
+    },[images])
+
     return(
         <div>
         <div className="imageDisplayContainer">
@@ -43,14 +54,14 @@ const ImageDisplay = ({images}) => {
                     <div className="paintSquare" style={{background: 'gray'}}> </div>
                     <div className="paintSquare" style={{background: 'lightblue'}}> </div>
                 </div>
-                <img src={ images.length > 0 ? images[0].url : undefined} className="imageDisplayContent"/>
+                <img src={( images.length > 0 && images[currentIndex]) ? images[currentIndex].url : undefined} className="imageDisplayContent"/>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>
             </div>
         </div>
-        <Paginator/>
+        <Paginator largest={images.length} smallest={0} current={currentIndex} selectionCallback={handlePagination}/>
         </div>
     )
 }

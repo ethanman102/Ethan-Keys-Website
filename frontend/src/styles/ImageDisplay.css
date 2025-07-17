@@ -82,6 +82,8 @@
     border-right: solid white 2px;
     border-left: solid black 3px;
     background-color: white;
+    max-height: 40ch;
+    object-fit: cover;
 }
 
 .imageDisplayMenu{

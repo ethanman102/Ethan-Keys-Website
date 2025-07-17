@@ -120,5 +120,137 @@
 .imageUploadContainer{
     background-color: rgb(145, 145, 145); 
     height: fit-content;
+
+}
+
+.imageRemoveButton{
+    border-top: solid 2px white;
+    border-left: solid 2px white;
+    border-bottom: solid 2px black;
+    background-color: rgb(223, 223, 223);
+    border-right: solid 2px black;
+}
+
+.imageRemoveButton:hover{
+    cursor: pointer;
+    border-left: solid 2px black;
+    border-right: solid 2px white;
+    border-top: solid 2px black;
+    border-bottom: solid 2px white;
+    background-color: rgb(175, 175, 175);
+}
+
+.deleteSelector{
+    border-top: 2px solid white ;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid white;   
+    margin-right: 1ch;
+
+}
+
+.imageBlockLabel{
+    display: block;
+
+}
+
+.imageUploadContainer{
+    padding-left: 1.5ch;
+    padding-right: 1.5ch;
+    padding-bottom: 1.5ch;
+    margin-right: 2ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    background-color: rgb(202, 202, 202); 
+}
+
+.imageInnerContainer{
+       background-color: rgb(223, 223, 223);
+       border-top: 4px solid black;
+       border-left: 4px solid black;
+       border-bottom: 4px solid white;
+       border-right: 4px solid white;
+       padding: 1ch;
+}
+
+#imageUploader{
+    background-color: white;
+    border-top: 2px solid black ;
+    border-left: 2px solid black;
+    border-bottom: 2px solid gainsboro;
+    border-right: 2px solid gainsboro;
+}
+
+.imagePageTitle{
+    display: inline;
+    width: fit-content;
+    color: black;
+}
+
+.pageButtonContainerImage{
+    display: inline-block;
+    margin-left: auto;
+}
+
+.imageUploadContainerHeader{
+    display: flex;
+}
+
+.mediaProjectRight{
+    display: flex;
+    flex-direction: column;
+    gap: 4ch;
+
+}
+
+.externalLinkUploader{
+    background-color: aqua;
+    margin-right: 2ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    background-color: rgb(223, 223, 223);
+    padding-bottom: 1ch;
+}
+
+.externalLinkUploaderTitle{
+    display: flex;
+    background-color: rgb(145, 145, 145); 
+    border-bottom: 2px solid white;
+    padding-left: 1ch;
+
+}
+
+#externalGithubImage{
+    height: 20px;
+    width: 20px;
+}
+
+#projectGithubInput, #projectYoutubeInput{
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: 1ch;
+    margin-right: 1ch;
+}
+
+#createProjectSubmitButton{
+    width: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 3px 3px 0px -1px rgba(0, 0, 0, 0.75);
+    border-top: 2px solid gray ;
+    border-left: 2px solid gray;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    background-color: rgb(223, 223, 223);
+
+}
+
+#createProjectSubmitButton:hover{
+    scale: 1.1;
+    cursor: pointer;;
+}
+
+
+.mediaLabel{
     margin-left: 1ch;
 }
