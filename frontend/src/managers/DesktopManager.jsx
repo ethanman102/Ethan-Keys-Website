@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 import AdminPage from '../pages/AdminPage';
 import { pathNames } from '../../constants';
+import AdminPageProject from '../pages/AdminPageProject';
 
 export const TabContext = createContext();
 
@@ -73,7 +74,9 @@ const DesktopManager = () =>{
                     <Route path='/' element={<HomePage/>}/>
                     <Route path='/blog/' element={<BlogPage/>}/>
                     <Route path='/games/' element={<GamesPage/>}/>
-                    <Route path='/admin/' element={<AdminPage/>}/>
+                    <Route path='/admin/' element={<AdminPage/>}>
+                        <Route path="project/" element={<AdminPageProject/>}/>
+                    </Route>
                     <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
                     <Route path='/projects/:projectID/' element={<SingularProjectsPage/>}/>
                 </Routes>

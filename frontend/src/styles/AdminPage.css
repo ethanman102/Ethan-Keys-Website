@@ -3,3 +3,15 @@
     outline: 2px solid rgb(17, 142, 226);
     background-color: rgba(17, 142, 226, 0.288);
 }
+
+.adminWelcomeContainer{
+    margin-left: 1ch;
+    margin-right: 1ch;
+    padding: 1ch;
+    border-top: solid 3px black;
+    border-left: solid 3px black;
+    border-bottom: solid 3px gainsboro;
+    border-right: solid 3px gainsboro;
+    background-color: white;
+    
+}
