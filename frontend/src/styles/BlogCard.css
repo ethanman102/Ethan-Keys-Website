@@ -18,10 +18,16 @@
     padding: 1ch;
     border-top: solid rgb(228, 228, 228) 4px;
     border-left: solid rgb(228, 228, 228) 4px;
+    margin-top: 1ch;
+    margin-bottom: 1ch;
 }
 
 #blogCardContent:hover{
     cursor: pointer;
     outline: 2px solid rgb(17, 142, 226);
     background-color: rgba(17, 142, 226, 0.288);
+}
+
+.blogTitle{
+    margin: 0;
 }

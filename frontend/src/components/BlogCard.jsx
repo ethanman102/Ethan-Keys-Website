@@ -5,7 +5,7 @@ import "../styles/BlogCard.css"
 import Blurb from "./Blurb"
 
 
-const BlogCard = ({title, image, date, author, id}) => {
+const BlogCard = ({title, subtitle, image, date, author, id}) => {
 
     const navigate = useNavigate()
 
@@ -25,7 +25,8 @@ const BlogCard = ({title, image, date, author, id}) => {
             </div>
             <div id="blogCardContent">
             
-                <h3>This is where the title goes</h3>
+                <h3 className="blogTitle">This is where the title goes {title}</h3>
+                <p className="blogTitle">Subtitle goes here: {subtitle}</p>
                 <img id="blogCardImage" src='/blog.png'/>
             </div>
             <Blurb message={`Created On: ${new Date(date).toString().split(" ").slice(1,4).join(" ")}`} title={`Posted By: ${author}`}/>
