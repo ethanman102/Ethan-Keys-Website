@@ -14,6 +14,8 @@ import { Route, Routes } from "react-router-dom";
 import AdminPage from '../pages/AdminPage';
 import { pathNames } from '../../constants';
 import AdminPageProject from '../pages/AdminPageProject';
+import AdminPageTool from '../pages/AdminPageTool';
+import BlogCard from '../components/BlogCard';
 
 export const TabContext = createContext();
 
@@ -69,6 +71,8 @@ const DesktopManager = () =>{
                 <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.games} icon="none" description="Play a game or two for some short time fun!" path={`/${pathNames.games}/`} onShortcutClick={onShortcutClicked}/>
             </div>
+            <BlogCard/>
+            
             <div className='pageFlexContainer'>
                 <Routes>
                     <Route path='/' element={<HomePage/>}/>
@@ -76,6 +80,7 @@ const DesktopManager = () =>{
                     <Route path='/games/' element={<GamesPage/>}/>
                     <Route path='/admin/' element={<AdminPage/>}>
                         <Route path="project/" element={<AdminPageProject/>}/>
+                        <Route path="tool/" element={<AdminPageTool/>}/>
                     </Route>
                     <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
                     <Route path='/projects/:projectID/' element={<SingularProjectsPage/>}/>

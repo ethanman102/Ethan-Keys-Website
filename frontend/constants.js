@@ -12,4 +12,9 @@ const mode = {
     VIEW: 'V'
 }
 
-export {apiURL,pathNames,mode}
+const toolTypes = {
+    FRONTEND: 'FRONTEND',
+    BACKEND: 'BACKEND'
+}
+
+export {apiURL,pathNames,mode,toolTypes}

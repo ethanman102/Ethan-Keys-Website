@@ -81,16 +81,7 @@ const SingularProjectsPage = () =>{
 
                         <div className="projectToolbox basicScrollbar">
                             {project.tools && project.tools.map((tool) => {
-                                let message
-                                switch (tool.type){
-                                    case "FROTNEND":
-                                        message = "Utilized to build the frontend"
-                                        break
-                                    case "BACKEND":
-                                        message = "Utilized to build the backend"
-                                        break
-                                }
-                                return <Tool name={tool.name} icon={tool.image.url} description={message}/> 
+                                return <Tool name={tool.name} icon={tool.image.url} type={tool.type}/> 
                         })
                         }
                         </div>                 

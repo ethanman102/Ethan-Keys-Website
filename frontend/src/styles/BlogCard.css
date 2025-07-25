@@ -1,0 +1,27 @@
+#blogCardContent{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 1ch;
+    padding: 1ch;
+    border-top: solid black 3px;
+    border-left: solid black 3px;
+    border-bottom: solid gainsboro 3px;
+    border-right: solid gainsboro 3px;
+}
+
+#blogCardImage{
+    max-width: 50ch;
+    max-height: 25ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    background-color: rgb(145, 145, 145); 
+    padding: 1ch;
+    border-top: solid rgb(228, 228, 228) 4px;
+    border-left: solid rgb(228, 228, 228) 4px;
+}
+
+#blogCardContent:hover{
+    cursor: pointer;
+    outline: 2px solid rgb(17, 142, 226);
+    background-color: rgba(17, 142, 226, 0.288);
+}

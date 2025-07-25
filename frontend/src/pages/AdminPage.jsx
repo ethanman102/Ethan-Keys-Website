@@ -29,7 +29,7 @@ const AdminPage = () =>{
             <div className="dropDownProjectsTabs">
                 <p className="dropdownTab adminTopTab" onClick={()=>navigate("project/")}><u>P</u>rojects</p>
                 <p className="dropdownTab adminTopTab"><u>B</u>logs</p>
-                <p className="dropdownTab adminTopTab"><u>T</u>ools</p>
+                <p className="dropdownTab adminTopTab" onClick={()=>navigate("tool/")}><u>T</u>ools</p>
             </div>
             {(window.location.pathname.toLowerCase() === '/admin/') && 
             <div className="adminWelcomeContainer">
