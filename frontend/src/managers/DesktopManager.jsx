@@ -5,7 +5,7 @@ import Shortcut from '../components/Shortcut';
 import BottomNav from '../components/BottomNav';
 import HomePage from '../pages/HomePage';
 import GamesPage from '../pages/GamesPage';
-import BlogPage from '../pages/BlogPage';
+import BlogsPage from '../pages/BlogsPage';
 import ProjectsPage from '../pages/ProjectsPage';
 import SingularProjectsPage from '../pages/SingularProjectsPage';
 import '../styles/DesktopManager.css'
@@ -15,7 +15,6 @@ import AdminPage from '../pages/AdminPage';
 import { pathNames } from '../../constants';
 import AdminPageProject from '../pages/AdminPageProject';
 import AdminPageTool from '../pages/AdminPageTool';
-import BlogCard from '../components/BlogCard';
 
 export const TabContext = createContext();
 
@@ -71,12 +70,11 @@ const DesktopManager = () =>{
                 <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.games} icon="none" description="Play a game or two for some short time fun!" path={`/${pathNames.games}/`} onShortcutClick={onShortcutClicked}/>
             </div>
-            <BlogCard/>
-            
+
             <div className='pageFlexContainer'>
                 <Routes>
                     <Route path='/' element={<HomePage/>}/>
-                    <Route path='/blog/' element={<BlogPage/>}/>
+                    <Route path='/blog/' element={<BlogsPage/>}/>
                     <Route path='/games/' element={<GamesPage/>}/>
                     <Route path='/admin/' element={<AdminPage/>}>
                         <Route path="project/" element={<AdminPageProject/>}/>

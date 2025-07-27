@@ -31,3 +31,8 @@
 .blogTitle{
     margin: 0;
 }
+
+.blogCard{
+    height: fit-content;
+    padding-bottom: 2ch;
+}

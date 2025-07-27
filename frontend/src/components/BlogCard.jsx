@@ -14,7 +14,7 @@ const BlogCard = ({title, subtitle, image, date, author, id}) => {
     }
 
     return(
-        <article className="pageContainer" onClick={handleNavigate}>
+        <article className="pageContainer blogCard" onClick={handleNavigate}>
             <div className="pageTitleContainer">
                 <h6 className="pageTitle">Blog Post #{id}</h6>
                 <div className="pageButtonContainer">

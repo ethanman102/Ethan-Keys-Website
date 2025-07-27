@@ -17,4 +17,6 @@ const toolTypes = {
     BACKEND: 'BACKEND'
 }
 
-export {apiURL,pathNames,mode,toolTypes}
+const SIZE = 5
+
+export {apiURL,pathNames,mode,toolTypes, SIZE}
