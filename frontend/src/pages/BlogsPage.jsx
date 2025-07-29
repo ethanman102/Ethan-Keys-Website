@@ -6,18 +6,19 @@ import Loader from "../components/Loader";
 import BlogCard from "../components/BlogCard";
 import "../styles/BlogsPage.css"
 import Paginator from "../components/Paginator";
+import "../styles/CustomScrollbar.css"
 
 const BlogsPage =  () => {
-    const [page,setPage] = useState(1)
+    const [page,setPage] = useState(0)
     const [blogs,setBlogs] = useState([1,2,3])
-    const [totalPages,setTotalPages] = useState(0)
+    const [totalPages,setTotalPages] = useState(1)
     const [loading,setLoading] = useState(true)
 
     useEffect( () => {
 
         const getBlogs = async () =>{
             let params = new URLSearchParams()
-            params.append('page',page)
+            params.append('page',page + 1)
             params.append('size',SIZE)
             let response = await axios.get(`${apiURL}/api/blogs/`,{params:params})
             let fetchedBlogs = await response.data
@@ -28,6 +29,10 @@ const BlogsPage =  () => {
         getBlogs().then(setLoading(false))
 
     },[page])
+
+    const handlePaginate = (jump) => {
+        setPage(page + jump)
+    }
 
     return(
         <div className="pageContainer">
@@ -42,14 +47,12 @@ const BlogsPage =  () => {
                 <p className="dropdownTab"><u>L</u>atest</p>
                 <p className="dropdownTab"><u>B</u>logs</p>
             </div>
-            <div className="projectsShortcutContainerList blogListContainer">
-                {loading  ? <Loader message="Loading"/> : (blogs.map((blog) => <BlogCard key={blog.id}/>))}
+            <div className="projectsShortcutContainerList blogListContainer basicScrollbar">
+                {loading  ? <Loader message="Loading"/> : (blogs.map((blog) => <BlogCard key={blog.id} id={blog.id} author={blog.author} created_on={blog.created_on} content={blog.content} title={blog.title} image={blog.image} subtitle={blog.subtitle}/>))}
             </div>
-            <div className="pageFooter">
-                <div className="pageBoxDivit pageBoxDivitLeft"> </div>
-                <div className="pageBoxDivit pageBoxDivitRight"> </div>
+            <div id="paginatorContainer">
+                <Paginator smallest={0} largest={totalPages} current={page} itemType="Pages" selectionCallback={handlePaginate}/>
             </div>
-        
         </div>
     )
 

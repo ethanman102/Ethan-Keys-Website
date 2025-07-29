@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "../styles/Paginator.css"
 
-const Paginator = ({smallest,largest,current,selectionCallback}) => {
+const Paginator = ({smallest,largest,current,selectionCallback,itemType}) => {
 
 
     return(
@@ -14,7 +14,7 @@ const Paginator = ({smallest,largest,current,selectionCallback}) => {
             <div className="paginatorDivitContainer">
                 <div className="paginatorDivit">{largest === 0 ? "" : `${current+1}/${largest}`}</div>
                 <div className="paginatorDivit"></div>
-                <div className="paginatorDivit">Images</div>
+                <div className="paginatorDivit">{itemType}</div>
             </div>
         </div>
     )

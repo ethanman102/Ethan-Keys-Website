@@ -2,15 +2,24 @@ import "../styles/PageStyle.css"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import "../styles/BlogCard.css"
-import Blurb from "./Blurb"
 
 
-const BlogCard = ({title, subtitle, image, date, author, id}) => {
+const BlogCard = ({title, subtitle, image, date, author, id, content}) => {
 
     const navigate = useNavigate()
 
     const handleNavigate = () => {
-        navigate(`${id}/`)
+        let state = {
+            title: title,
+            subtitle: subtitle,
+            image: image,
+            id: id,
+            date: date,
+            author: author,
+            content: content,
+        }
+
+        navigate(`${id}/`,{state: state}) // Handle easy naviagation if we navigate from clicking the card. Singular Blog page will check whether it needs to request the newest state...
     }
 
     return(
@@ -28,8 +37,9 @@ const BlogCard = ({title, subtitle, image, date, author, id}) => {
                 <h3 className="blogTitle">This is where the title goes {title}</h3>
                 <p className="blogTitle">Subtitle goes here: {subtitle}</p>
                 <img id="blogCardImage" src='/blog.png'/>
+                <h3 className="blogTitle">Author:</h3>
+                <p className="blogTitle">Created On: </p>
             </div>
-            <Blurb message={`Created On: ${new Date(date).toString().split(" ").slice(1,4).join(" ")}`} title={`Posted By: ${author}`}/>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>

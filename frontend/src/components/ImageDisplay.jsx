@@ -61,7 +61,7 @@ const ImageDisplay = ({images}) => {
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>
             </div>
         </div>
-        <Paginator largest={images.length} smallest={0} current={currentIndex} selectionCallback={handlePagination}/>
+        <Paginator largest={images.length} smallest={0} current={currentIndex} selectionCallback={handlePagination} itemType="Images"/>
         </div>
     )
 }

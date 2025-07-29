@@ -39,6 +39,7 @@ class Blog(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=250,blank=False,null=False)
     content = models.CharField(max_length=10000,null=False,blank=False)
+    subtitle = models.CharField(max_length=250, blank=True, null=True)
 
 class Tool(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False,unique=True)
