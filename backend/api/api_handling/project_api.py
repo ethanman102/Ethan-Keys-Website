@@ -82,6 +82,5 @@ class ProjectViewSet(viewsets.ModelViewSet):
         self.get_queryset().filter(id=key).update(views=F('views') + 1)
         project = self.get_object()
         serializer = self.get_serializer(project)
-        serializer.data['images'] = project.images.all()
         return Response(serializer.data,status=status.HTTP_200_OK)
         
