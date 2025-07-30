@@ -1,7 +1,39 @@
 from rest_framework import serializers
-from .models import Project,Tool
+from .models import Project,Tool,Image,Blog
 
+# Parent Class Image Serializer. Acts as a Base Class :D
+class BaseImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model: Image
+        fields = ('image_key','id','url','created_on','image_type')
+        read_only_fields = ['created_on']
+
+# https://stackoverflow.com/questions/49900629/django-serializer-inherit-and-extend-fields
+# Shows how to inherit fields from the base serializer to add on the additional field :D
+class BlogImageSerializer(BaseImageSerializer):
+    blog_id = serializers.ReadOnlyField(source='blog.id')
+    
+    class Meta:
+        model = Image
+        fields = BaseImageSerializer.Meta.fields + ('blog_id',)
+        
+class ToolImageSerializer(BaseImageSerializer):
+    tool_id = serializers.ReadOnlyField(source='tool.id')
+    
+    class Meta:
+        model = Image
+        fields = BaseImageSerializer.Meta.fields + ('tool_id',)
+
+class ProjectImageSerializer(BaseImageSerializer):
+    project_id = serializers.ReadOnlyField(source='project.id')
+    
+    class Meta:
+        model = Image
+        fields = BaseImageSerializer.Meta.fields + ('project_id',)
+
+# Tool Serializer Logic     
 class ToolSerializer(serializers.ModelSerializer):
+    images = ToolImageSerializer(many=True,read_only=True)
     class Meta:
         model = Tool
         fields = "__all__"
@@ -9,12 +41,12 @@ class ToolSerializer(serializers.ModelSerializer):
             'created_on' : {'read_only' : True},
             'name' : {'validators' : []} # required to remove name unique identifier if we are updating the object yaknow....
         }
-
     
-
+# Project Serialziers
 class ProjectSerializer(serializers.ModelSerializer):
 
     tools = ToolSerializer(many=True)
+    images = ProjectImageSerializer(many=True,read_only=True)
 
     class Meta:
         model = Project
@@ -57,4 +89,13 @@ class ProjectListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ('id','title')
+
+# Blog Serializers...
+class BlogSerializer(serializers.ModelSerializer):
+    images = BlogImageSerializer(many=True,read_only=True)
+
+    class Meta:
+        model = Blog
+        fields = "__all__"
+        read_only_fields = ['views']
 

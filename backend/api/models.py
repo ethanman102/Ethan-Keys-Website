@@ -40,6 +40,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=250,blank=False,null=False)
     content = models.CharField(max_length=10000,null=False,blank=False)
     subtitle = models.CharField(max_length=250, blank=True, null=True)
+    views = models.IntegerField(default=0,blank=False, null=False)
 
 class Tool(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False,unique=True)
