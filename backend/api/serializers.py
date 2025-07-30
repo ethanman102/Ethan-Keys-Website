@@ -97,5 +97,5 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = "__all__"
-        read_only_fields = ['views']
+        read_only_fields = ['views','created_on']
 
