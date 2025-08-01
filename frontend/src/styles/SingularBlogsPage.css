@@ -1,0 +1,27 @@
+.singularBlogContent{
+    flex-direction: column;
+    padding: 3ch;
+}
+
+.singleBlogTitle{
+    margin: 0;
+    padding: 0;
+}
+
+h4.singleBlogTitle{
+    color: rgb(175, 175, 175)
+}
+
+#singleBlogPageImage{
+    max-width: 50ch;
+    max-height: 30ch;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: solid gainsboro 2px;
+    border-left: solid gainsboro 2px;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+}
+
+.markdown{
+    background-color: antiquewhite;
+}

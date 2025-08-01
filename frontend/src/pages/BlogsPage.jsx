@@ -48,7 +48,7 @@ const BlogsPage =  () => {
                 <p className="dropdownTab"><u>B</u>logs</p>
             </div>
             <div className="projectsShortcutContainerList blogListContainer basicScrollbar">
-                {loading  ? <Loader message="Loading"/> : (blogs.map((blog) => <BlogCard key={blog.id} id={blog.id} author={blog.author} created_on={blog.created_on} content={blog.content} title={blog.title} image={blog.image} subtitle={blog.subtitle}/>))}
+                {loading  ? <Loader message="Loading"/> : (blogs.map((blog) => <BlogCard key={blog.id} id={blog.id} author={blog.author} created_on={blog.created_on} content={blog.content} title={blog.title} image={blog.image} subtitle={blog.subtitle} views={blog.views}/>))}
             </div>
             <div id="paginatorContainer">
                 <Paginator smallest={0} largest={totalPages} current={page} itemType="Pages" selectionCallback={handlePaginate}/>

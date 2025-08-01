@@ -15,6 +15,7 @@ import AdminPage from '../pages/AdminPage';
 import { pathNames } from '../../constants';
 import AdminPageProject from '../pages/AdminPageProject';
 import AdminPageTool from '../pages/AdminPageTool';
+import SingularBlogsPage from '../pages/SingularBlogsPage';
 
 export const TabContext = createContext();
 
@@ -75,6 +76,7 @@ const DesktopManager = () =>{
                 <Routes>
                     <Route path='/' element={<HomePage/>}/>
                     <Route path='/blog/' element={<BlogsPage/>}/>
+                    <Route path='/blog/:id/' element={<SingularBlogsPage/>}/>
                     <Route path='/games/' element={<GamesPage/>}/>
                     <Route path='/admin/' element={<AdminPage/>}>
                         <Route path="project/" element={<AdminPageProject/>}/>

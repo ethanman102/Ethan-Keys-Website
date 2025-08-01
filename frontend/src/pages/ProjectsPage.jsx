@@ -17,7 +17,6 @@ const ProjectsPage = ({title}) => {
         .then((response) =>{
             setProjects(response.data.projects)
             setLoading(false)
-            console.log(response.data)
         })
     },[])
 

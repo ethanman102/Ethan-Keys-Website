@@ -106,7 +106,7 @@ const SingularProjectsPage = () =>{
                     <div className="pageBoxDivit pageBoxDivitRight"> </div>
                 </div>
                 </div>
-                <ImageDisplay/>
+                <ImageDisplay images={project.images}/>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

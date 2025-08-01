@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import "../styles/BlogCard.css"
 
 
-const BlogCard = ({title, subtitle, image, date, author, id, content}) => {
+const BlogCard = ({title, subtitle, image, date, author, id, content,views}) => {
 
     const navigate = useNavigate()
 
@@ -17,6 +17,7 @@ const BlogCard = ({title, subtitle, image, date, author, id, content}) => {
             date: date,
             author: author,
             content: content,
+            views: views,
         }
 
         navigate(`${id}/`,{state: state}) // Handle easy naviagation if we navigate from clicking the card. Singular Blog page will check whether it needs to request the newest state...
