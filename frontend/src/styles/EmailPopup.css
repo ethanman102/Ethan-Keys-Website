@@ -125,3 +125,35 @@
       transform: scale(1);
     }
   }
+
+  #emailForm{
+    display: flex;
+    flex-direction: column;
+  }
+
+#loadingContainer{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 1ch;
+    height: 90%;
+    background-color: rgba(150, 188, 238, 0.342);
+    display: flex;
+}
+
+#emailForm > p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0.5ch;
+    font-size: 1.75ch;
+}
+
+#emailForm > #emailError{
+    color: red;
+}
+
+#emailForm > #emailSuccess{
+    color: green;
+}
