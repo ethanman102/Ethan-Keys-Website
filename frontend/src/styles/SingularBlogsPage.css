@@ -1,6 +1,8 @@
 .singularBlogContent{
     flex-direction: column;
     padding: 3ch;
+    max-height: 70dvh;
+    overflow-y: scroll;
 }
 
 .singleBlogTitle{
@@ -23,5 +25,5 @@ h4.singleBlogTitle{
 }
 
 .markdown{
-    background-color: antiquewhite;
+    border-top: solid black 2px;
 }

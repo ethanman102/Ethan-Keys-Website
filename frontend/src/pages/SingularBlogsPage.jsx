@@ -47,10 +47,11 @@ const SingularBlogsPage = () => {
                 <p className="dropdownTab"><u>B</u>log</p>
                 <p className="dropdownTab"><u>P</u>ost</p>
             </div>
-            <div className="projectsShortcutContainerList singularBlogContent">
+            <div className="projectsShortcutContainerList singularBlogContent basicScrollbar">
                 <h1 className="singleBlogTitle">This is Where the Blog Title will Go</h1>
                 <h4 className="singleBlogTitle">This is where the subtitle will go</h4>
                 <img src="/InfoBook.png" id="singleBlogPageImage"/>
+                <h5 className="singleBlogTitle">Written By NAME on DATE <br/> # VIEWS</h5>
                 <div className="markdown">
                     <Markdown remarkPlugins={[remarkBreaks]} children={"This is where markdown content will go..  \n **hi**"}/>
 
