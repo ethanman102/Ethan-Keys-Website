@@ -1,0 +1,14 @@
+Ethan Keys Notification:
+
+You are recieving this email because a new individual has submitted an inquiry:
+
+
+Inquierer Name: {{ name }}
+
+Inquierer Email: {{ email }}
+
+Message:
+{{ message }}
+
+This email is intended for Ethan Keys
+If you recieve this email in error please immediately discard it.
