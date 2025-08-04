@@ -159,3 +159,6 @@ AWS_REGION = env('AWS_REGION')
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
+
+
+AUTH_USER_MODEL = 'users.User'

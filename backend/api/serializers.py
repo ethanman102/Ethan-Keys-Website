@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project,Tool,Image,Blog
+from .models import Project,Tool,Image,Blog,User
 
 # Parent Class Image Serializer. Acts as a Base Class :D
 class BaseImageSerializer(serializers.ModelSerializer):
@@ -99,3 +99,12 @@ class BlogSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ['views','created_on']
 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id','name','email','password']
+        read_only_fields = ['id']
+        extra_kwargs = {
+            'password' : {'write_only' : True}
+        }
