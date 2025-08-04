@@ -79,6 +79,7 @@ const AdminPageTool = () => {
                 <label htmlFor="toolImageUploader" className="toolBlockLabel">Upload Image</label>
                 <input accept="image/*" type="file" id="imageUploader" className="toolBlockLabel toolCreateInput" onChange={(event) => uploadFile(event)}/>
                 <img id="currentToolImageDisplay" src={currentToolImage ? currentToolImage.url : undefined}/>
+                <input id="toolSubmit" type="submit"/>
             </form>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

@@ -1,0 +1,141 @@
+.markdownEditor{
+    display: flex;
+    flex-direction: row;
+    gap: 1ch;
+    padding-right: 1ch;
+}
+
+#markdownInput{
+    resize: none;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    min-height: 60ch;
+    border-bottom: solid black 3px;
+    border-right: solid black 3px;
+    border-top: solid rgb(189, 189, 189) 3px;
+    border-left: solid rgb(189, 189, 189)  3px;
+    
+}
+
+.markdownEditorSection{
+    min-width: 35ch;
+    margin-right: 1ch;
+    margin-bottom: 1ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    max-width: 40ch;
+    overflow-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.markdownEditorSection > h4{
+    text-decoration: underline;
+    outline: 2px solid rgb(17, 142, 226);
+    padding: 0.5ch;
+    width: fit-content;
+    background-color: rgba(17, 142, 226, 0.288);
+    margin-left: 0.5ch;
+    margin-right: 0.5ch;
+}
+
+.sectionLeft {
+    background-color: rgb(145, 145, 145); 
+    padding-bottom: 1ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    border-top: solid gainsboro 2px;
+    border-left: solid gainsboro 2px;
+ 
+}
+
+.sectionLeft > h4 {
+    color: white;
+    margin-top: 0.25ch;
+    margin-bottom: 0;
+
+}
+
+.sectionRight{
+    border: solid rgb(17, 142, 226)
+}
+
+.blogCreationInputContainer{
+    background-color: rgb(202, 202, 202);
+    padding: 1ch;
+    margin-top: 1ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    margin-bottom: 1ch;
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 40ch;
+}
+
+#blogMediaContainer{
+    background-color: gainsboro;
+    border-bottom: solid white 3px;
+    border-right: solid white 3px;
+    border-top: solid black 3px;
+    border-left: solid black 3px;
+    padding: 1ch;
+}
+
+#createBlogTitle{
+    margin: 0;
+    color: white;
+
+}
+
+.blogCreateInput{
+    width: 98%;
+    border:solid 2px black ;
+    background-color: white;
+}
+
+#currentBlogImageDisplay{
+    width: 40ch;
+    height: 25ch;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1ch;
+}
+
+.adminBlogPageContainer{
+    background-color: white;
+    margin-left: 1ch;
+    margin-right: 1ch;
+    margin-bottom: 0;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-top: 3px solid black;
+    border-bottom: 3px solid gainsboro;
+    border-left: solid black 3px;
+    border-right: solid gainsboro 3px;
+    max-height: 70dvh;
+    overflow-y: scroll;
+    padding-bottom: 1ch;
+}
+
+#blogSubmit{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 2ch;
+    color: black;
+    margin-bottom: 2ch;
+    font-size: small;
+    border: none;
+    border: 1px solid black;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+    
+}
+
+#blogSubmit:hover{
+    scale: 1.5;
+    cursor: pointer;
+}
