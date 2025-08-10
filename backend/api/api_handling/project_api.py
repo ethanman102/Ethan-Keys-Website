@@ -83,4 +83,48 @@ class ProjectViewSet(viewsets.ModelViewSet):
         project = self.get_object()
         serializer = self.get_serializer(project)
         return Response(serializer.data,status=status.HTTP_200_OK)
+    
+    def update(self,request,*args,**kwargs):
+        project = self.get_object()
+
+        # we need to delete all the images that exist in the database but dont exist in the data.
+        images = request.data.get('images')
+        current_images = project.images.all()
+
+        urls = [image['url'] for image in images]
+
+        client = boto3.client(service_name='s3',
+                        region_name=settings.AWS_REGION,
+                        aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                        aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
+
+
+        images_to_delete = current_images.exclude(url__in=urls)
+
+        
+
+        # now the current images left over are the ones we need to delete from both the database and the s3 bucket...
+
+        if images_to_delete.exists():
+            for image in images_to_delete:
+                # remove all images from DB..
+                client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.image_key)
+                image.delete() # delete from db..
+
+        # now create the new images if they exist.
+        images = request.FILES.getlist('new_images')
+
+        if images:
+            # upload
+            for image in images:
+                file_name = image.name + str(uuid4())
+                client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
+                image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
+                Image.objects.create(project=project,image_key=file_name,url=image_url,image_type='P')
+        
+        serializer = self.get_serializer(instance=project,data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers=self.get_success_headers(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK,headers=headers)
         
