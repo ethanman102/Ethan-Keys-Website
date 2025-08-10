@@ -6,7 +6,7 @@ import Tool from "./Tool"
 
 const ToolSelector =  () => {
 
-    const [tools,setTools] = useState([0,1,2,3])
+    const [tools,setTools] = useState([])
     const [selected,setSelected] = useState([])
 
     const handleSelect = (tool) => {

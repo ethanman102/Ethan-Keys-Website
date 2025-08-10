@@ -1,16 +1,58 @@
 import React from "react"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import Markdown from "react-markdown"
 import remarkBreaks from "remark-breaks"
 import "../styles/BlogCreation.css"
 import axios from "axios"
 import { apiURL } from "../../constants"
+import Loader from "../components/Loader"
+import { useNavigate, useParams } from "react-router-dom"
+import instance from "../../api"
 
 
 const AdminPageBlog = () => {
 
+    let params = useParams();
+    let id = params.id;
+
     const [image,setImage] = useState(undefined)
     const [content,setContent] = useState('')
+    const [title,setTitle] = useState('')
+    const [author,setAuthor] = useState('')
+    const [subtitle,setSubtitle] = useState('')
+
+    const [editting,setEditting] = useState(false); // to allow for editting modes
+    const [loading,setLoading] = useState(false)
+
+    useEffect(() => {
+        if (id){
+        // fetch the item to edit...-
+        setLoading(true)
+        instance.get(`api/blogs/${id}/`).then((response) => response.data)
+            .then((blog) =>{
+                setImage(blog.image);
+                setContent(blog.content)
+                setTitle(blog.title)
+                setAuthor(blog.author)
+                setSubtitle(blog.subtitle)
+                setEditting(true)
+                setLoading(false)
+            }).catch((error) => {
+                // case where there was an error to fetch the blog post so we should just navigate to the NON editting URL.
+                let navigate = useNavigate();
+                setLoading(false)
+                navigate('/blog')
+                
+            })
+        }else{
+            setImage(undefined)
+            setContent("")
+            setTitle("")
+            setAuthor("")
+            setSubtitle("")
+            setEditting(false)
+        }
+    },[id])
 
     const handleContent = (event) => {
         setContent(event.target.value)
@@ -30,30 +72,34 @@ const AdminPageBlog = () => {
         event.preventDefault()
         let formData = new FormData(event.currentTarget)
         formData.append('image',image.file)
+
+        // CASE 1: POSTING THE NEW BLOG
+
+        // CASE 2: PUTTING THE BLOG
     }
 
     return(
         <form onSubmit={postBlog}>
         <div className="adminBlogPageContainer basicScrollbar">
-            <h2 className="">Blog Creation</h2>
-            <p className="">Use the following inputs to create a Blog Post</p>
+            <h2 className="">Blog {editting ? "Editting" : "Creation"}</h2>
+            <p className="">Use the following inputs to {editting ? "edit the" : "create a"} Blog Post</p>
 
                     <div className="blogCreationInputContainer">
             
                 <h5 id="createBlogTitle">Media</h5>
                 <div id="blogMediaContainer">
                 <label htmlFor="blogInputAuthor" className="blockLabel">Author</label>
-                <input type="text" name="author" id="blogInputAuthor" className="blogCreateInput"/>
+                <input type="text" disabled={loading} name="author" value={author} onChange={(event) => setAuthor(event.target.value)} id="blogInputAuthor" className="blogCreateInput"/>
 
                 <label htmlFor="blogInputTitle" className="blockLabel">Title</label>
-                <input type="text" name="title" id="blogInputTitle" className="blogCreateInput"/>
+                <input type="text" disabled={loading} name="title" value={title} onChange={(event) => setTitle(event.target.value)} id="blogInputTitle" className="blogCreateInput"/>
 
                 <label htmlFor="blogInputSubtitle" className="blockLabel">Subtitle</label>
-                <input type="text" name="subtitle" id="blogInputSubtitle" className="blogCreateInput"/>
+                <input type="text" disabled={loading} name="subtitle" value={subtitle} onChange={(event) => setSubtitle(event.target.value)} id="blogInputSubtitle" className="blogCreateInput"/>
 
                 
                 <label htmlFor="blogImageUploader" className="blockLabel">Upload Image</label>
-                <input accept="image/*" type="file" id="blogImageUploader" className="blockLabel blogCreateInput" onChange={(event) => uploadFile(event)}/>
+                <input accept="image/*" type="file" id="blogImageUploader" disabled={loading} className="blockLabel blogCreateInput" onChange={(event) => uploadFile(event)}/>
                 <img id="currentBlogImageDisplay" src={image ? image.url : undefined}/>
             </div>
             <div className="pageFooter">
@@ -74,7 +120,7 @@ const AdminPageBlog = () => {
             <div className="projectsShortcutContainerList markdownEditor">
                 <section className="markdownEditorSection sectionLeft">
                     <h4>Markdown Editor</h4>
-                    <textarea name="content" id="markdownInput" onChange={(event) => handleContent(event)}/>
+                    <textarea name="content" value={content} disabled={loading} id="markdownInput" onChange={(event) => handleContent(event)}/>
                 </section>
                 <section className="markdownEditorSection sectionRight">
                     <h4>Markdown Output</h4>
@@ -85,7 +131,7 @@ const AdminPageBlog = () => {
                 </div>
       
 
-                <input type="submit" value="Post" id="blogSubmit"/>
+                <input type="submit" value={editting ? "Update" : "Post"} id="blogSubmit"/>
             </div>
             </form>
  
