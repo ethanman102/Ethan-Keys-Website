@@ -6,6 +6,7 @@
     margin-right: auto;
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     background-color: rgb(202, 202, 202);
+    margin-top: 20ch;
 }
 
 .loginTitle{
@@ -61,7 +62,7 @@
     border-right: solid 2px black;
 }
 
-.loginButton:hover{
+.loginButton:enabled:hover{
     background-color: rgb(138, 138, 138);
     border-top: 2px solid black;
     border-left: 2px solid black;
@@ -84,6 +85,7 @@
 .loginDivit{
     margin: 0;
     padding: 0;
+    color: red;
     border-bottom: solid 2px white;
     border-right: solid white 2px;
     border-top: solid 2px black;
@@ -91,4 +93,12 @@
     width: 100%;
     
 
+}
+
+#loginLoading{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    display: flex;
 }

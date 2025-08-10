@@ -98,6 +98,29 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'api.authenticate.JWTCookieAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME' : timedelta(hours=2),
+    'ROTATE_REFESH_TOKENS' : False,
+    'BLACKLIST_AFTER_ROTATION' : True,
+    'UPDATE_LAST_LOGIN' : False,
+    'ALGORITHM' : 'HS256',
+    'SIGNING_KEY' : env('SIGNING_KEY'),
+    'VERIFYING_KEY' : None,
+    'AUDIENCE' : None,
+    'ISSUER' : None,
+    'AUTH_HEADER_TYPES' : ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'AUTH_COOKIE_SAMESITE': 'Lax',
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

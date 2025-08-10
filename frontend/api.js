@@ -26,8 +26,22 @@ instance.interceptors.response.use(
         return response;
     },
     async (error) =>{
+        if (error.response && error.response.status === 401){
+            if (error.config && error.config.attemptedRefresh) return Promise.reject(error);
+            if (!error.config) return Promise.reject(error);
+
+            // reaching here means we are attempting to get a new refresh token...
+            error.config.attemptedRefresh = true;
+            try{
+                await instance.post('/api/refresh/');
+                return instance(error.config);
+            }catch (invalidRefresh){
+                // refresh token has already expired must relogin...
+                return Promise.reject(invalidRefresh);
+            }
+        }
+        // reach here meaans we didn't get the refresh
         return Promise.reject(error);
-        // TO DO: Refresh cookies and tokens :)
     }
 );
 export default instance;

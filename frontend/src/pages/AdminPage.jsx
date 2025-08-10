@@ -6,16 +6,36 @@ import "../styles/CustomScrollbar.css"
 import { useState,useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import instance from "../../api"
+import Login from "../components/Login"
+import Loader from "../components/Loader"
 
 const AdminPage = () =>{
 
     const navigate = useNavigate()
+    const [authenticated,setAuthenticated] = useState(false)
+    const [loading,setLoading] = useState(false);
 
-    
+    // check if the user is logged in or NOT
+    useEffect(() => {
+        setLoading(true)
+        instance.get(`api/authenticated/`).then((response) =>{
+            if (response.status === 200) setAuthenticated(true);
+            else setAuthenticated(false);
+            setLoading(false);
+        }).catch((error) => {
+            setAuthenticated(false)
+            setLoading(false)
+        })
+    },[])
 
     return(
         <>
-
+        {loading ? 
+        <div id="adminLoading">
+        <Loader message="Loading"/>
+        </div> :
+        authenticated ? 
 
         <div className="pageContainer">
             <div className="pageTitleContainer">
@@ -43,6 +63,7 @@ const AdminPage = () =>{
             </div>
         
         </div>
+        : <Login authenticationStateHandler={setAuthenticated}/> } 
         
         </>
     )

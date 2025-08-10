@@ -10,7 +10,7 @@ import "../styles/CustomScrollbar.css"
 
 const BlogsPage =  () => {
     const [page,setPage] = useState(0)
-    const [blogs,setBlogs] = useState([1,2,3])
+    const [blogs,setBlogs] = useState([])
     const [totalPages,setTotalPages] = useState(1)
     const [loading,setLoading] = useState(true)
 
