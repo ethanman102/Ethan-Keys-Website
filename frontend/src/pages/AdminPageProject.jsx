@@ -8,6 +8,7 @@ import { useState,useEffect } from "react"
 import Loader from "../components/Loader"
 import instance from "../../api"
 import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const AdminPageProject = () => {
 
@@ -22,6 +23,7 @@ const AdminPageProject = () => {
         const [youtubeID,setYoutubeID] = useState('')
         const [respository,setRepository] = useState('')
         const [createdOn,setCreatedOn] = useState('')
+        const [editImages,setEditImages] = useState([])
 
 
 
@@ -30,6 +32,8 @@ const AdminPageProject = () => {
 
         const [editting,setEditting] = useState(false)
         const [loading,setLoading] = useState(false)
+
+        const navigate = useNavigate()
     
         const uploadFile = (e) =>{
     
@@ -40,15 +44,58 @@ const AdminPageProject = () => {
                 url: fileURL
             }
             setCurrentImages([...images,data])
+            if (editting) setEditImages([...editImages,data]) // add it to the potential of edit images...
     
         }
     
         const handleSubmit = (event) => {
             event.preventDefault()
             let formData = new FormData(event.currentTarget)
-            images.forEach((image) => {
-                formData.append('images',image.file)
-            })
+
+            setLoading(true)
+
+            if (!editting){ // case where we can just add the images to the images files... cus we are calling POST
+                images.forEach((image) => {
+                    formData.append('images',image.file)
+                })
+            } else{
+                // case where we are editting and the images will have images without an image. file so we have to seperate them out!
+                images.forEach((image)=> {
+                    if (!image.file) formData.append('images',image) // previous images that are kept
+                })
+                editImages.forEach((image) => { // new images added after the edit!
+                    formData.append('new_images',image.file)
+                })
+            }
+
+            // Now we can post to the api route!
+            if (!editting){
+                instance.post('api/projects/',formData,{
+                    headers : {
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                }).then((response) => {
+                    let newID = response.data.id
+                    setLoading(false)
+                    navigate(`/projects/${newID}/`)
+                }).catch((error) => {
+                    setLoading(false)
+                    navigate('/admin') // case where we failed to post because of axios error!
+                })
+            } else {
+                // case where we were editting
+                instance.put(`api/projects${id}/`,formData,{
+                    headers : {
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                }).then((response) => {
+                    setLoading(false)
+                    navigate(`/projects/${id}/`)
+                }).catch((error) => {
+                    setLoading(false)
+                    navigate('/admin')
+                })
+            }
     
         }
     
@@ -97,12 +144,23 @@ const AdminPageProject = () => {
     
         const handleRemove = () => {
             let updatedImages = [...images]
+            let toRemove = updatedImages[currentDelete]
             updatedImages.splice(currentDelete,1)
             setCurrentImages(updatedImages)
             if (updatedImages.length > 0) {
                 setCurrentDelete(0)  
             } else {
                 setCurrentDelete(null)
+            }
+
+            // Edit mode logic: we need to see if we are deleting an image that has been uploaded in edit mode. These images wont have an image_key
+            if (editting){
+                if (!toRemove.image_key){
+                    // We have an image added from edit mode so we must remove it from the images that are in editImages
+                    let updatedEditted = [...editImages]
+                    updatedEditted = updatedEditted.filter((i) => i.url !== toRemove.url)
+                    setEditImages(updatedEditted)
+                }
             }
         }
     
