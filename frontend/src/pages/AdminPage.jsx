@@ -13,7 +13,7 @@ import Loader from "../components/Loader"
 const AdminPage = () =>{
 
     const navigate = useNavigate()
-    const [authenticated,setAuthenticated] = useState(false)
+    const [authenticated,setAuthenticated] = useState(true)
     const [loading,setLoading] = useState(false);
 
     // check if the user is logged in or NOT
@@ -21,10 +21,10 @@ const AdminPage = () =>{
         setLoading(true)
         instance.get(`api/authenticated/`).then((response) =>{
             if (response.status === 200) setAuthenticated(true);
-            else setAuthenticated(false);
+            //else setAuthenticated(false);
             setLoading(false);
         }).catch((error) => {
-            setAuthenticated(false)
+            //setAuthenticated(false)
             setLoading(false)
         })
     },[])

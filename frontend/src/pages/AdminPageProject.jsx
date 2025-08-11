@@ -4,7 +4,7 @@ import "../styles/ToolSelector.css"
 import "../styles/CustomScrollbar.css"
 import ToolSelector from "../components/ToolSelector"
 import ImageDisplay from "../components/ImageDisplay"
-import { useState,useEffect } from "react"
+import { useState,useEffect,useRef } from "react"
 import Loader from "../components/Loader"
 import instance from "../../api"
 import { useParams } from "react-router-dom"
@@ -14,6 +14,8 @@ const AdminPageProject = () => {
 
         let params = useParams()
         let id = params.id
+
+        const containerRef = useRef()
 
         const [images,setCurrentImages] = useState([])
         const [tools,setTools] = useState([])
@@ -32,6 +34,7 @@ const AdminPageProject = () => {
 
         const [editting,setEditting] = useState(false)
         const [loading,setLoading] = useState(false)
+        const [submitError,setSubmitError] = useState(null)
 
         const navigate = useNavigate()
     
@@ -50,10 +53,24 @@ const AdminPageProject = () => {
     
         const handleSubmit = (event) => {
             event.preventDefault()
+            
+            let fields = [title,tagline,createdOn,description]
+            let fieldError = false
+            fields.forEach((value) =>{
+                if (!value){
+                    fieldError = true
+                    return
+                }
+            })
+            if (fieldError){
+                setSubmitError("Error: Please ensure the titles, description, and creation date\nare not blank")
+                return
+            }
+
+
             let formData = new FormData(event.currentTarget)
 
             setLoading(true)
-
             if (!editting){ // case where we can just add the images to the images files... cus we are calling POST
                 images.forEach((image) => {
                     formData.append('images',image.file)
@@ -103,6 +120,12 @@ const AdminPageProject = () => {
             if (images.length > 0) setCurrentDelete(0)
             else setCurrentDelete(null)
         },[images])
+
+        useEffect(() => {
+            if (loading){
+                containerRef.current.scrollTop = containerRef.current.scrollHeight
+            }
+        },[loading])
 
         
         useEffect(() => {
@@ -167,7 +190,7 @@ const AdminPageProject = () => {
 
     return(
                             <form onSubmit={handleSubmit}>
-            <div className="creationLayout basicScrollbar">
+            <div className="creationLayout basicScrollbar" ref={containerRef}>
                 <h2 className="projectCreationText"> Project {editting ? "Editting" : "Creation"}</h2>
                 <p className="projectCreationText">Use the following inputs to {editting ? "edit the" : "create a"} project posting</p>
                 <div className="textToolsCreationLayout">
@@ -246,7 +269,12 @@ const AdminPageProject = () => {
                 </div>
                 </div>
                 </div>
+
                 <input id="createProjectSubmitButton" value={editting ? "Update" : "Create"} disabled={loading} type="submit"/>
+
+                {loading && <Loader message={editting ? "Updating" : "Creating"}/>}
+                
+                <p id="projectError">{submitError}</p>
             </div>
             </form>
     )
