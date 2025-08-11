@@ -7,6 +7,11 @@ from ..models import Blog,Image
 from rest_framework.response import Response
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from rest_framework.permissions import IsAuthenticated,AllowAny
+from ..authenticate import JWTCookieAuthentication
+
+
+
 
 PAGE_SIZE = 10
 
@@ -15,6 +20,26 @@ class BlogViewSet(viewsets.ModelViewSet):
     serializer_class = BlogSerializer
     queryset = Blog.objects.all()
     http_method_names = ['get','post','delete','put']
+
+    def get_permissions(self):
+        if self.action in ['destroy','update','create']:
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+    
+    # https://stackoverflow.com/questions/59720294/override-permission-and-authentication-classes-in-viewset-list-method``
+    def get_authenticators(self):
+        authentication_classes = [JWTCookieAuthentication]
+        print('running')
+
+        action_map = {key.lower(): value for key,
+                      value in self.action_map.items()}
+        action_name = action_map.get(self.request.method.lower())
+        if action_name in ['destroy','create','update']:
+            return [auth() for auth in authentication_classes]
+
+        return []      
 
     def destroy(self, request, *args, **kwargs):
         blog = self.get_object()
@@ -42,7 +67,7 @@ class BlogViewSet(viewsets.ModelViewSet):
         blog = serializer.save()
 
         # Now time to take the images and store them on the client...
-        images = request.FILES.getlist('images')
+        images = request.FILES.getlist('image')
 
         if images:
             client = boto3.client(service_name='s3',
@@ -97,4 +122,45 @@ class BlogViewSet(viewsets.ModelViewSet):
         }
 
         return Response(response_data,status=status.HTTP_200_OK)
+    
+    def update(self, request, *args, **kwargs):
+        blog = self.get_object()
+
+        client = boto3.client(service_name='s3',
+                region_name=settings.AWS_REGION,
+                aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
+
+        # we need to delete all the images that exist in the database but dont exist in the data.
+        images = request.data.get('image')
+        if len(images) == 0: # case where we delete the image...
+            images = blog.images.all()
+            if images.exists():
+                image = images.first()
+                image.delete()
+                client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.image_key)
+
+
+
+        
+
+
+
+        # now create the new images if they exist.
+        images = request.FILES.getlist('new_images')
+
+        if len(images) != 0:
+            # upload
+            image = images[0]
+
+            file_name = image.name + str(uuid4())
+            client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
+            image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
+            Image.objects.create(blog=blog,image_key=file_name,url=image_url,image_type='B')
+        
+        serializer = self.get_serializer(instance=blog,data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers=self.get_success_headers(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK,headers=headers) 
         

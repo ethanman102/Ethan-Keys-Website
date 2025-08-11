@@ -6,11 +6,14 @@ from ..serializers import ProjectSerializer,ProjectListSerializer
 from ..models import Project,Image
 from rest_framework.response import Response
 from django.db.models import F
+from ..authenticate import JWTCookieAuthentication
+from rest_framework.permissions import IsAuthenticated,AllowAny
 
 class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
     http_method_names = ['get','post','delete','put']
+    authentication_classes = [JWTCookieAuthentication]
 
     def get_serializer_class(self):
         # RESOURCE: https://stackoverflow.com/questions/22616973/django-rest-framework-use-different-serializers-in-the-same-modelviewset
@@ -19,6 +22,26 @@ class ProjectViewSet(viewsets.ModelViewSet):
         if self.action == 'list':
             return ProjectListSerializer
         return ProjectSerializer
+    
+    def get_permissions(self):
+        if self.action in ['destroy','update','create']:
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+    
+    # https://stackoverflow.com/questions/59720294/override-permission-and-authentication-classes-in-viewset-list-method``
+    def get_authenticators(self):
+        authentication_classes = [JWTCookieAuthentication]
+        print('running')
+
+        action_map = {key.lower(): value for key,
+                      value in self.action_map.items()}
+        action_name = action_map.get(self.request.method.lower())
+        if action_name in ['destroy','create','update']:
+            return [auth() for auth in authentication_classes]
+
+        return []      
 
     # Overidden Create Method Utilized to create and store the images on AWS S3 bucket servers.
 
