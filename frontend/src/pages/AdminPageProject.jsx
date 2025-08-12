@@ -101,7 +101,7 @@ const AdminPageProject = () => {
                 })
             } else {
                 // case where we were editting
-                instance.put(`api/projects${id}/`,formData,{
+                instance.put(`api/projects/${id}/`,formData,{
                     headers : {
                         'Content-Type' : 'multipart/form-data'
                     }

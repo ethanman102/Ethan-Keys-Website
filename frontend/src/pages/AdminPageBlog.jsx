@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useState,useEffect } from "react"
 import Markdown from "react-markdown"
 import remarkBreaks from "remark-breaks"
@@ -20,6 +20,9 @@ const AdminPageBlog = () => {
     const [title,setTitle] = useState('')
     const [author,setAuthor] = useState('')
     const [subtitle,setSubtitle] = useState('')
+
+    const editImageRef = useRef(null)
+
 
     const [editting,setEditting] = useState(false); // to allow for editting modes
     const [loading,setLoading] = useState(false)
@@ -65,17 +68,55 @@ const AdminPageBlog = () => {
                 file: files[0],
                 url: fileURL
             }
-        setImage(data)       
+        setImage(data)
+        if (editting){
+            editImageRef.current = data
+            setImage(editImageRef.current)
+        }       
     }
 
     const postBlog = (event) => {
         event.preventDefault()
         let formData = new FormData(event.currentTarget)
-        formData.append('image',image.file)
+        
+        if (!editting){ // case where we can just add the image to the image files... cus we are calling POST
+            formData.append('image',image.file)
+        } else{
+            // case where we are editting and the images will have images without an image. file so we have to seperate them out!
+            if (!image.file) formData.append('image',image) // previous images that are kept
+            else formData.append('new_image',editImageRef.current.file)
+        }
 
-        // CASE 1: POSTING THE NEW BLOG
+        // Now we can post to the api route!
+        if (!editting){
+            instance.post('api/blogs/',formData,{
+                headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            }).then((response) => {
+                let newID = response.data.id
+                setLoading(false)
+                navigate(`/blogs/${newID}/`)
+            }).catch((error) => {
+                setLoading(false)
+                navigate('/admin') // case where we failed to post because of axios error!
+            })
+        } else {
+            // case where we were editting
+            instance.put(`api/blogs/${id}/`,formData,{
+                headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            }).then((response) => {
+                setLoading(false)
+                navigate(`/blogs/${id}/`)
+            }).catch((error) => {
+                setLoading(false)
+                navigate('/admin')
+            })
+        }
 
-        // CASE 2: PUTTING THE BLOG
+        
     }
 
     return(

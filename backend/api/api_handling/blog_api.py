@@ -147,7 +147,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 
 
         # now create the new images if they exist.
-        images = request.FILES.getlist('new_images')
+        images = request.FILES.getlist('new_image')
 
         if len(images) != 0:
             # upload
