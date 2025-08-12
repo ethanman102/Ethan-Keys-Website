@@ -1,5 +1,7 @@
 .singularBlogContent{
+    display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     padding: 3ch;
     max-height: 70dvh;
     overflow-y: scroll;
@@ -8,6 +10,7 @@
 .singleBlogTitle{
     margin: 0;
     padding: 0;
+    display: block;
 }
 
 h4.singleBlogTitle{
@@ -24,6 +27,7 @@ h4.singleBlogTitle{
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
 }
 
-.markdown{
+#markdown{
     border-top: solid black 2px;
+    display: block;
 }

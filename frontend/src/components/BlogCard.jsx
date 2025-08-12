@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import "../styles/BlogCard.css"
 
 
-const BlogCard = ({title, subtitle, image, date, author, id, content,views}) => {
+const BlogCard = ({title, subtitle, images, created_on, author, id, content,views}) => {
 
     const navigate = useNavigate()
 
@@ -12,13 +12,14 @@ const BlogCard = ({title, subtitle, image, date, author, id, content,views}) => 
         let state = {
             title: title,
             subtitle: subtitle,
-            image: image,
+            images: images,
             id: id,
-            date: date,
+            created_on: created_on,
             author: author,
             content: content,
             views: views,
         }
+
 
         navigate(`${id}/`,{state: state}) // Handle easy naviagation if we navigate from clicking the card. Singular Blog page will check whether it needs to request the newest state...
     }
@@ -37,9 +38,9 @@ const BlogCard = ({title, subtitle, image, date, author, id, content,views}) => 
             
                 <h3 className="blogTitle">{title}</h3>
                 <p className="blogTitle">{subtitle}</p>
-                <img id="blogCardImage" src={image}/>
+                <img id="blogCardImage" src={(images && images.length > 0) ? images[0].url : undefined}/>
                 <h3 className="blogTitle">Author: {author}</h3>
-                <p className="blogTitle">Created On: {date}</p>
+                <p className="blogTitle">Created On: {new Date(created_on).toString().split(" ").slice(1,4).join(" ")}</p>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

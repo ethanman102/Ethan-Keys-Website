@@ -13,21 +13,25 @@ import remarkBreaks from "remark-breaks"
 const SingularBlogsPage = () => {
 
     const [blog,setBlog] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     let params = useParams()
-    const {state} = useLocation() // If we have a state that means we navigated from the blogs list.
+    const {state} = useLocation()
+    // If we have a state that means we navigated from the blogs list.
+    
 
     useEffect( () => {
         if (!state){
-            axios.get(`${apiURL}/api/blogs/${params.id}/`)
+            axios.get(`${apiURL}api/blogs/${params.id}/`)
             .then((response) => {
                 setBlog(response.data)
-                setLoading(false)
+                console.log(response.data)
             })
         } else{
             setBlog(state) // Case where we did navigate from the blogslist page..
         }
+        setLoading(false)
+        console.log(state)
     },[])
 
     return(
@@ -48,15 +52,16 @@ const SingularBlogsPage = () => {
                 <p className="dropdownTab"><u>P</u>ost</p>
             </div>
             <div className="projectsShortcutContainerList singularBlogContent basicScrollbar">
-                <h1 className="singleBlogTitle">This is Where the Blog Title will Go</h1>
-                <h4 className="singleBlogTitle">This is where the subtitle will go</h4>
-                <img src="/InfoBook.png" id="singleBlogPageImage"/>
-                <h5 className="singleBlogTitle">Written By NAME on DATE <br/> # VIEWS</h5>
-                <div className="markdown">
-                    <Markdown remarkPlugins={[remarkBreaks]} children={"This is where markdown content will go..  \n **hi**"}/>
-
-
+                {loading ? <Loader message="Loading"/> :
+                <>
+                <h1 className="singleBlogTitle">{blog.title}</h1>
+                <h4 className="singleBlogTitle">{blog.subtitle}</h4>
+                <img src={blog.images ? blog.images[0].url : undefined} id="singleBlogPageImage"/>
+                <h5 className="singleBlogTitle">Written By: {blog.author} on {new Date(blog.created_on).toString().split(" ").slice(1,4).join(" ")} <br/> {blog.views} Views</h5>
+                <div id="markdown">
+                    <Markdown remarkPlugins={[remarkBreaks]} children={blog.content}/>
                 </div>
+                </> }
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

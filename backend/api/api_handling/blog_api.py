@@ -70,6 +70,7 @@ class BlogViewSet(viewsets.ModelViewSet):
         images = request.FILES.getlist('image')
 
         if images:
+            print('an image..')
             client = boto3.client(service_name='s3',
                                   region_name=settings.AWS_REGION,
                                   aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
