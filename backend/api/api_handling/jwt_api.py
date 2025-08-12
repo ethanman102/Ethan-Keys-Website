@@ -11,15 +11,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 from rest_framework.permissions import AllowAny,IsAuthenticated
 
-def get_csrf_token(request):
-    '''
-    Function: get_csrf_token(request)
-    Args: request: a request object to extract the csrf token from or generate for the new user
-    Returns: a valid csrf token or the set csrf token already.
-    '''
-    csrftoken = csrf.get_token(request)
-    return csrftoken
-
 class LoginView(TokenObtainPairView):
     def post(self,request,*args,**kwargs):
 
@@ -119,12 +110,7 @@ class ProvideAuthenticationStateView(APIView):
     permission_classes = []
     def get(self,request):
         response = Response()
-        csrftoken = get_csrf_token(request)
-        response.set_cookie('csrftoken',
-                            csrftoken,
-                            secure=False,
-                            samesite='Lax',
-                            httponly=False)
+        csrftoken = csrf.get_token(request)
         if request.user.is_authenticated:
             data = {"Success":"User is Authenticated"}
 

@@ -27,6 +27,8 @@ const AdminPageBlog = () => {
     const [editting,setEditting] = useState(false); // to allow for editting modes
     const [loading,setLoading] = useState(false)
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         if (id){
         // fetch the item to edit...-

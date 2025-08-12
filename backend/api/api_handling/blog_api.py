@@ -77,7 +77,7 @@ class BlogViewSet(viewsets.ModelViewSet):
             # upload
             
             file_name = images[0].name + str(uuid4())
-            client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
+            client.upload_fileobj(images[0],settings.AWS_STORAGE_BUCKET_NAME,file_name)
             image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
             Image.objects.create(blog=blog,image_key=file_name,url=image_url,image_type='B')
 
@@ -100,7 +100,7 @@ class BlogViewSet(viewsets.ModelViewSet):
         blogs = self.get_queryset()
 
         page = request.GET.get('page',1)
-        size = request.GET('size', PAGE_SIZE)
+        size = request.GET.get('size', PAGE_SIZE)
 
         try:
             size = int(size)

@@ -35,11 +35,11 @@ const BlogCard = ({title, subtitle, image, date, author, id, content,views}) => 
             </div>
             <div id="blogCardContent">
             
-                <h3 className="blogTitle">This is where the title goes {title}</h3>
-                <p className="blogTitle">Subtitle goes here: {subtitle}</p>
-                <img id="blogCardImage" src='/blog.png'/>
-                <h3 className="blogTitle">Author:</h3>
-                <p className="blogTitle">Created On: </p>
+                <h3 className="blogTitle">{title}</h3>
+                <p className="blogTitle">{subtitle}</p>
+                <img id="blogCardImage" src={image}/>
+                <h3 className="blogTitle">Author: {author}</h3>
+                <p className="blogTitle">Created On: {date}</p>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

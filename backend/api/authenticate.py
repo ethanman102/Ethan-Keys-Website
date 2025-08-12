@@ -11,7 +11,6 @@ def enforce_csrf(request):
     check.process_request(request)
     reason = check.process_view(request, None, (), {})
     if reason:
-        print('REASON WHAT')
         raise exceptions.PermissionDenied('CSRF Failed: %s' % reason)
 
 class JWTCookieAuthentication(JWTAuthentication):
@@ -20,6 +19,5 @@ class JWTCookieAuthentication(JWTAuthentication):
         if access_cookie is None:
             return None
         validated_token = self.get_validated_token(access_cookie)
-        print('hey')
         enforce_csrf(request)
         return self.get_user(validated_token), validated_token
