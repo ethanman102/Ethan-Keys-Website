@@ -13,7 +13,7 @@ import Loader from "../components/Loader"
 const AdminPage = () =>{
 
     const navigate = useNavigate()
-    const [authenticated,setAuthenticated] = useState(true)
+    const [authenticated,setAuthenticated] = useState(false)
     const [loading,setLoading] = useState(false);
 
     // check if the user is logged in or NOT

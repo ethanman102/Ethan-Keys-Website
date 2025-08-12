@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env(BASE_DIR / '.env')
 
+PRODUCTION_MODE = False
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -39,6 +41,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -118,9 +121,11 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES' : ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
-    'AUTH_COOKIE_SAMESITE': 'Lax',
+    'AUTH_COOKIE_SAMESITE': 'None',
 }
 
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -186,4 +191,4 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
 
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'api.User'

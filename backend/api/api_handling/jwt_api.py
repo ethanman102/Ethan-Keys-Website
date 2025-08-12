@@ -11,6 +11,15 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 from rest_framework.permissions import AllowAny,IsAuthenticated
 
+def get_csrf_token(request):
+    '''
+    Function: get_csrf_token(request)
+    Args: request: a request object to extract the csrf token from or generate for the new user
+    Returns: a valid csrf token or the set csrf token already.
+    '''
+    csrftoken = csrf.get_token(request)
+    return csrftoken
+
 class LoginView(TokenObtainPairView):
     def post(self,request,*args,**kwargs):
 
@@ -37,7 +46,7 @@ class LoginView(TokenObtainPairView):
             value=access_token,
             httponly=True,
             expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION_MODE,
+            secure=True,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
@@ -46,9 +55,12 @@ class LoginView(TokenObtainPairView):
             value=refresh_token,
             httponly=True,
             expires=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION_MODE,
+            secure=True,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
+
+
+        response.data['success'] = 'Logged in user'
 
         response.data['success'] = 'Logged in user'
         return response
@@ -95,20 +107,27 @@ class HttpCookieRefreshView(TokenRefreshView):
             value=access,
             httponly=True,
             expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION_MODE,
+            secure=True,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
-
+        
         # ensure a CSRF token is set and that it is NOT HTTPONLY so that JS on frontend can access.
         response.data = {'Success': 'New access token obtained'}
         return response
     
 class ProvideAuthenticationStateView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = []
     def get(self,request):
         response = Response()
+        csrftoken = get_csrf_token(request)
+        response.set_cookie('csrftoken',
+                            csrftoken,
+                            secure=False,
+                            samesite='Lax',
+                            httponly=False)
         if request.user.is_authenticated:
             data = {"Success":"User is Authenticated"}
+
             return Response(data)
         data = {"Failure":"User is Not Authenticated"}
         return Response(data,status=status.HTTP_403_FORBIDDEN)

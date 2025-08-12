@@ -11,7 +11,8 @@ const instance = axios.create(
 
 instance.interceptors.request.use(
     (config) => {
-        let csrf = Cookies.get('csrftoken');
+        const csrf = Cookies.get('csrftoken');
+        console.log(document.cookie)
         if (csrf) config.headers['X-CSRFToken'] = csrf;
         return config;
     },
