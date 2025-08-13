@@ -134,7 +134,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 
         # we need to delete all the images that exist in the database but dont exist in the data.
         images = request.data.get('image')
-        if len(images) == 0: # case where we delete the image...
+        if not images: # case where we delete the image...
             images = blog.images.all()
             if images.exists():
                 image = images.first()

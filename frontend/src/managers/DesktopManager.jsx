@@ -17,14 +17,18 @@ import AdminPageProject from '../pages/AdminPageProject';
 import AdminPageTool from '../pages/AdminPageTool';
 import SingularBlogsPage from '../pages/SingularBlogsPage';
 import AdminPageBlog from '../pages/AdminPageBlog';
+import instance from '../../api';
 
 export const TabContext = createContext();
+export const AuthContext = createContext();
 
 const DesktopManager = () =>{
 
+    const [auth,setAuth] = useState(false);
     const [openTabs,setOpenTabs] = useState([]);
     let navigate = useNavigate();
 
+    // use effect to set the open tabs!
     useEffect(() => {
         let path = window.location.pathname.slice(1, -1)
         if (path in pathNames){
@@ -34,6 +38,15 @@ const DesktopManager = () =>{
             }])
         }
     },[])
+
+    // use effect to set the auth context!
+    useEffect(() => {
+        instance.get(`api/authenticated/`).then((response) =>{
+            if (response.status === 200) setAuth(true);
+        }).catch((error) => {
+            setAuth(false)
+        })    
+    })
 
     // Utilized as a callback function to add a new tab to the front of the opened shortcuts (regardless if opened on not already)
     const onShortcutClicked = (shortcutObject) => {
@@ -65,6 +78,7 @@ const DesktopManager = () =>{
 
     return(
         <>
+        
         <div className='desktopContainer'>
             <div className='shortcutsContainer'>
                 <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
@@ -74,19 +88,23 @@ const DesktopManager = () =>{
             </div>
 
             <div className='pageFlexContainer'>
-                <Routes>
-                    <Route path='/' element={<HomePage/>}/>
-                    <Route path='/blog/' element={<BlogsPage/>}/>
-                    <Route path='/blog/:id/' element={<SingularBlogsPage/>}/>
-                    <Route path='/games/' element={<GamesPage/>}/>
-                    <Route path='/admin/' element={<AdminPage/>}>
-                        <Route path="project/" element={<AdminPageProject/>}/>
-                        <Route path="tool/" element={<AdminPageTool/>}/>
-                        <Route path="blog/" element={<AdminPageBlog/>}/>
-                    </Route>
-                    <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
-                    <Route path='/projects/:projectID/' element={<SingularProjectsPage/>}/>
-                </Routes>
+                <AuthContext.Provider value={auth}>
+                    <Routes>
+                        <Route path='/' element={<HomePage/>}/>
+                        <Route path='/blog/' element={<BlogsPage/>}/>
+                        <Route path='/blog/:id/' element={<SingularBlogsPage/>}/>
+                        <Route path='/games/' element={<GamesPage/>}/>
+                        <Route path='/admin/' element={<AdminPage authCallback={setAuth}/>}>
+                            <Route path="project/" element={<AdminPageProject/>}/>
+                            <Route path="tool/" element={<AdminPageTool/>}/>
+                            <Route path="blog/" element={<AdminPageBlog/>}>
+                                <Route path="edit/:id/" element={<AdminPageBlog/>}/>
+                            </Route>
+                        </Route>
+                        <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
+                        <Route path='/projects/:projectID/' element={<SingularProjectsPage/>}/>
+                    </Routes>
+                </AuthContext.Provider>
             </div>
         </div>
         {/* Wrap in the context provider to allow tabs to communicate to manager when the X button closes tab. */}

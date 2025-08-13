@@ -4,9 +4,9 @@ import Markdown from "react-markdown"
 import remarkBreaks from "remark-breaks"
 import "../styles/BlogCreation.css"
 import axios from "axios"
-import { apiURL } from "../../constants"
+import { apiURL,pathNames } from "../../constants"
 import Loader from "../components/Loader"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 import instance from "../../api"
 
 
@@ -14,6 +14,8 @@ const AdminPageBlog = () => {
 
     let params = useParams();
     let id = params.id;
+
+    const {unauthorize} = useOutletContext()
 
     const [image,setImage] = useState(undefined)
     const [content,setContent] = useState('')
@@ -35,7 +37,7 @@ const AdminPageBlog = () => {
         setLoading(true)
         instance.get(`api/blogs/${id}/`).then((response) => response.data)
             .then((blog) =>{
-                setImage(blog.image);
+                setImage((blog.images && blog.images.length >0) ? blog.images[0] : undefined);
                 setContent(blog.content)
                 setTitle(blog.title)
                 setAuthor(blog.author)
@@ -47,6 +49,7 @@ const AdminPageBlog = () => {
                 let navigate = useNavigate();
                 setLoading(false)
                 navigate('/blog')
+                unauthorize()
                 
             })
         }else{
@@ -98,10 +101,12 @@ const AdminPageBlog = () => {
             }).then((response) => {
                 let newID = response.data.id
                 setLoading(false)
-                navigate(`/blogs/${newID}/`)
+                navigate(`/${pathNames.blog}/${newID}/`)
             }).catch((error) => {
                 setLoading(false)
-                navigate('/admin') // case where we failed to post because of axios error!
+                unauthorize()
+                navigate('/admin/')
+                 // case where we failed to post because of axios error!
             })
         } else {
             // case where we were editting
@@ -111,10 +116,11 @@ const AdminPageBlog = () => {
                 }
             }).then((response) => {
                 setLoading(false)
-                navigate(`/blogs/${id}/`)
+                navigate(`/${pathNames.blog}/${id}/`)
             }).catch((error) => {
                 setLoading(false)
-                navigate('/admin')
+                unauthorize()
+                navigate('/admin/')
             })
         }
 

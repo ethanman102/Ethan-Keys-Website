@@ -145,7 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CORS_ALLOW_CREDENTIALS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -192,3 +191,4 @@ DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
 
 
 AUTH_USER_MODEL = 'api.User'
+

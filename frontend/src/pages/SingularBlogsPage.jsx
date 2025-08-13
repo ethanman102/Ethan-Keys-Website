@@ -1,21 +1,29 @@
 import React from "react";
 import "../styles/SingularProjectsPage.css"
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import { apiURL } from "../../constants";
 import Loader from "../components/Loader";
 import axios from "axios";
 import "../styles/CustomScrollbar.css"
 import Markdown from "react-markdown"
-import { useLocation,useParams } from "react-router-dom";
+import { useLocation,useParams,useNavigate } from "react-router-dom";
 import "../styles/SingularBlogsPage.css"
 import remarkBreaks from "remark-breaks"
+import { AuthContext } from "../managers/DesktopManager";
+
 
 const SingularBlogsPage = () => {
 
-    const [blog,setBlog] = useState(null)
+    const [blog,setBlog] = useState({})
     const [loading, setLoading] = useState(true)
+    const auth = useContext(AuthContext)
+
+    const navigate  = useNavigate()
+
 
     let params = useParams()
+    const blogID = params.id
+
     const {state} = useLocation()
     // If we have a state that means we navigated from the blogs list.
     
@@ -31,7 +39,6 @@ const SingularBlogsPage = () => {
             setBlog(state) // Case where we did navigate from the blogslist page..
         }
         setLoading(false)
-        console.log(state)
     },[])
 
     return(
@@ -60,7 +67,8 @@ const SingularBlogsPage = () => {
                 <h5 className="singleBlogTitle">Written By: {blog.author} on {new Date(blog.created_on).toString().split(" ").slice(1,4).join(" ")} <br/> {blog.views} Views</h5>
                 <div id="markdown">
                     <Markdown remarkPlugins={[remarkBreaks]} children={blog.content}/>
-                </div>
+                </div> 
+                {auth && <button type="button" onClick={() => navigate(`/admin/blog/edit/${blogID}/`)}>Edit</button>}
                 </> }
             </div>
             <div className="pageFooter">

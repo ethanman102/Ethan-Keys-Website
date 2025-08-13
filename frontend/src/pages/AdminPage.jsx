@@ -10,7 +10,7 @@ import instance from "../../api"
 import Login from "../components/Login"
 import Loader from "../components/Loader"
 
-const AdminPage = () =>{
+const AdminPage = ({authCallback}) =>{
 
     const navigate = useNavigate()
     const [authenticated,setAuthenticated] = useState(false)
@@ -20,14 +20,22 @@ const AdminPage = () =>{
     useEffect(() => {
         setLoading(true)
         instance.get(`api/authenticated/`).then((response) =>{
-            if (response.status === 200) setAuthenticated(true);
-            //else setAuthenticated(false);
+            if (response.status === 200){
+                setAuthenticated(true);
+                authCallback(true);
+            }
             setLoading(false);
         }).catch((error) => {
-            //setAuthenticated(false)
+            setAuthenticated(false)
+            authCallback(false);
             setLoading(false)
         })
     },[])
+
+    const unauthorize = () => {
+        setAuthenticated(false)
+        authCallback(false)
+    }
 
     return(
         <>
@@ -56,7 +64,7 @@ const AdminPage = () =>{
                 <h3>Welcome to the Admin Page Mr. Keys :D</h3>
                 <p>Use the tabs above to navigate to your admin decision</p>
             </div>}
-            <Outlet/>
+            <Outlet context={{unauthorize}}/>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>
