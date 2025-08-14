@@ -18,6 +18,7 @@ import AdminPageTool from '../pages/AdminPageTool';
 import SingularBlogsPage from '../pages/SingularBlogsPage';
 import AdminPageBlog from '../pages/AdminPageBlog';
 import instance from '../../api';
+import DeleteModal from '../components/DeleteModal';
 
 export const TabContext = createContext();
 export const AuthContext = createContext();
@@ -86,8 +87,9 @@ const DesktopManager = () =>{
                 <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.games} icon="none" description="Play a game or two for some short time fun!" path={`/${pathNames.games}/`} onShortcutClick={onShortcutClicked}/>
             </div>
-
+            
             <div className='pageFlexContainer'>
+                
                 <AuthContext.Provider value={auth}>
                     <Routes>
                         <Route path='/' element={<HomePage/>}/>

@@ -1,0 +1,64 @@
+#deleteContainer{
+    width: fit-content;
+    background-color: gainsboro;
+    border: solid white 3px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    animation: 1s grow ease;
+
+}
+
+#modalContainer{
+    background-color: rgba(0, 0, 0, 0.726);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    animation: 1s ease appear;
+}
+
+#deleteOptionsContainer{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    display: flex;
+    gap: 2ch;
+    margin-bottom: 1ch;
+}
+
+.optionButton{
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.optionButton:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom:  1px solid white;
+    border-right: 1px solid white;
+}
+
+@keyframes grow {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+@keyframes appear{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

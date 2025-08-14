@@ -3,7 +3,7 @@ import { useState,useEffect } from "react"
 import Markdown from "react-markdown"
 import remarkBreaks from "remark-breaks"
 import "../styles/BlogCreation.css"
-import axios from "axios"
+import DeleteModal from "../components/DeleteModal"
 import { apiURL,pathNames } from "../../constants"
 import Loader from "../components/Loader"
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
@@ -28,6 +28,7 @@ const AdminPageBlog = () => {
 
     const [editting,setEditting] = useState(false); // to allow for editting modes
     const [loading,setLoading] = useState(false)
+    const [deleteOpen,setDeleteOpen] = useState(false)
 
     const navigate = useNavigate()
 
@@ -129,6 +130,7 @@ const AdminPageBlog = () => {
 
     return(
         <form onSubmit={postBlog}>
+            {deleteOpen && <DeleteModal deleting={`Blog ${id}`} visibilityCallback={setDeleteOpen}/>}
         <div className="adminBlogPageContainer basicScrollbar">
             <h2 className="">Blog {editting ? "Editting" : "Creation"}</h2>
             <p className="">Use the following inputs to {editting ? "edit the" : "create a"} Blog Post</p>
@@ -138,7 +140,7 @@ const AdminPageBlog = () => {
                 <h5 id="createBlogTitle">Media</h5>
                 <div id="blogMediaContainer">
                 <label htmlFor="blogInputAuthor" className="blockLabel">Author</label>
-                <input type="text" disabled={loading} name="author" value={author} onChange={(event) => setAuthor(event.target.value)} id="blogInputAuthor" className="blogCreateInput"/>
+                <input  type="text" disabled={loading} name="author" value={author} onChange={(event) => setAuthor(event.target.value)} id="blogInputAuthor" className="blogCreateInput"/>
 
                 <label htmlFor="blogInputTitle" className="blockLabel">Title</label>
                 <input type="text" disabled={loading} name="title" value={title} onChange={(event) => setTitle(event.target.value)} id="blogInputTitle" className="blogCreateInput"/>
@@ -180,7 +182,8 @@ const AdminPageBlog = () => {
                 </div>
       
 
-                <input type="submit" value={editting ? "Update" : "Post"} id="blogSubmit"/>
+                <input type="submit" disabled={loading} value={editting ? "Update" : "Post"} id="blogSubmit"/>
+                {editting && <button disabled={loading} onClick={() => setDeleteOpen(true)} type="button">Delete</button>}
             </div>
             </form>
  

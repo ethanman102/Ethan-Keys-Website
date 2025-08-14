@@ -68,7 +68,7 @@ const SingularBlogsPage = () => {
                 <div id="markdown">
                     <Markdown remarkPlugins={[remarkBreaks]} children={blog.content}/>
                 </div> 
-                {auth && <button type="button" onClick={() => navigate(`/admin/blog/edit/${blogID}/`)}>Edit</button>}
+                {auth && <button type="button" id="blogEditButton" onClick={() => navigate(`/admin/blog/edit/${blogID}/`)}>Edit</button>}
                 </> }
             </div>
             <div className="pageFooter">

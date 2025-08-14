@@ -31,3 +31,14 @@ h4.singleBlogTitle{
     border-top: solid black 2px;
     display: block;
 }
+
+#blogEditButton{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+}
+
+#blogEditButton:hover{
+    cursor: pointer;
+}
