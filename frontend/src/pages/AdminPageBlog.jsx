@@ -128,9 +128,23 @@ const AdminPageBlog = () => {
         
     }
 
+    const handleDelete = () => {
+        if (!editting) return; // allows us to prevent a future development error if a user tries to delete something in non-edit mode :D
+        setLoading(true)
+        setDeleteOpen(false)
+        instance.delete(`api/blogs/${id}/`).then((response) => {
+            setLoading(false)
+            navigate('/admin/')
+        }).catch((error) => {
+            setLoading(false)
+            unauthorize()
+            navigate('/admin/')
+        })
+    }
+
     return(
         <form onSubmit={postBlog}>
-            {deleteOpen && <DeleteModal deleting={`Blog ${id}`} visibilityCallback={setDeleteOpen}/>}
+            {deleteOpen && <DeleteModal deleting={`Blog ${id}`} visibilityCallback={setDeleteOpen} deleteCallback={handleDelete}/>}
         <div className="adminBlogPageContainer basicScrollbar">
             <h2 className="">Blog {editting ? "Editting" : "Creation"}</h2>
             <p className="">Use the following inputs to {editting ? "edit the" : "create a"} Blog Post</p>
