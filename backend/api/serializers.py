@@ -45,7 +45,7 @@ class ToolSerializer(serializers.ModelSerializer):
 # Project Serialziers
 class ProjectSerializer(serializers.ModelSerializer):
 
-    tools = ToolSerializer(many=True)
+    tools = ToolSerializer(many=True,required=False)
     images = ProjectImageSerializer(many=True,read_only=True)
 
     class Meta:

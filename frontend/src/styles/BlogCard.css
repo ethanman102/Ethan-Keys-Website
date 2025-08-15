@@ -8,6 +8,7 @@
     border-left: solid black 3px;
     border-bottom: solid gainsboro 3px;
     border-right: solid gainsboro 3px;
+    max-width: 60ch;
 }
 
 #blogCardImage{
@@ -20,6 +21,8 @@
     border-left: solid rgb(228, 228, 228) 4px;
     margin-top: 1ch;
     margin-bottom: 1ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #blogCardContent:hover{
@@ -35,4 +38,24 @@
 .blogCard{
     height: fit-content;
     padding-bottom: 2ch;
+}
+
+#blogSubtitle{
+    margin-top: 1ch;
+    margin-bottom: 0.5ch;
+    border-bottom: 1px solid gainsboro;
+}
+
+#blogCTR{
+    margin-left: auto;
+    padding: 0;
+    font-size: small;
+    border: black 2px dotted;
+    padding-left: 0.5ch;
+    padding-right: 0.5ch;
+}
+
+#blogCTR:hover{
+    scale: 1.2;
+    transition: scale 0.5s ease;
 }

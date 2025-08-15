@@ -19,11 +19,9 @@ const SingularProjectsPage = () =>{
     const [project,setProject] = useState({});
 
     useEffect( () => {
-        axios.get(`${apiURL}/api/projects/${projectID}/`)
+        axios.get(`${apiURL}api/projects/${projectID}/`)
         .then((response) =>{
             setProject(response.data)
-            setLoading(false)
-            console.log(response.data)
 
         })
     },[])
@@ -106,7 +104,7 @@ const SingularProjectsPage = () =>{
                     <div className="pageBoxDivit pageBoxDivitRight"> </div>
                 </div>
                 </div>
-                <ImageDisplay images={project.images}/>
+                <ImageDisplay images={project.images ? project.images : []}/>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

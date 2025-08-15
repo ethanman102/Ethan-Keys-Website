@@ -37,10 +37,11 @@ const BlogCard = ({title, subtitle, images, created_on, author, id, content,view
             <div id="blogCardContent">
             
                 <h3 className="blogTitle">{title}</h3>
-                <p className="blogTitle">{subtitle}</p>
                 <img id="blogCardImage" src={(images && images.length > 0) ? images[0].url : undefined}/>
+                <p className="blogTitle" id="blogSubtitle">{subtitle}</p>
                 <h3 className="blogTitle">Author: {author}</h3>
                 <p className="blogTitle">Created On: {new Date(created_on).toString().split(" ").slice(1,4).join(" ")}</p>
+                <p id="blogCTR"><b>Click to read - -&gt;</b></p>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>

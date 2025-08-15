@@ -197,7 +197,7 @@ const AdminPageBlog = () => {
       
 
                 <input type="submit" disabled={loading} value={editting ? "Update" : "Post"} id="blogSubmit"/>
-                {editting && <button disabled={loading} onClick={() => setDeleteOpen(true)} type="button">Delete</button>}
+                {editting && <button disabled={loading} id="deleteBlogButton" onClick={() => setDeleteOpen(true)} type="button">Delete</button>}
             </div>
             </form>
  

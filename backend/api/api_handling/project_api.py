@@ -46,6 +46,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     # Overidden Create Method Utilized to create and store the images on AWS S3 bucket servers.
 
     def create(self, request, *args, **kwargs):
+        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

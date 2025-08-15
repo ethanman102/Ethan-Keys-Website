@@ -139,3 +139,16 @@
     scale: 1.5;
     cursor: pointer;
 }
+
+#deleteBlogButton{
+    color: white;
+    background-color: red;
+    border: solid 1px black;
+    padding: 0.5ch;
+}
+
+#deleteBlogButton:enabled:hover{
+    cursor: pointer;
+    scale: 1.2;
+    background-color: brown;
+}
