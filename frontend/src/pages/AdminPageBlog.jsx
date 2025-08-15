@@ -1,5 +1,5 @@
-import React, { useRef } from "react"
-import { useState,useEffect } from "react"
+import React from "react"
+import { useState,useEffect,useRef } from "react"
 import Markdown from "react-markdown"
 import remarkBreaks from "remark-breaks"
 import "../styles/BlogCreation.css"
@@ -14,6 +14,8 @@ const AdminPageBlog = () => {
 
     let params = useParams();
     let id = params.id;
+
+    const containerRef = useRef()
 
     const {unauthorize} = useOutletContext()
 
@@ -83,6 +85,7 @@ const AdminPageBlog = () => {
 
     const postBlog = (event) => {
         event.preventDefault()
+        setLoading(true)
         let formData = new FormData(event.currentTarget)
         
         if (!editting){ // case where we can just add the image to the image files... cus we are calling POST
@@ -127,6 +130,12 @@ const AdminPageBlog = () => {
 
         
     }
+
+    useEffect(() => {
+        if (loading){
+            containerRef.current.scrollTop = containerRef.current.scrollHeight
+        }
+    },[loading])
 
     const handleDelete = () => {
         if (!editting) return; // allows us to prevent a future development error if a user tries to delete something in non-edit mode :D
@@ -198,6 +207,9 @@ const AdminPageBlog = () => {
 
                 <input type="submit" disabled={loading} value={editting ? "Update" : "Post"} id="blogSubmit"/>
                 {editting && <button disabled={loading} id="deleteBlogButton" onClick={() => setDeleteOpen(true)} type="button">Delete</button>}
+                <div id="blogLoaderContainer" ref={containerRef}>
+                    {loading && <Loader message={editting ? 'Updating' : 'Posting'}/>}
+                </div>
             </div>
             </form>
  

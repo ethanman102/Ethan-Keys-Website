@@ -152,3 +152,9 @@
     scale: 1.2;
     background-color: brown;
 }
+
+#blogLoaderContainer{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
