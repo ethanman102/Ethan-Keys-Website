@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import axios from "axios";
 import Tool from "../components/Tool";
 import "../styles/CustomScrollbar.css"
+import { AuthContext } from "../managers/DesktopManager";
 
 
 
@@ -18,6 +19,8 @@ const SingularProjectsPage = () =>{
 
     const [loading,setLoading] = useState(true);
     const [project,setProject] = useState({});
+
+    const auth = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -109,7 +112,7 @@ const SingularProjectsPage = () =>{
                 </div>
                 <ImageDisplay images={project.images ? project.images : []}/>
             </div>
-            <button id="projectEditButton" type="button" onClick={() => navigate(`/admin/project/edit/${projectID}/`)}>Edit</button>
+            {auth && <button id="projectEditButton" type="button" onClick={() => navigate(`/admin/project/edit/${projectID}/`)}>Edit</button>}
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>

@@ -3,12 +3,14 @@ from .api_handling.project_api import ProjectViewSet
 from rest_framework.routers import DefaultRouter
 from .api_handling.blog_api import BlogViewSet
 from .api_handling.email_api import EmailView
+from .api_handling.tool_api import ToolViewSet
 from .api_handling.jwt_api import LoginView, LogoutView, HttpCookieRefreshView, ProvideAuthenticationStateView
 
 app_name = 'api'
 router = DefaultRouter()
 router.register(r'projects',ProjectViewSet,basename='projects')
 router.register(r'blogs',BlogViewSet,basename='blogs')
+router.register(r'tools',ToolViewSet,basename='tools')
 
 urlpatterns = [
     path('login/',LoginView.as_view(),name='login'),
