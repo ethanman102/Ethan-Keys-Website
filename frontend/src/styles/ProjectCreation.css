@@ -261,3 +261,15 @@
     width: fit-content;
     color: red;
 }
+
+#projectDeleteButton{
+    width: fit-content;
+    background-color: red;
+    color: white;
+}
+
+#projectDeleteButton:enabled:hover{
+    cursor: pointer;
+    background-color: brown;
+    scale: 1.2;
+}

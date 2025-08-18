@@ -9,6 +9,7 @@ import Loader from "../components/Loader"
 import instance from "../../api"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import DeleteModal from "../components/DeleteModal"
 
 const AdminPageProject = () => {
 
@@ -35,6 +36,7 @@ const AdminPageProject = () => {
         const [editting,setEditting] = useState(false)
         const [loading,setLoading] = useState(false)
         const [submitError,setSubmitError] = useState(null)
+        const [deleteOpen,setDeleteOpen] = useState(false)
 
         const navigate = useNavigate()
     
@@ -50,6 +52,21 @@ const AdminPageProject = () => {
             if (editting) setEditImages([...editImages,data]) // add it to the potential of edit images...
     
         }
+
+        const handleDelete = () => {
+            if (!editting) return; // allows us to prevent a future development error if a user tries to delete something in non-edit mode :D
+            setLoading(true)
+            setDeleteOpen(false)
+            instance.delete(`api/projects/${id}/`).then((response) => {
+                setLoading(false)
+                navigate('/admin/')
+            }).catch((error) => {
+                setLoading(false)
+                unauthorize()
+                navigate('/admin/')
+            })
+        }
+
     
         const handleSubmit = (event) => {
             event.preventDefault()
@@ -78,7 +95,7 @@ const AdminPageProject = () => {
             } else{
                 // case where we are editting and the images will have images without an image. file so we have to seperate them out!
                 images.forEach((image)=> {
-                    if (!image.file) formData.append('images',image) // previous images that are kept
+                    if (!image.file) formData.append('images',JSON.stringify(image)) // previous images that are kept
                 })
                 editImages.forEach((image) => { // new images added after the edit!
                     formData.append('new_images',image.file)
@@ -97,7 +114,7 @@ const AdminPageProject = () => {
                     navigate(`/projects/${newID}/`)
                 }).catch((error) => {
                     setLoading(false)
-                    navigate('/admin') // case where we failed to post because of axios error!
+                    navigate('/admin/') // case where we failed to post because of axios error!
                 })
             } else {
                 // case where we were editting
@@ -110,7 +127,7 @@ const AdminPageProject = () => {
                     navigate(`/projects/${id}/`)
                 }).catch((error) => {
                     setLoading(false)
-                    navigate('/admin')
+                    navigate('/admin/')
                 })
             }
     
@@ -135,8 +152,8 @@ const AdminPageProject = () => {
             instance.get(`api/projects/${id}/`).then((response) => response.data)
                 .then((project) =>{
                     setCurrentImages(project.images);
-                    setYoutubeID(project.youtube_id)
-                    setRepository(project.respository)
+                    setYoutubeID(project.youtube_id ? project.youtube_id : '')
+                    setRepository(project.respository ? project.respository : '')
                     setTitle(project.title)
                     setTagline(project.tagline)
                     setDescription(project.description)
@@ -190,6 +207,7 @@ const AdminPageProject = () => {
 
     return(
                             <form onSubmit={handleSubmit}>
+            {deleteOpen && <DeleteModal deleting={`Project ${id}`} visibilityCallback={setDeleteOpen} deleteCallback={handleDelete}/>}  
             <div className="creationLayout basicScrollbar" ref={containerRef}>
                 <h2 className="projectCreationText"> Project {editting ? "Editting" : "Creation"}</h2>
                 <p className="projectCreationText">Use the following inputs to {editting ? "edit the" : "create a"} project posting</p>
@@ -271,6 +289,7 @@ const AdminPageProject = () => {
                 </div>
 
                 <input id="createProjectSubmitButton" value={editting ? "Update" : "Create"} disabled={loading} type="submit"/>
+                {editting && <button type="button" disabled={loading} id="projectDeleteButton" onClick={() => setDeleteOpen(true)}>Delete</button>}
 
                 {loading && <Loader message={editting ? "Updating" : "Creating"}/>}
                 

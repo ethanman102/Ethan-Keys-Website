@@ -97,7 +97,9 @@ const DesktopManager = () =>{
                         <Route path='/blog/:id/' element={<SingularBlogsPage/>}/>
                         <Route path='/games/' element={<GamesPage/>}/>
                         <Route path='/admin/' element={<AdminPage authCallback={setAuth}/>}>
-                            <Route path="project/" element={<AdminPageProject/>}/>
+                            <Route path="project/" element={<AdminPageProject/>}>
+                                <Route path='edit/:id/' element={<AdminPageProject/>}/>
+                            </Route>
                             <Route path="tool/" element={<AdminPageTool/>}/>
                             <Route path="blog/" element={<AdminPageBlog/>}>
                                 <Route path="edit/:id/" element={<AdminPageBlog/>}/>

@@ -264,4 +264,15 @@
     
 }
 
+#projectEditButton{
+    display: block;
+    margin-left: 1ch;
+    margin-top: 0.5ch;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+}
 
+#projectEditButton:hover{
+    cursor: pointer;
+    scale: 1.2;
+    transition: scale 1s ease;
+}

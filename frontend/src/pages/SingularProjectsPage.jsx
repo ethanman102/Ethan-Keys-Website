@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/SingularProjectsPage.css"
 import { useState,useEffect } from "react";
 import { apiURL } from "../../constants";
@@ -10,6 +10,7 @@ import Tool from "../components/Tool";
 import "../styles/CustomScrollbar.css"
 
 
+
 const SingularProjectsPage = () =>{
 
     let params = useParams();
@@ -17,6 +18,8 @@ const SingularProjectsPage = () =>{
 
     const [loading,setLoading] = useState(true);
     const [project,setProject] = useState({});
+
+    const navigate = useNavigate()
 
     useEffect( () => {
         axios.get(`${apiURL}api/projects/${projectID}/`)
@@ -106,6 +109,7 @@ const SingularProjectsPage = () =>{
                 </div>
                 <ImageDisplay images={project.images ? project.images : []}/>
             </div>
+            <button id="projectEditButton" type="button" onClick={() => navigate(`/admin/project/edit/${projectID}/`)}>Edit</button>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>

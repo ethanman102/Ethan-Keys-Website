@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from django.db.models import F
 from ..authenticate import JWTCookieAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
+import json
 
 class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
@@ -112,7 +113,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
         project = self.get_object()
 
         # we need to delete all the images that exist in the database but dont exist in the data.
-        images = request.data.get('images')
+        images = request.data.getlist('images')
+        images = [json.loads(img) for img in images]
         current_images = project.images.all()
 
         urls = [image['url'] for image in images]
