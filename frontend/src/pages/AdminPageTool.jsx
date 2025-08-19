@@ -5,14 +5,25 @@ import "../styles/PageStyle.css"
 import { toolTypes } from "../../constants"
 import "../styles/CustomScrollbar.css"
 import instance from "../../api"
+import DeleteModal from "../components/DeleteModal"
+import { useOutletContext,useNavigate,useParams } from "react-router-dom"
 
 const AdminPageTool = () => {
+
+    let params = useParams()
+    let id = params.id
 
     const [tools,setTools] = useState([])
     const [currentToolImage,setCurrentToolImage] = useState(null)
 
+    const {unauthorize} = useOutletContext()
+
     const [editting,setEditting] = useState(false)
     const [loading,setLoading] = useState(false)
+
+    const [deleteOpen,setDeleteOpen] = useState(false)
+
+    const navigate = useNavigate()
 
     const uploadFile = (e) => {
         let files = e.target.files
@@ -22,6 +33,20 @@ const AdminPageTool = () => {
                 url: fileURL
             }
         setCurrentToolImage(data)       
+    }
+
+    const handleDelete = () => {
+            if (!editting) return; // allows us to prevent a future development error if a user tries to delete something in non-edit mode :D
+            setLoading(true)
+            setDeleteOpen(false)
+            instance.delete(`api/tools/${id}/`).then((response) => {
+                setLoading(false)
+                navigate('/admin/')
+            }).catch((error) => {
+                setLoading(false)
+                unauthorize()
+                navigate('/admin/')
+            })        
     }
 
     const createTool = (event) => {
@@ -35,7 +60,7 @@ const AdminPageTool = () => {
                         'Content-Type' : 'multipart/form-data'
                     }
                 }).then((response) => {
-                    let newID = response.data.id
+                    setTools([...tools,response.data])
                     setLoading(false)
                 }).catch((error) => {
                     setLoading(false)
@@ -68,8 +93,9 @@ const AdminPageTool = () => {
 
     return(
         <div className="adminToolPageContainer basicScrollbar">
-                <h2 className="">Tool Creation</h2>
-                <p className="">Use the following inputs to create a tool</p>
+                        {deleteOpen && <DeleteModal deleting={`Tool ${id}`} visibilityCallback={setDeleteOpen} deleteCallback={handleDelete}/>}  
+                <h2 className="">Tool {editting ? "Editting" : "Creation"}</h2>
+                <p className="">Use the following inputs to {editting ? "edit" : "create"} a tool</p>
                         <div className="pageContainer">
             <div className="pageTitleContainer">
                 <h6 className="pageTitle">Current Tools</h6>
@@ -89,7 +115,8 @@ const AdminPageTool = () => {
             </div>
             <div className="projectsShortcutContainerList toolPageContainer basicScrollbar">
                         {tools.map((tool) => {
-                                return <Tool name={tool.name} icon={tool.image.url} type={tool.type}/> 
+
+                                return <div><Tool name={tool.name} icon={tool.image.url} type={tool.type}/><button id="toolEditButton" disabled={loading} onClick={() => navigate(`edit/${tool.id}/`)} type="button">Edit</button> </div>
                         })
                         }
             </div>
@@ -100,26 +127,29 @@ const AdminPageTool = () => {
         
         </div>
         <div className="toolCreationInputContainer">
-            <h5 id="createToolTitle">Create Tool</h5>
+            <h5 id="createToolTitle">{editting ? "Edit" : "Create"} Tool</h5>
             <form id="toolEditorForm" className="basicScrollbar" onSubmit={createTool}>
                 <label htmlFor="toolNameInput" className="toolBlockLabel">Name</label>
-                <input type="text" name="name" id="toolNameInput" className="toolCreateInput"/>
+                <input type="text" name="name" id="toolNameInput" disabled={loading} className="toolCreateInput"/>
                 <label htmlFor="toolNameInput" className="toolBlockLabel">Tool Type</label>
-                <select name="type" defaultValue={toolTypes.FRONTEND} className="toolCreateInput">
+                <select disabled={loading} name="type" defaultValue={toolTypes.FRONTEND} className="toolCreateInput">
                     <option value={toolTypes.FRONTEND}>{toolTypes.FRONTEND}</option>
                     <option value={toolTypes.BACKEND}>{toolTypes.BACKEND}</option>
                 </select>
                 
                 <label htmlFor="toolImageUploader" className="toolBlockLabel">Upload Image</label>
-                <input accept="image/*" type="file" id="imageUploader" className="toolBlockLabel toolCreateInput" onChange={(event) => uploadFile(event)}/>
+                <input accept="image/*" type="file" id="imageUploader" disabled={loading} className="toolBlockLabel toolCreateInput" onChange={(event) => uploadFile(event)}/>
                 <img id="currentToolImageDisplay" src={currentToolImage ? currentToolImage.url : undefined}/>
-                <input id="toolSubmit" type="submit"/>
+                <input id="toolSubmit" disabled={loading} type="submit"/>
             </form>
+            
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>
             </div>
+            
         </div>
+        {editting && <button disabled={loading} id="deleteTool" type="button">Delete</button>}
         </div>
     )
 }

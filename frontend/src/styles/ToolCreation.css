@@ -79,3 +79,31 @@
     max-height: 30ch;
     overflow-y: scroll;
 }
+
+#toolEditButton{
+    margin: 0;
+    height: fit-content;
+    display: block;
+    border-top: solid 2px gainsboro;
+    border-left: solid 2px gainsboro;
+    box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
+}
+
+#toolEditButton:enabled:hover{
+    cursor: pointer;
+    background-color: rgb(204, 204, 204);
+    color: white;
+}
+
+#deleteTool{
+    margin-top: 1ch;
+    color: white;
+    background-color: red;
+}
+
+#deleteTool:enabled:hover{
+    background-color: brown;
+    scale: 1.2;
+    transition: scale 1s ease;
+    cursor: pointer;
+}

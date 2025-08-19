@@ -8,7 +8,7 @@ import { useState,useEffect,useRef } from "react"
 import Loader from "../components/Loader"
 import instance from "../../api"
 import { useParams } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import { useNavigate,useOutletContext } from "react-router-dom"
 import DeleteModal from "../components/DeleteModal"
 
 const AdminPageProject = () => {
@@ -28,7 +28,7 @@ const AdminPageProject = () => {
         const [createdOn,setCreatedOn] = useState('')
         const [editImages,setEditImages] = useState([])
 
-
+        const {unauthorize} = useOutletContext()
 
 
         const [currentDelete,setCurrentDelete] = useState(null)

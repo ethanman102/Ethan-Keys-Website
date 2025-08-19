@@ -100,7 +100,9 @@ const DesktopManager = () =>{
                             <Route path="project/" element={<AdminPageProject/>}>
                                 <Route path='edit/:id/' element={<AdminPageProject/>}/>
                             </Route>
-                            <Route path="tool/" element={<AdminPageTool/>}/>
+                            <Route path="tool/" element={<AdminPageTool/>}>
+                                <Route path='edit/:id/' element={<AdminPageTool/>}/>
+                            </Route>
                             <Route path="blog/" element={<AdminPageBlog/>}>
                                 <Route path="edit/:id/" element={<AdminPageBlog/>}/>
                             </Route>
