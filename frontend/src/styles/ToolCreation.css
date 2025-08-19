@@ -6,9 +6,10 @@
     border-left: solid black 3px;
     border-bottom: solid gainsboro 3px;
     border-right: solid gainsboro 3px;
-    max-height: 90dvh;
+    max-height: 70dvh;
     overflow-y: scroll;
 }
+
 
 .toolBlockLabel{
     display: block;
@@ -71,4 +72,10 @@
 
 #toolSubmit:hover{
     cursor: pointer;
+}
+
+.toolPageContainer{
+    max-width: 30ch;
+    max-height: 30ch;
+    overflow-y: scroll;
 }

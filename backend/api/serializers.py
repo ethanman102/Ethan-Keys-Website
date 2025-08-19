@@ -4,7 +4,7 @@ from .models import Project,Tool,Image,Blog,User
 # Parent Class Image Serializer. Acts as a Base Class :D
 class BaseImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Image
+        model = Image
         fields = ('image_key','id','url','created_on','image_type')
         read_only_fields = ['created_on']
 
@@ -33,7 +33,7 @@ class ProjectImageSerializer(BaseImageSerializer):
 
 # Tool Serializer Logic     
 class ToolSerializer(serializers.ModelSerializer):
-    images = ToolImageSerializer(many=True,read_only=True)
+    image = ToolImageSerializer(read_only=True)
     class Meta:
         model = Tool
         fields = "__all__"

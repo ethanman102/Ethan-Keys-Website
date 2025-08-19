@@ -23,7 +23,7 @@ const Tool = ({icon,name,type}) => {
         <div className="toolContainer"
             onMouseEnter={() => setShowBlurb(true)} 
             onMouseLeave={() => setShowBlurb(false)}>
-            <img className="toolIcon" src="/blog.png"/>
+            <img className="toolIcon" src={icon}/>
             {showBlurb && <Blurb title={name} message={message}/>}
         </div>
     )

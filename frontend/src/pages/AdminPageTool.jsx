@@ -4,11 +4,15 @@ import Tool from "../components/Tool"
 import "../styles/PageStyle.css"
 import { toolTypes } from "../../constants"
 import "../styles/CustomScrollbar.css"
+import instance from "../../api"
 
 const AdminPageTool = () => {
 
     const [tools,setTools] = useState([])
     const [currentToolImage,setCurrentToolImage] = useState(null)
+
+    const [editting,setEditting] = useState(false)
+    const [loading,setLoading] = useState(false)
 
     const uploadFile = (e) => {
         let files = e.target.files
@@ -24,11 +28,41 @@ const AdminPageTool = () => {
         event.preventDefault()
         let formData = new FormData(event.currentTarget)
         formData.append('images',currentToolImage.file)
+
+        if (!editting){
+                instance.post('api/tools/',formData,{
+                    headers : {
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                }).then((response) => {
+                    let newID = response.data.id
+                    setLoading(false)
+                }).catch((error) => {
+                    setLoading(false)
+                    navigate('/admin/') // case where we failed to post because of axios error!
+                })
+            } else {
+                // case where we were editting
+                instance.put(`api/tools/${id}/`,formData,{
+                    headers : {
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                }).then((response) => {
+                    setLoading(false)
+                }).catch((error) => {
+                    setLoading(false)
+                    navigate('/admin/')
+                })
+            }
     }
 
     useEffect(
         () => {
-            // TODO: FETCH THE CURRENT TOOLS.
+           instance.get('api/tools/').then((response) => {
+            setTools(response.data.tools)
+            console.log(response.data)
+           })
+           // retrieve all tools!
         }, []
     )
 
@@ -53,7 +87,7 @@ const AdminPageTool = () => {
                 <p className="dropdownTab">T<u>o</u>ols</p>
 
             </div>
-            <div className="projectsShortcutContainerList">
+            <div className="projectsShortcutContainerList toolPageContainer basicScrollbar">
                         {tools.map((tool) => {
                                 return <Tool name={tool.name} icon={tool.image.url} type={tool.type}/> 
                         })
@@ -71,8 +105,8 @@ const AdminPageTool = () => {
                 <label htmlFor="toolNameInput" className="toolBlockLabel">Name</label>
                 <input type="text" name="name" id="toolNameInput" className="toolCreateInput"/>
                 <label htmlFor="toolNameInput" className="toolBlockLabel">Tool Type</label>
-                <select name="type" className="toolCreateInput">
-                    <option value={toolTypes.FRONTEND} selected>{toolTypes.FRONTEND}</option>
+                <select name="type" defaultValue={toolTypes.FRONTEND} className="toolCreateInput">
+                    <option value={toolTypes.FRONTEND}>{toolTypes.FRONTEND}</option>
                     <option value={toolTypes.BACKEND}>{toolTypes.BACKEND}</option>
                 </select>
                 

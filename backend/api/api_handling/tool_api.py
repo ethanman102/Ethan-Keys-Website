@@ -50,8 +50,12 @@ class ToolViewSet(viewsets.ModelViewSet):
             
         # images will cascade
         tool.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)   
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def list(self, request, *args, **kwargs):
+        tools = self.get_queryset()
+        serializer = self.get_serializer(tools,many=True)  
+        return Response({'tools' : serializer.data},status=status.HTTP_200_OK)
     
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -60,7 +64,7 @@ class ToolViewSet(viewsets.ModelViewSet):
         tool = serializer.save()
 
         # Now time to take the images and store them on the client...
-        images = request.FILES.getlist('image')
+        images = request.FILES.getlist('images')
 
         if images:
             client = boto3.client(service_name='s3',
@@ -74,6 +78,7 @@ class ToolViewSet(viewsets.ModelViewSet):
             Image.objects.create(tool=tool,image_key=file_name,url=image_url,image_type='T')
 
         headers = self.get_success_headers(serializer.data)
+        print(serializer.data,'hi')
         return Response(serializer.data,status=status.HTTP_201_CREATED,headers=headers)
     
     
