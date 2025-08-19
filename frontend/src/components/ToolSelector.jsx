@@ -3,11 +3,12 @@ import "../styles/ToolSelector.css"
 import "../styles/CustomScrollbar.css"
 import { useState,useEffect } from "react"
 import Tool from "./Tool"
+import instance from "../../api"
 
-const ToolSelector =  () => {
+const ToolSelector =  ({currentTools}) => {
 
     const [tools,setTools] = useState([])
-    const [selected,setSelected] = useState([])
+    const [selected,setSelected] = useState(currentTools)
 
     const handleSelect = (tool) => {
         let toolName = tool.getAttribute('name')
@@ -15,6 +16,12 @@ const ToolSelector =  () => {
         if (selected.some((toolItem) => toolItem === toolName)) setSelected(selected.filter((toolItem)=> toolItem !== toolName));
         else setSelected([...selected,toolName]);
     }
+
+    useEffect(() => {
+        instance.get('api/tools/').then((response) => {
+            setTools(response.data.tools)
+        })
+    },[])
 
     return(
         <div className="pageContainer toolSelectorContainer">
@@ -33,9 +40,9 @@ const ToolSelector =  () => {
             <div className="toolList basicScrollbar">
                 {tools.map((tool,i)=>{
                     return(
-                        <div key={i} name={i} className="toolSelectContainer" style={{backgroundColor: selected.some((selectedTool) => tool.name === selectedTool) ? "#118ee249" : ""}}
+                        <div key={i} name={tool.name} className="toolSelectContainer" style={{outline: selected.some((selectedTool) => tool.name === selectedTool) ? "#118ee249 3px solid" : ""}}
                             onClick={(event) => handleSelect(event.currentTarget) }>
-                            <Tool/>
+                            <Tool icon={tool.image.url} name={tool.name} type={tool.type}/>
                         </div>
                     )
                 })}

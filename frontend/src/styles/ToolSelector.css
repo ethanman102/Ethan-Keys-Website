@@ -3,6 +3,8 @@
 }
 
 .toolList{
+    display: flex;
+    flex-direction: column;
     margin-left: 1ch;
     margin-right: 1ch;
     background-color: white;
@@ -14,6 +16,8 @@
     margin-top: 1ch;
     padding-top: 1ch;
     padding-right: 3ch;
-    max-height: 50ch;
+    max-height: 40ch;
     overflow-y: scroll;
+    gap: 0.5ch;
+    margin-bottom: 1ch;
 }

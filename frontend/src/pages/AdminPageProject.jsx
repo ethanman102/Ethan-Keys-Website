@@ -237,7 +237,7 @@ const AdminPageProject = () => {
                         <textarea className="projectInfoInput" value={description} onChange={(event) => setDescription(event.target.value)}  disabled={loading} id="projectDescriptionInput" name="description" cols="75" rows="25"/>
                     </div>
                 </div>
-                <ToolSelector/>
+                <ToolSelector currentTools={tools}/>
                 </div>
                 <div className="mediaProjectContainer">
                     <ImageDisplay images={images}/>
