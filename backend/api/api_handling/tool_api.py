@@ -36,16 +36,14 @@ class ToolViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         tool = self.get_object()
-        images = tool.images.all() # assume only one image but JIC safely grab all...
-        if images:
+        image = tool.image 
+        if image:
             client = boto3.client(service_name='s3',
                                   region_name=settings.AWS_REGION,
                                   aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
                                   aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
 
-            for image in images:
-                # remove all images from DB..
-                client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.image_key)         
+            client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.image_key)         
 
             
         # images will cascade

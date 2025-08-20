@@ -12,9 +12,11 @@ const AdminPageTool = () => {
 
     let params = useParams()
     let id = params.id
-
     const [tools,setTools] = useState([])
     const [currentToolImage,setCurrentToolImage] = useState(null)
+
+    const [name,setName] = useState('')
+    const [type,setType] = useState('')
 
     const {unauthorize} = useOutletContext()
 
@@ -24,6 +26,7 @@ const AdminPageTool = () => {
     const [deleteOpen,setDeleteOpen] = useState(false)
 
     const navigate = useNavigate()
+
 
     const uploadFile = (e) => {
         let files = e.target.files
@@ -85,10 +88,23 @@ const AdminPageTool = () => {
         () => {
            instance.get('api/tools/').then((response) => {
             setTools(response.data.tools)
-            console.log(response.data)
            })
-           // retrieve all tools!
-        }, []
+           
+           if (id){
+            setEditting(true)
+            setLoading(true)
+            instance.get(`api/tools/${id}/`).then((response) =>{
+                setName(response.data.name)
+                setType(response.data.type)
+                setCurrentToolImage(response.data.image)
+            }).then(() => setLoading(false)).catch((error) => {
+                setLoading(false)
+                navigate('/admin/')
+            })
+
+           }
+           
+        }, [id]
     )
 
     return(
@@ -130,9 +146,9 @@ const AdminPageTool = () => {
             <h5 id="createToolTitle">{editting ? "Edit" : "Create"} Tool</h5>
             <form id="toolEditorForm" className="basicScrollbar" onSubmit={createTool}>
                 <label htmlFor="toolNameInput" className="toolBlockLabel">Name</label>
-                <input type="text" name="name" id="toolNameInput" disabled={loading} className="toolCreateInput"/>
+                <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} id="toolNameInput" disabled={loading} className="toolCreateInput"/>
                 <label htmlFor="toolNameInput" className="toolBlockLabel">Tool Type</label>
-                <select disabled={loading} name="type" defaultValue={toolTypes.FRONTEND} className="toolCreateInput">
+                <select disabled={loading} name="type" value={type ? type : 'FRONTEND'} onChange={(e) => setType(e.target.value)} className="toolCreateInput">
                     <option value={toolTypes.FRONTEND}>{toolTypes.FRONTEND}</option>
                     <option value={toolTypes.BACKEND}>{toolTypes.BACKEND}</option>
                 </select>
@@ -149,7 +165,7 @@ const AdminPageTool = () => {
             </div>
             
         </div>
-        {editting && <button disabled={loading} id="deleteTool" type="button">Delete</button>}
+        {editting && <button disabled={loading} id="deleteTool" onClick={() => setDeleteOpen(true)} type="button">Delete</button>}
         </div>
     )
 }
