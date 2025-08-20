@@ -89,13 +89,12 @@ class ToolViewSet(viewsets.ModelViewSet):
                 aws_access_key_id=settings.AWS_ACCESS_KEY_ID)
 
         # we need to delete all the images that exist in the database but dont exist in the data.
-        images = request.data.get('image')
-        if not images: # case where we delete the image...
-            images = blog.images.all()
-            if images.exists():
-                image = images.first()
-                image.delete()
-                client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.image_key)
+        image = request.data.get('images')
+        if not image: # case where we delete the image...
+            image_to_delete = tool.image
+            if image_to_delete:
+                image_to_delete.delete()
+                client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image_to_delete.image_key)
 
 
 
@@ -109,13 +108,12 @@ class ToolViewSet(viewsets.ModelViewSet):
         if len(images) != 0:
             # upload
             image = images[0]
-
             file_name = image.name + str(uuid4())
             client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
             image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
             Image.objects.create(tool=tool,image_key=file_name,url=image_url,image_type='T')
-        
-        serializer = self.get_serializer(instance=blog,data=request.data)
+            
+        serializer = self.get_serializer(instance=tool,data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         headers=self.get_success_headers(serializer.data)

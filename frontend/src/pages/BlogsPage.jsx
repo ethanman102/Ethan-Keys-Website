@@ -39,6 +39,7 @@ const BlogsPage =  () => {
     }
 
     return(
+        <>
         <div className="pageContainer">
             <div className="pageTitleContainer">
                 <h6 className="pageTitle">Blogs</h6>
@@ -54,10 +55,15 @@ const BlogsPage =  () => {
             <div className="projectsShortcutContainerList blogListContainer basicScrollbar">
                 {loading  ? <Loader message="Loading"/> : (blogs.map((blog) => <BlogCard key={blog.id} id={blog.id} author={blog.author} created_on={blog.created_on} content={blog.content} title={blog.title} images={blog.images ? blog.images : undefined} subtitle={blog.subtitle} views={blog.views}/>))}
             </div>
-            <div id="paginatorContainer">
-                <Paginator smallest={0} largest={totalPages} current={page} itemType="Pages" selectionCallback={handlePaginate}/>
+                        <div className="pageFooter">
+                <div className="pageBoxDivit pageBoxDivitLeft"> </div>
+                <div className="pageBoxDivit pageBoxDivitRight"> </div>
             </div>
         </div>
+                    <div id="paginatorContainer">
+                <Paginator smallest={0} largest={totalPages} current={page} itemType="Pages" selectionCallback={handlePaginate}/>
+            </div>
+            </>
     )
 
 }

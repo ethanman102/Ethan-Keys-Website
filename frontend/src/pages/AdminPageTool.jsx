@@ -55,7 +55,13 @@ const AdminPageTool = () => {
     const createTool = (event) => {
         event.preventDefault()
         let formData = new FormData(event.currentTarget)
-        formData.append('images',currentToolImage.file)
+        if (!editting){ // case where we can just add the image to the image files... cus we are calling POST
+            formData.append('images',currentToolImage.file)
+        } else{
+            // case where we are editting and the images will have images without an image. file so we have to seperate them out!
+            if (!currentToolImage.file) formData.append('images',currentToolImage) // previous images that are kept
+            else formData.append('new_image',currentToolImage.file)
+        }
 
         if (!editting){
                 instance.post('api/tools/',formData,{
@@ -65,6 +71,9 @@ const AdminPageTool = () => {
                 }).then((response) => {
                     setTools([...tools,response.data])
                     setLoading(false)
+                    setName('')
+                    setType('')
+                    setCurrentToolImage(undefined)
                 }).catch((error) => {
                     setLoading(false)
                     navigate('/admin/') // case where we failed to post because of axios error!
@@ -77,6 +86,11 @@ const AdminPageTool = () => {
                     }
                 }).then((response) => {
                     setLoading(false)
+                    let newArray = [...tools]
+                    newArray = newArray.filter((currentTool) => currentTool.id !== response.data.id)
+                    console.log(newArray)
+                    newArray.push(response.data)
+                    setTools(newArray)
                 }).catch((error) => {
                     setLoading(false)
                     navigate('/admin/')
@@ -131,8 +145,7 @@ const AdminPageTool = () => {
             </div>
             <div className="projectsShortcutContainerList toolPageContainer basicScrollbar">
                         {tools.map((tool) => {
-
-                                return <div><Tool name={tool.name} icon={tool.image.url} type={tool.type}/><button id="toolEditButton" disabled={loading} onClick={() => navigate(`edit/${tool.id}/`)} type="button">Edit</button> </div>
+                                return <div><Tool name={tool.name} icon={tool.image.url} type={tool.type}/>{tool.id != id &&<button id="toolEditButton" disabled={loading} onClick={() => navigate(`edit/${tool.id}/`)} type="button">Edit</button>} </div>
                         })
                         }
             </div>
