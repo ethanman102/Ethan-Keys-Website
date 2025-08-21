@@ -5,23 +5,38 @@ import { useState,useEffect } from "react"
 import Tool from "./Tool"
 import instance from "../../api"
 
-const ToolSelector =  ({currentTools}) => {
+const ToolSelector =  ({currentTools,selectRef}) => {
 
     const [tools,setTools] = useState([])
     const [selected,setSelected] = useState(currentTools)
 
     const handleSelect = (tool) => {
         let toolName = tool.getAttribute('name')
+        
 
-        if (selected.some((toolItem) => toolItem === toolName)) setSelected(selected.filter((toolItem)=> toolItem !== toolName));
-        else setSelected([...selected,toolName]);
+        if (selected.some((toolItem) => toolItem.name == toolName)) {
+            let updated = selected.filter((toolItem) => toolItem.name != toolName)
+            setSelected(updated)
+            selectRef.current = updated
+        } else {
+            let toAdd = tools.find(t => toolName == t.name)
+            let updated = [...selected, toAdd]
+            setSelected(updated)
+            selectRef.current = updated
+        }
     }
 
     useEffect(() => {
         instance.get('api/tools/').then((response) => {
             setTools(response.data.tools)
+            return response
         })
     },[])
+
+    useEffect(() => {
+        setSelected(currentTools)
+        selectRef.current = currentTools
+    },[currentTools])
 
     return(
         <div className="pageContainer toolSelectorContainer">
@@ -40,7 +55,7 @@ const ToolSelector =  ({currentTools}) => {
             <div className="toolList basicScrollbar">
                 {tools.map((tool,i)=>{
                     return(
-                        <div key={i} name={tool.name} className="toolSelectContainer" style={{outline: selected.some((selectedTool) => tool.name === selectedTool) ? "#118ee249 3px solid" : ""}}
+                        <div key={i} name={tool.name} className="toolSelectContainer" style={{outline: selected.some((selectedTool) => tool.id == selectedTool.id) ? "#118ee249 3px solid" : ""}}
                             onClick={(event) => handleSelect(event.currentTarget) }>
                             <Tool icon={tool.image.url} name={tool.name} type={tool.type}/>
                         </div>

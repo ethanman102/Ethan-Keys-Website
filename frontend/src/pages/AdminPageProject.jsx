@@ -17,6 +17,7 @@ const AdminPageProject = () => {
         let id = params.id
 
         const containerRef = useRef()
+        const selectedRef = useRef([])
 
         const [images,setCurrentImages] = useState([])
         const [tools,setTools] = useState([])
@@ -92,6 +93,9 @@ const AdminPageProject = () => {
                 images.forEach((image) => {
                     formData.append('images',image.file)
                 })
+                selectedRef.current.forEach((tool) => {
+                    formData.append('tools',JSON.stringify(tool))
+                })
             } else{
                 // case where we are editting and the images will have images without an image. file so we have to seperate them out!
                 images.forEach((image)=> {
@@ -100,6 +104,9 @@ const AdminPageProject = () => {
                 editImages.forEach((image) => { // new images added after the edit!
                     formData.append('new_images',image.file)
                 })
+                selectedRef.current.forEach((tool) => {
+                    formData.append('tools',JSON.stringify(tool))
+                })           
             }
 
             // Now we can post to the api route!
@@ -158,6 +165,7 @@ const AdminPageProject = () => {
                     setTagline(project.tagline)
                     setDescription(project.description)
                     setTools(project.tools)
+                    selectedRef.current = project.tools
                     setCreatedOn(project.created_on)
                     setLoading(false)
                     setEditting(true)
@@ -237,7 +245,7 @@ const AdminPageProject = () => {
                         <textarea className="projectInfoInput" value={description} onChange={(event) => setDescription(event.target.value)}  disabled={loading} id="projectDescriptionInput" name="description" cols="75" rows="25"/>
                     </div>
                 </div>
-                <ToolSelector currentTools={tools}/>
+                <ToolSelector currentTools={tools} selectRef={selectedRef}/>
                 </div>
                 <div className="mediaProjectContainer">
                     <ImageDisplay images={images}/>

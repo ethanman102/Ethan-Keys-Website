@@ -45,8 +45,8 @@ class ToolSerializer(serializers.ModelSerializer):
 # Project Serialziers
 class ProjectSerializer(serializers.ModelSerializer):
 
-    tools = ToolSerializer(many=True,required=False)
-    images = ProjectImageSerializer(many=True,read_only=True)
+    tools = ToolSerializer( read_only=True, many=True,required=False)
+    images = ProjectImageSerializer( many=True,read_only=True)
 
     class Meta:
         model = Project
@@ -68,13 +68,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         project.save()
         return project
     
-    def update(self, instance, validated_data):
-
-        tools_data = validated_data.pop('tools',[])
-        instance.tools.set([])
-        for tool in tools_data:
-            tool_obj = Tool.objects.get_or_create(**tool)[0]
-            instance.tools.add(tool_obj)
+    def update(self, instance, validated_data): 
 
         # Notice views is removed in oerder to prevent views read only field from being defaulted back to 0.
         instance.title = validated_data.get('title','My Cool Project')

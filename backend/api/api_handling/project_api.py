@@ -3,7 +3,7 @@ from django.conf import settings
 import boto3
 from rest_framework import viewsets,status
 from ..serializers import ProjectSerializer,ProjectListSerializer
-from ..models import Project,Image
+from ..models import Project,Image, Tool
 from rest_framework.response import Response
 from django.db.models import F
 from ..authenticate import JWTCookieAuthentication
@@ -47,7 +47,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
     # Overidden Create Method Utilized to create and store the images on AWS S3 bucket servers.
 
     def create(self, request, *args, **kwargs):
-        print(request.data)
+        request.data._mutable = True
+        request.data['tools'] = json.loads(request.data['tools'])
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -113,6 +114,12 @@ class ProjectViewSet(viewsets.ModelViewSet):
         project = self.get_object()
 
         # we need to delete all the images that exist in the database but dont exist in the data.
+        request.data._mutable = True
+        form_data_tools = request.data.getlist('tools')
+        tools_data = [json.loads(tool) for tool in form_data_tools]
+        request.data['tools'] = tools_data
+        
+
         images = request.data.getlist('images')
         images = [json.loads(img) for img in images]
         current_images = project.images.all()
@@ -148,9 +155,21 @@ class ProjectViewSet(viewsets.ModelViewSet):
                 image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
                 Image.objects.create(project=project,image_key=file_name,url=image_url,image_type='P')
         
+        if tools_data:
+            project.tools.set([
+                Tool.objects.get_or_create(
+                    id=tool.get("id"),
+                    name=tool.get("name"),
+                    type=tool.get("type")
+                )[0]
+                for tool in tools_data
+            ])
+
+        
         serializer = self.get_serializer(instance=project,data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         headers=self.get_success_headers(serializer.data)
+        print(serializer.data,'hi')
         return Response(serializer.data,status=status.HTTP_200_OK,headers=headers)
         
