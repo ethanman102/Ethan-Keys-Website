@@ -47,11 +47,15 @@ class ProjectViewSet(viewsets.ModelViewSet):
     # Overidden Create Method Utilized to create and store the images on AWS S3 bucket servers.
 
     def create(self, request, *args, **kwargs):
+        # we need to delete all the images that exist in the database but dont exist in the data.
         request.data._mutable = True
-        request.data['tools'] = json.loads(request.data['tools'])
+        form_data_tools = request.data.getlist('tools')
+        tools_data = [json.loads(tool) for tool in form_data_tools]
+        request.data['tools'] = tools_data
+
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-
         project = serializer.save()
 
         # Now time to take the images and store them on the client...
@@ -68,6 +72,16 @@ class ProjectViewSet(viewsets.ModelViewSet):
                 client.upload_fileobj(image,settings.AWS_STORAGE_BUCKET_NAME,file_name)
                 image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
                 Image.objects.create(project=project,image_key=file_name,url=image_url,image_type='P')
+
+        if tools_data:
+            project.tools.set([
+                Tool.objects.get_or_create(
+                    id=tool.get("id"),
+                    name=tool.get("name"),
+                    type=tool.get("type")
+                )[0]
+                for tool in tools_data
+            ])
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data,status=status.HTTP_201_CREATED,headers=headers)
