@@ -1,0 +1,28 @@
+.homepageFlex{
+    display: flex;
+    padding-left: 2ch;
+    padding-right: 2ch;
+}
+
+#introContainer >h2,h1{
+    margin-left: 0;
+
+    margin-top: 0;
+    padding: 0;
+}
+
+#introContainer > h1 {
+    font-size: 7ch;
+    margin-bottom: 0.5ch;
+}
+
+#homeJobTitle{
+    border: 3px dotted black;
+    color: blue;
+    width: fit-content;
+}
+
+#homeJobTitle:hover{
+    scale: 1.2;
+    
+}
