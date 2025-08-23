@@ -2,11 +2,22 @@
     display: flex;
     padding-left: 2ch;
     padding-right: 2ch;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 80dvh;
+    background-color: white;
+    margin-left: 1ch;
+    margin-right: 1ch;
+    margin-top: 1ch;
+    border-top: solid black 3px;
+    border-left: solid black 3px;
+    border-bottom: solid gainsboro 3px;
+    border-right: solid gainsboro 3px;
 }
+
 
 #introContainer >h2,h1{
     margin-left: 0;
-
     margin-top: 0;
     padding: 0;
 }
@@ -20,9 +31,60 @@
     border: 3px dotted black;
     color: blue;
     width: fit-content;
+    margin-bottom: 1ch;
 }
 
 #homeJobTitle:hover{
     scale: 1.2;
     
+}
+
+#links{
+    border-top: 1px solid black;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    border-bottom: 1px solid black;
+    display: flex;
+    gap: 2ch;
+    margin-bottom: 1ch;
+}
+
+#links > a{
+    display: flex;
+    text-decoration: none;
+}
+
+#links > a:hover{
+    outline: 2px solid rgb(17, 142, 226);
+    background-color: rgba(17, 142, 226, 0.288);
+}
+
+.linkImage{
+    width: 60px;
+    height: 60px;
+    
+}
+
+#resumeText{
+    display: inline;
+    margin-left: 1ch;
+    color: blue;
+    
+}
+
+#about{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#about > p {
+    max-width: 70ch;
+}
+
+.homepageTools{
+    display: flex;
+    gap: 2ch;
+    flex-wrap: wrap;
+    max-width: 70ch;
+    margin-bottom: 1ch;
 }

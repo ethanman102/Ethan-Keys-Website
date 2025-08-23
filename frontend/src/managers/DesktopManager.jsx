@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Shortcut from '../components/Shortcut';
 import BottomNav from '../components/BottomNav';
 import HomePage from '../pages/HomePage';
-import GamesPage from '../pages/GamesPage';
+
 import BlogsPage from '../pages/BlogsPage';
 import ProjectsPage from '../pages/ProjectsPage';
 import SingularProjectsPage from '../pages/SingularProjectsPage';
@@ -18,7 +18,7 @@ import AdminPageTool from '../pages/AdminPageTool';
 import SingularBlogsPage from '../pages/SingularBlogsPage';
 import AdminPageBlog from '../pages/AdminPageBlog';
 import instance from '../../api';
-import DeleteModal from '../components/DeleteModal';
+import NotFound from '../components/NotFound';
 
 export const TabContext = createContext();
 export const AuthContext = createContext();
@@ -85,7 +85,7 @@ const DesktopManager = () =>{
                 <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.projects} icon="none" description="Learn about the cool projects I have worked on!" path={`/${pathNames.projects}/`} onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
-                <Shortcut title={pathNames.games} icon="none" description="Play a game or two for some short time fun!" path={`/${pathNames.games}/`} onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.admin} icon="none" description="Only Ethan may enter himself... Beware!" path={`/${pathNames.admin}/`} onShortcutClick={onShortcutClicked}/>
             </div>
             
             <div className='pageFlexContainer'>
@@ -95,7 +95,6 @@ const DesktopManager = () =>{
                         <Route path='/' element={<HomePage/>}/>
                         <Route path='/blog/' element={<BlogsPage/>}/>
                         <Route path='/blog/:id/' element={<SingularBlogsPage/>}/>
-                        <Route path='/games/' element={<GamesPage/>}/>
                         <Route path='/admin/' element={<AdminPage authCallback={setAuth}/>}>
                             <Route path="project/" element={<AdminPageProject/>}>
                                 <Route path='edit/:id/' element={<AdminPageProject/>}/>
@@ -109,6 +108,7 @@ const DesktopManager = () =>{
                         </Route>
                         <Route path='/projects/' element={<ProjectsPage title='Projects'/>}/>
                         <Route path='/projects/:projectID/' element={<SingularProjectsPage/>}/>
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </AuthContext.Provider>
             </div>

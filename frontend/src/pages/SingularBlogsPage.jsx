@@ -10,6 +10,7 @@ import { useLocation,useParams,useNavigate } from "react-router-dom";
 import "../styles/SingularBlogsPage.css"
 import remarkBreaks from "remark-breaks"
 import { AuthContext } from "../managers/DesktopManager";
+import NotFound from "../components/NotFound";
 
 
 const SingularBlogsPage = () => {
@@ -17,6 +18,8 @@ const SingularBlogsPage = () => {
     const [blog,setBlog] = useState({})
     const [loading, setLoading] = useState(true)
     const auth = useContext(AuthContext)
+
+    const [notFound,setNotFound] = useState(false)
 
     const navigate  = useNavigate()
 
@@ -34,12 +37,14 @@ const SingularBlogsPage = () => {
             .then((response) => {
                 setBlog(response.data)
                 console.log(response.data)
-            })
+            }).catch((error) => setNotFound(true))
         } else{
             setBlog(state) // Case where we did navigate from the blogslist page..
         }
         setLoading(false)
     },[])
+
+    if (notFound) return <NotFound/>
 
     return(
         <div className="pageContainer">

@@ -109,7 +109,6 @@ class HttpCookieRefreshView(TokenRefreshView):
 class ProvideAuthenticationStateView(APIView):
     permission_classes = []
     def get(self,request):
-        response = Response()
         csrftoken = csrf.get_token(request)
         if request.user.is_authenticated:
             data = {"Success":"User is Authenticated"}

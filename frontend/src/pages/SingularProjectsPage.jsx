@@ -10,6 +10,7 @@ import Tool from "../components/Tool";
 import "../styles/CustomScrollbar.css"
 import { AuthContext } from "../managers/DesktopManager";
 import { useContext } from "react";
+import NotFound from "../components/NotFound";
 
 
 
@@ -21,6 +22,8 @@ const SingularProjectsPage = () =>{
     const [loading,setLoading] = useState(true);
     const [project,setProject] = useState({});
 
+    const [notFound,setNotFound] = useState(false)
+
     const auth = useContext(AuthContext)
 
     const navigate = useNavigate()
@@ -30,9 +33,10 @@ const SingularProjectsPage = () =>{
         .then((response) =>{
             setProject(response.data)
 
-        })
+        }).catch((error) => setNotFound(true))
     },[])
 
+    if (notFound) return <NotFound/>
 
     return(
         <div className="pageContainer">

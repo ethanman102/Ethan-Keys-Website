@@ -3,7 +3,7 @@ const apiURL = 'http://localhost:8000/';
 const pathNames = {
     blog : "Blog",
     projects : "Projects",
-    games : "Games",
+    admin : "Admin",
     home : "Home"
 }
 
@@ -19,4 +19,12 @@ const toolTypes = {
 
 const SIZE = 5
 
-export {apiURL,pathNames,mode,toolTypes, SIZE}
+const URLS = {
+    github: 'https://github.com/ethanman102/',
+    linkedIn: 'https://www.linkedin.com/in/ethan-keys',
+    resume: '/resume.pdf'
+
+
+}
+
+export {apiURL,pathNames,mode,toolTypes,SIZE,URLS}
