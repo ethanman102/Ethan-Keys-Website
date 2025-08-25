@@ -9,7 +9,7 @@
     margin-bottom: 0.5ch;
     align-items: center;
     min-width: 10%;
-    max-width: 25%;
+    max-width: 40%;
 }
 
 .tabContainer:hover{
@@ -61,4 +61,40 @@
     margin-left: 2ch;
     font-weight: normal;
     font-size: 1.75ch;
+    margin-right: 1ch;
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* Styles for small phones */
+  .tabTitle{
+    display: none;
+  }
+  .closeTabButton{
+    display: none;
+  }
+}
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Styles for larger phones */
+    .closeTabButton{
+    display: none;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Styles for tablets */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Styles for small desktops/laptops */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Styles for large desktops */
+
 }

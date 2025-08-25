@@ -1,9 +1,11 @@
 .blurbBox{
-    position: absolute;
+    
     display: inline;
     max-width: 30ch;
-    margin-left: 4ch;
-    margin-top: -2ch;
+    margin-left: 10%;
+    position: absolute;
+    
+    margin-top: 20%;
     background-color: rgb(202, 202, 202);
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     animation: appearBlurb .3s;
@@ -67,3 +69,11 @@
       transform: scale(1);
     }
   }
+
+  @media (max-width: 767.98px) {
+  /* Styles for larger phones */
+    .blurbBox{
+        margin-top: 30%;
+    }
+  
+}
