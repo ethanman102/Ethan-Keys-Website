@@ -87,7 +87,9 @@
     background-color: white;
 
     object-fit: cover;
+    max-height: calc(10 * 3ch + 10 * 1ch); 
 }
+
 
 .imageDisplayMenu{
     margin: 0;
@@ -96,18 +98,6 @@
 }
 
 
-#imageMenuContainer{
-    display: flex;
-}
-
-#hidden{
-    display: none;
-}
-
-#hiddenDivit{
-    width: 100%;
-    display: flex;
-}
 
 @media (max-width: 599.99px){
       /* Styles for larger phones */
@@ -146,16 +136,6 @@
     font-size: 90%;
   }
 
-  #hidden{
-    border-top: solid black 2px;
-    border-left: solid black 2px;
-    border-bottom: solid white 2px;
-    border-right: solid white 2px;
-    display: inline;
-    width: 100%;
-    margin-bottom: 1ch;
-    margin-right: 1ch;
-  }
 
 }
 /* Small devices (phones, 576px and up) */
@@ -194,17 +174,6 @@
   
   .imageDisplayMenu{
     font-size: 90%;
-  }
-
-    #hidden{
-    border-top: solid black 2px;
-    border-left: solid black 2px;
-    border-bottom: solid white 2px;
-    border-right: solid white 2px;
-    display: inline;
-    width: 100%;
-    margin-bottom: 1ch;
-    margin-right: 1ch;
   }
 
 }

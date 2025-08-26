@@ -45,6 +45,7 @@
 .paginatorContainer{
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     height: fit-content;
+    max-height: 90px;
 }
 
 .arrowContainer{

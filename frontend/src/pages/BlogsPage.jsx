@@ -39,7 +39,7 @@ const BlogsPage =  () => {
     }
 
     return(
-        <>
+        <div id="masterBlogContainer">
         <div className="pageContainer">
             <div className="pageTitleContainer">
                 <h6 className="pageTitle">Blogs</h6>
@@ -63,7 +63,7 @@ const BlogsPage =  () => {
                     <div id="paginatorContainer">
                 <Paginator smallest={0} largest={totalPages} current={page} itemType="Pages" selectionCallback={handlePaginate}/>
             </div>
-            </>
+            </div>
     )
 
 }

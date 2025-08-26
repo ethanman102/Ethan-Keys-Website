@@ -1,3 +1,5 @@
+
+
 #blogCardContent{
     display: flex;
     flex-direction: column;
@@ -12,11 +14,11 @@
 }
 
 #blogCardImage{
-    max-width: 50ch;
+    max-width: 90%;
     max-height: 25ch;
     box-shadow: 5px 5px 0px -1px rgba(0, 0, 0, 0.75);
     background-color: rgb(145, 145, 145); 
-    padding: 1ch;
+    padding: 0.5ch;
     border-top: solid rgb(228, 228, 228) 4px;
     border-left: solid rgb(228, 228, 228) 4px;
     margin-top: 1ch;

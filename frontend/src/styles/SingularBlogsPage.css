@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 .singularBlogContent{
     display: flex;
     flex-direction: column;
@@ -18,7 +20,7 @@ h4.singleBlogTitle{
 }
 
 #singleBlogPageImage{
-    max-width: 50ch;
+    width: 95%;
     max-height: 30ch;
     margin-left: auto;
     margin-right: auto;
@@ -41,4 +43,17 @@ h4.singleBlogTitle{
 
 #blogEditButton:hover{
     cursor: pointer;
+}
+
+@media (max-width: 767.98px) {
+  /* Styles for larger phones */
+    .singularBlogContent{
+        max-height: calc(70vh - var(--bottom-nav-height) - var(--top-nav-height));
+    }
+}
+
+@media (max-height: 650px) {
+    .singularBlogContent{
+        max-height: calc(100vh - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
+    } 
 }
