@@ -85,7 +85,7 @@ const DesktopManager = () =>{
                 <Shortcut title="Home" icon="none" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.projects} icon="none" description="Learn about the cool projects I have worked on!" path={`/${pathNames.projects}/`} onShortcutClick={onShortcutClicked}/>
                 <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
-                <Shortcut title={pathNames.admin} icon="none" description="Only Ethan may enter himself... Beware!" path={`/${pathNames.admin}/`} onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.admin} icon="/admin.png" description="Only Ethan may enter himself... Beware!" path={`/${pathNames.admin}/`} onShortcutClick={onShortcutClicked}/>
             </div>
             
             <div className='pageFlexContainer'>

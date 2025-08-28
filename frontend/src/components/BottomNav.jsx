@@ -11,7 +11,7 @@ const BottomNav = ({openTabs}) =>{
     return(
         <div className="bottomNavContainer">
             <div id="menuButtonContainer" onClick={() => setShowPopup(!showPopup)}>
-                <img id="menuImage" src="/blog.png"/>
+                <img id="menuImage" src="/email.png"/>
                 <button id="menuButton">Contact Me</button>
             </div>
             {showPopup && <EmailPopup closeCallback={setShowPopup}/>}
