@@ -12,7 +12,7 @@ const Folder = ({projectID,projectTitle}) => {
 
     return(
     <div className="folderContainer" onClick={handleNavigate}>
-        <img className="folderIcon" src="/OldWindowsFolder.png"/>
+        <img className="folderIcon" src="/file.png"/>
         <p className="projectTitle">{projectTitle}</p>
     </div>
     );
