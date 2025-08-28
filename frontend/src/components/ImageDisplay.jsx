@@ -34,6 +34,8 @@ const ImageDisplay = ({images}) => {
 
             </div>
             <div className="imageDisplayBody">
+                <div id="hiddenDivit">
+                    <div id="hidden"> </div>
                 <div className="imageDisplayColorBar">
                     <div className="paintSquare" style={{background: 'red'}}> </div>
                     <div className="paintSquare" style={{background: 'orange'}}> </div>
@@ -53,6 +55,7 @@ const ImageDisplay = ({images}) => {
                     <div className="paintSquare" style={{background: 'gold'}}> </div>
                     <div className="paintSquare" style={{background: 'gray'}}> </div>
                     <div className="paintSquare" style={{background: 'lightblue'}}> </div>
+                </div>
                 </div>
                 <img src={( images.length > 0 && images[currentIndex]) ? images[currentIndex].url : undefined} className="imageDisplayContent"/>
             </div>

@@ -1,10 +1,12 @@
+@import "./variables.css";
+
 .homepageFlex{
     display: flex;
     padding-left: 2ch;
     padding-right: 2ch;
     flex-direction: column;
     overflow-y: scroll;
-    max-height: 80dvh;
+    max-height: calc(80vh - var(--bottom-nav-height) + 20px);
     background-color: white;
     margin-left: 1ch;
     margin-right: 1ch;
@@ -87,4 +89,30 @@
     flex-wrap: wrap;
     max-width: 70ch;
     margin-bottom: 1ch;
+}
+
+@media (max-width: 767.98px) {
+  /* Styles for larger phones */
+    .homepageFlex{
+        max-height: calc(80vh - var(--bottom-nav-height) - var(--top-nav-height));
+    }
+
+    .linkImage{
+        width: 40px;
+        height: 40px;
+    }
+
+    #introContainer > h1 {
+        font-size: 4ch;
+        margin-bottom: 0.5ch;
+    }
+
+
+    #introContainer > h2{
+        font-size: 2ch;
+    }
+
+    #resumeText{
+        font-size: small;
+    }
 }

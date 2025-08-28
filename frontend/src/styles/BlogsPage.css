@@ -1,8 +1,10 @@
+@import "./variables.css";
+
 .blogListContainer{
     max-width: 70dvw;
     padding-bottom: 3ch;
     padding-right: 1.5ch;
-    max-height: 65dvh;
+    max-height: calc(90vh - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
     overflow-y: scroll;
 }
 
@@ -12,4 +14,18 @@
     margin-top: 1ch;
     border-top: 2px solid white;
     border-left: solid 2px white;
+}
+
+
+@media (max-height: 800px) {
+    .blogListContainer{
+        max-height: calc(70vh - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
+    } 
+}
+
+@media (max-width: 767.98px) {
+  /* Styles for larger phones */
+    .blogListContainer{
+        max-height: calc(70vh - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
+    }
 }

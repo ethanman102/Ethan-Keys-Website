@@ -12,6 +12,9 @@
     padding-bottom: 1ch;
     margin-bottom: 2ch;
     
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
 .imageDisplayToolbar{
@@ -82,9 +85,11 @@
     border-right: solid white 2px;
     border-left: solid black 3px;
     background-color: white;
-    max-height: 40ch;
+
     object-fit: cover;
+    max-height: calc(10 * 3ch + 10 * 1ch); 
 }
+
 
 .imageDisplayMenu{
     margin: 0;
@@ -93,6 +98,98 @@
 }
 
 
-#imageMenuContainer{
-    display: flex;
+
+@media (max-width: 599.99px){
+      /* Styles for larger phones */
+  .imageDisplayContent{
+    margin-right: auto;
+    width: 100%;
+    margin-left: auto;
+
+  }
+  .imageDisplayContainer{
+    width: fit-content;
+  }
+  .imageDisplayBody{
+    flex-direction: column;
+  }
+  
+  .imageDisplayColorBar{
+    grid-template-columns: repeat(9, 1.5ch); 
+    margin-bottom: 1ch;
+    column-gap: 1ch;
+    margin-left: auto;
+    margin-right: 1ch;
+
+  }
+
+  .paintSquare{
+    width: 1.5ch;
+    height: 1.5ch;
+  }
+
+  .imageDisplayToolbar{
+    width: 100%;
+  }
+  
+  .imageDisplayMenu{
+    font-size: 90%;
+  }
+
+
+}
+/* Small devices (phones, 576px and up) */
+@media (min-width: 600px) and (max-width: 800px) {
+  /* Styles for larger phones */
+  .imageDisplayContent{
+    margin-right: auto;
+    width: 100%;
+    margin-left: auto;
+
+  }
+  .imageDisplayContainer{
+    width: fit-content;
+  }
+  .imageDisplayBody{
+    flex-direction: column;
+  }
+  
+  .imageDisplayColorBar{
+    grid-template-columns: repeat(18, 2ch); 
+    margin-bottom: 1ch;
+    column-gap: 1ch;
+    margin-left: auto;
+    margin-right: 1ch;
+
+  }
+
+  .paintSquare{
+    width: 2ch;
+    height: 2ch;
+  }
+
+  .imageDisplayToolbar{
+    width: 100%;
+  }
+  
+  .imageDisplayMenu{
+    font-size: 90%;
+  }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Styles for tablets */
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Styles for small desktops/laptops */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Styles for large desktops */
 }
