@@ -3,7 +3,7 @@ const apiURL = 'http://localhost:8000/';
 const pathNames = {
     blog : "Blog",
     projects : "Projects",
-    admin : "Admin",
+    admin : "AdminPage",
     home : "Home"
 }
 

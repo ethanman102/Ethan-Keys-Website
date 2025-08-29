@@ -33,7 +33,7 @@ class Project(models.Model):
     tools = models.ManyToManyField('Tool')
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['-created_on']
 
 class Image(models.Model):
     image_type = models.CharField(max_length=1,null=False,blank=False,choices=IMAGE_TYPES)
@@ -52,6 +52,9 @@ class Blog(models.Model):
     subtitle = models.CharField(max_length=250, blank=True, null=True)
     views = models.IntegerField(default=0,blank=False, null=False)
     author = models.CharField(max_length=250, blank=False, null=False)
+    
+    class Meta:
+        ordering = ['-created_on']
 
 class Tool(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False,unique=True)
