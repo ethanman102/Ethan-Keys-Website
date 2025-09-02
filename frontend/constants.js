@@ -1,10 +1,10 @@
-const apiURL = 'http://localhost:8000/';
+const apiURL = import.meta.env.VITE_API_URL;
 
 const pathNames = {
-    blog : "Blog",
-    projects : "Projects",
-    admin : "AdminPage",
-    home : "Home"
+    blog : "blog",
+    projects : "projects",
+    admin : "adminpage",
+    home : "home"
 }
 
 const mode = {
@@ -23,8 +23,6 @@ const URLS = {
     github: 'https://github.com/ethanman102/',
     linkedIn: 'https://www.linkedin.com/in/ethan-keys',
     resume: '/resume.pdf'
-
-
 }
 
 export {apiURL,pathNames,mode,toolTypes,SIZE,URLS}

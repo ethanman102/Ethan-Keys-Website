@@ -5,11 +5,17 @@ import { URLS } from "../../constants";
 import { useState,useEffect } from "react";
 import instance from "../../api";
 import Tool from "../components/Tool";
+import github from '../assets/github-mark.png'
+import resume from '../assets/resume.pdf'
+import linkedIn from '../assets/linkedIn.png'
+import resumeLogo from "../assets/resume.png"
+
 
 const HomePage = () => {
 
     const delay = 250
-    const images = [{url:'/ethan1.jpg'}]
+    const images = [{ url: new URL('../assets/ethan1.jpg', import.meta.url).href }
+]
 
     const [tools,setTools] = useState([])
 
@@ -45,9 +51,9 @@ const HomePage = () => {
                     </h1>
                     <h2 id="homeJobTitle">Software Developer</h2>
                     <section id="links">
-                        <a href={URLS.github}><img className="linkImage" src='/github-mark.png'/></a>
-                        <a href={URLS.linkedIn}><img className="linkImage" src='/linkedIn.png'/></a>
-                        <a href={URLS.resume}><img className="linkImage" src='/resume.png'/> <p id="resumeText">&lt; - - Resume</p></a>
+                        <a href={URLS.github}><img className="linkImage" src={github}/></a>
+                        <a href={URLS.linkedIn}><img className="linkImage" src={linkedIn}/></a>
+                        <a href={resume}><img className="linkImage" src={resumeLogo}/> <p id="resumeText">&lt; - - Resume</p></a>
                     </section>
                 </div>
                 <ImageDisplay images={images}/>

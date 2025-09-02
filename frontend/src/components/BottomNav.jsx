@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import "../styles/BottomNav.css"
 import Tab from "./Tab"
 import EmailPopup from "./EmailPopup"
+import email from '../assets/email.png'
 
 const BottomNav = ({openTabs}) =>{
 
@@ -11,7 +12,7 @@ const BottomNav = ({openTabs}) =>{
     return(
         <div className="bottomNavContainer">
             <div id="menuButtonContainer" onClick={() => setShowPopup(!showPopup)}>
-                <img id="menuImage" src="/email.png"/>
+                <img id="menuImage" src={email}/>
                 <button id="menuButton">Contact Me</button>
             </div>
             {showPopup && <EmailPopup closeCallback={setShowPopup}/>}

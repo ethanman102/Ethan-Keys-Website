@@ -4,13 +4,14 @@ import "../styles/SingularProjectsPage.css"
 import { useState,useEffect } from "react";
 import { apiURL } from "../../constants";
 import ImageDisplay from "../components/ImageDisplay";
-import Loader from "../components/Loader";
 import axios from "axios";
 import Tool from "../components/Tool";
 import "../styles/CustomScrollbar.css"
 import { AuthContext } from "../managers/DesktopManager";
 import { useContext } from "react";
 import NotFound from "../components/NotFound";
+
+import github from "../assets/github-mark.png"
 
 
 
@@ -83,7 +84,7 @@ const SingularProjectsPage = () =>{
                     <div className="projectToolsContainer">
                         { project.repository && 
                         <div className="projectGithub">
-                            <img src="/github-mark.png" className="githubLogo"/>
+                            <img src={github} className="githubLogo"/>
                             <a href={project.repository} className="githubLink">View the Code!</a>
                         </div>
                         } 

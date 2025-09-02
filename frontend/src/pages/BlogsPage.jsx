@@ -26,7 +26,6 @@ const BlogsPage =  () => {
             let fetchedBlogs = await response.data
             setTotalPages(fetchedBlogs.total_pages)
             setBlogs(fetchedBlogs.blogs)
-            console.log(fetchedBlogs.blogs)
             
         }
 

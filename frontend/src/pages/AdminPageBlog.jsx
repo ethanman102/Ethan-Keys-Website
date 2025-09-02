@@ -109,7 +109,7 @@ const AdminPageBlog = () => {
             }).catch((error) => {
                 setLoading(false)
                 unauthorize()
-                navigate('/admin/')
+                navigate('/adminpage/')
                  // case where we failed to post because of axios error!
             })
         } else {
@@ -124,7 +124,7 @@ const AdminPageBlog = () => {
             }).catch((error) => {
                 setLoading(false)
                 unauthorize()
-                navigate('/admin/')
+                navigate('/adminpage/')
             })
         }
 

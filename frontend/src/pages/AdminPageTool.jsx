@@ -76,7 +76,7 @@ const AdminPageTool = () => {
                     setCurrentToolImage(undefined)
                 }).catch((error) => {
                     setLoading(false)
-                    navigate('/admin/') // case where we failed to post because of axios error!
+                    navigate('/adminpage/') // case where we failed to post because of axios error!
                 })
             } else {
                 // case where we were editting
@@ -88,12 +88,11 @@ const AdminPageTool = () => {
                     setLoading(false)
                     let newArray = [...tools]
                     newArray = newArray.filter((currentTool) => currentTool.id !== response.data.id)
-                    console.log(newArray)
                     newArray.push(response.data)
                     setTools(newArray)
                 }).catch((error) => {
                     setLoading(false)
-                    navigate('/admin/')
+                    navigate('/adminpage/')
                 })
             }
     }

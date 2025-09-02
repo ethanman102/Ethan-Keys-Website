@@ -20,6 +20,11 @@ import AdminPageBlog from '../pages/AdminPageBlog';
 import instance from '../../api';
 import NotFound from '../components/NotFound';
 
+import home from '../assets/home.png'
+import blog from '../assets/blog.png'
+import admin from '../assets/admin.png'
+import projects from '../assets/projects.png'
+
 export const TabContext = createContext();
 export const AuthContext = createContext();
 
@@ -82,10 +87,10 @@ const DesktopManager = () =>{
         
         <div className='desktopContainer'>
             <div className='shortcutsContainer'>
-                <Shortcut title="Home" icon="/home.png" description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
-                <Shortcut title={pathNames.projects} icon="/projects.png" description="Learn about the cool projects I have worked on!" path={`/${pathNames.projects}/`} onShortcutClick={onShortcutClicked}/>
-                <Shortcut title={pathNames.blog} icon="/blog.png" description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
-                <Shortcut title={pathNames.admin} icon="/admin.png" description="Only Ethan may enter himself... Beware!" path={`/${pathNames.admin}/`} onShortcutClick={onShortcutClicked}/>
+                <Shortcut title="Home" icon={home} description="Navigate back to the sites home to see the basics of me." path='/' onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.projects} icon={projects} description="Learn about the cool projects I have worked on!" path={`/${pathNames.projects}/`} onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.blog} icon={blog} description="See my blog posts relating to my current interests and hobbies!" path={`/${pathNames.blog}/`}  onShortcutClick={onShortcutClicked}/>
+                <Shortcut title={pathNames.admin} icon={admin} description="Only Ethan may enter himself... Beware!" path={`/${pathNames.admin}/`} onShortcutClick={onShortcutClicked}/>
             </div>
             
             <div className='pageFlexContainer'>

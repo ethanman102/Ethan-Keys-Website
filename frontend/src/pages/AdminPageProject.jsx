@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom"
 import { useNavigate,useOutletContext } from "react-router-dom"
 import DeleteModal from "../components/DeleteModal"
 
+import github from "../assets/github-mark.png"
+
 const AdminPageProject = () => {
 
         let params = useParams()
@@ -121,7 +123,7 @@ const AdminPageProject = () => {
                     navigate(`/projects/${newID}/`)
                 }).catch((error) => {
                     setLoading(false)
-                    navigate('/admin/') // case where we failed to post because of axios error!
+                    navigate('/adminpage/') // case where we failed to post because of axios error!
                 })
             } else {
                 // case where we were editting
@@ -134,7 +136,7 @@ const AdminPageProject = () => {
                     navigate(`/projects/${id}/`)
                 }).catch((error) => {
                     setLoading(false)
-                    navigate('/admin/')
+                    navigate('/adminpage/')
                 })
             }
     
@@ -288,7 +290,7 @@ const AdminPageProject = () => {
                                 <button className="pageButton">X</button>
                             </div>
                     </div>
-                        <label htmlFor="projectGithubInput" className="imageBlockLabel mediaLabel"><img src="/github-mark.png" id="externalGithubImage"/>Github Repo</label>
+                        <label htmlFor="projectGithubInput" className="imageBlockLabel mediaLabel"><img src={github} id="externalGithubImage"/>Github Repo</label>
                         <input id="projectGithubInput" value={respository} onChange={(event) => setRepository(event.target.value)} name="repository" disabled={loading}  className="projectInfoInput" type="url"/>
                         <label htmlFor="projectGithubInput" className="imageBlockLabel mediaLabel">Youtube Id</label>
                         <input id="projectYoutubeInput" name="youtube_id" value={youtubeID} onChange={(event) => setYoutubeID(event.target.value)} disabled={loading} className="projectInfoInput" type="text"/>

@@ -36,7 +36,7 @@ const SingularBlogsPage = () => {
             axios.get(`${apiURL}api/blogs/${params.id}/`)
             .then((response) => {
                 setBlog(response.data)
-                console.log(response.data)
+
             }).catch((error) => setNotFound(true))
         } else{
             setBlog(state) // Case where we did navigate from the blogslist page..
