@@ -94,7 +94,7 @@
 @media (max-width: 767.98px) {
   /* Styles for larger phones */
     .homepageFlex{
-        max-height: calc(80vh - (2*var(--bottom-nav-height)) - var(--top-nav-height));
+        max-height: calc(80vh - (3*var(--bottom-nav-height)) - var(--top-nav-height));
     }
 
     .linkImage{
