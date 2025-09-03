@@ -119,7 +119,7 @@ const SingularProjectsPage = () =>{
                 </div>
                 <ImageDisplay images={project.images ? project.images : []}/>
             </div>
-            {auth && <button id="projectEditButton" type="button" onClick={() => navigate(`/admin/project/edit/${projectID}/`)}>Edit</button>}
+            {auth && <button id="projectEditButton" type="button" onClick={() => navigate(`/adminpage/project/edit/${projectID}/`)}>Edit</button>}
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
                 <div className="pageBoxDivit pageBoxDivitRight"> </div>
