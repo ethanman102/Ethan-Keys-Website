@@ -10,6 +10,7 @@ import "../styles/CustomScrollbar.css"
 import { AuthContext } from "../managers/DesktopManager";
 import { useContext } from "react";
 import NotFound from "../components/NotFound";
+import project from "../assets/projects.png"
 
 import github from "../assets/github-mark.png"
 
@@ -66,7 +67,7 @@ const SingularProjectsPage = () =>{
                     </div>
 
                     <div className="singularProjectTitleContainer">
-                        <img src="/InfoBook.png" className="infoIcon"/>
+                        <img src={project} className="infoIcon"/>
                         <div className="projectTitleText">
                             <h1 className="singularProjectTitle">{project.title}</h1>
                             <h2 className="singularProjectSubtitle">{project.tagline}</h2>
