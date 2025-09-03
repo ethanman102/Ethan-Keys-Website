@@ -78,7 +78,8 @@
 }
 
 .imageDisplayContent{
-    width: 100%;
+    width: calc(100% - 2ch - 9ch);
+    object-fit: contain;
     border-top: solid black 3px;
     margin-left: 2ch;
     border-bottom: solid white 2px;
@@ -89,7 +90,6 @@
     object-fit: cover;
     max-height: calc(10 * 3ch + 10 * 1ch); 
 }
-
 
 
 .imageDisplayMenu{
