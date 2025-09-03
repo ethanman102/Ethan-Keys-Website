@@ -82,13 +82,13 @@
     object-fit: scale-down;
     border-top: solid black 3px;
     margin-left: 2ch;
+
     border-bottom: solid white 2px;
     border-right: solid white 2px;
     border-left: solid black 3px;
     background-color: white;
 
-    object-fit: cover;
-    max-height: calc(10 * 3ch + 10 * 1ch); 
+    height: calc(10 * 3ch + 10 * 1ch); 
 }
 
 
