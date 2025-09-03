@@ -106,6 +106,7 @@
     margin-right: auto;
     width: 100%;
     margin-left: auto;
+    max-height: calc(10 * 3ch + 10 * 1ch); 
 
   }
   .imageDisplayContainer{
@@ -146,7 +147,7 @@
     margin-right: auto;
     width: 100%;
     margin-left: auto;
-
+    max-height: calc(10 * 3ch + 10 * 1ch); 
   }
   .imageDisplayContainer{
     width: fit-content;
