@@ -13,7 +13,7 @@ function App() {
         "--vh",
         `${window.innerHeight * 0.01}px`
       );
-    };
+    };})
 
     setVh(); // set initially
     window.addEventListener("resize", setVh);
