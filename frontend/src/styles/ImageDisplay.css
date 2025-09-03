@@ -78,8 +78,8 @@
 }
 
 .imageDisplayContent{
-    width: calc(100% - 2ch - 9ch);
-    object-fit: contain;
+    width: 60ch;
+    object-fit: scale-down;
     border-top: solid black 3px;
     margin-left: 2ch;
     border-bottom: solid white 2px;
