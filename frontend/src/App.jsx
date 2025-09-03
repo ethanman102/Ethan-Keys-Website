@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
 import './App.css'
 import Shortcut from './components/Shortcut'
 import BottomNav from './components/BottomNav';
@@ -7,6 +7,16 @@ import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
 
 function App() {
+    useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${window.innerHeight * 0.01}px`
+      );
+    };
+
+    setVh(); // set initially
+    window.addEventListener("resize", setVh);
 
   return (
     <>
