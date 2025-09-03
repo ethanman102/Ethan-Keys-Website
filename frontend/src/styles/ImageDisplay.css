@@ -78,7 +78,7 @@
 }
 
 .imageDisplayContent{
-    width: 100%;
+    width: fit-content;
     border-top: solid black 3px;
     margin-left: 2ch;
     border-bottom: solid white 2px;
