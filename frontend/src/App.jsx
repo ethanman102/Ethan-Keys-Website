@@ -7,16 +7,23 @@ import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-    useEffect(() => {
+  useEffect(() => {
     const setVh = () => {
       document.documentElement.style.setProperty(
         "--vh",
         `${window.innerHeight * 0.01}px`
       );
-    };})
+    };
 
-    setVh(); // set initially
+    // Set initially
+    setVh();
+
+    // Update on resize
     window.addEventListener("resize", setVh);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", setVh);
+  }, []);
 
   return (
     <>
