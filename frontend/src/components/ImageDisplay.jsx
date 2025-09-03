@@ -57,7 +57,9 @@ const ImageDisplay = ({images}) => {
                     <div className="paintSquare" style={{background: 'lightblue'}}> </div>
                 </div>
                 </div>
-                <img src={( images.length > 0 && images[currentIndex]) ? images[currentIndex].url : undefined} className="imageDisplayContent"/>
+                <div>
+                    <img src={( images.length > 0 && images[currentIndex]) ? images[currentIndex].url : undefined} className="imageDisplayContent"/>
+                </div>
             </div>
             <div className="pageFooter">
                 <div className="pageBoxDivit pageBoxDivitLeft"> </div>
