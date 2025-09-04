@@ -285,6 +285,13 @@
     .projectsShortcutContainer{
         max-height: calc(70vh - var(--bottom-nav-height) - var(--top-nav-height));
     }
+    .projectToolbox{
+        max-height: fit-content;   
+    }
+
+    .projectDescriptionBody{
+        max-height: fit-content;
+    }
 }
 
 @media (max-height: 650px) {
