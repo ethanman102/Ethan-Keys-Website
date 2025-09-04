@@ -42,3 +42,10 @@
 @media (min-width: 1200px) {
   /* Styles for large desktops */
 }
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Your styles here */
+  .pageFlexContainer{
+    height: 100%;
+  }
+}

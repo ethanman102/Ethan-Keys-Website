@@ -91,11 +91,35 @@
     margin-bottom: 1ch;
 }
 
-@media (max-width: 767.98px) {
+@media screen and (orientation: portrait) and  (max-width: 767.98px) {
   /* Styles for larger phones */
     .homepageFlex{
         max-height: calc(80 * var(--vh) - var(--top-nav-height) -   var(--bottom-nav-height));
     }
+
+    .linkImage{
+        width: 40px;
+        height: 40px;
+    }
+
+    #introContainer > h1 {
+        font-size: 4ch;
+        margin-bottom: 0.5ch;
+    }
+
+
+    #introContainer > h2{
+        font-size: 2ch;
+    }
+
+    #resumeText{
+        font-size: small;
+    }
+}
+
+/* Phones in landscape */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Your styles here */
 
     .linkImage{
         width: 40px;

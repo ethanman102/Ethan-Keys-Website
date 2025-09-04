@@ -56,3 +56,10 @@
 
     align-self: center;
 }
+
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .bottomNavContainer{
+        display: none;
+    }
+}

@@ -195,3 +195,45 @@
 @media (min-width: 1200px) {
   /* Styles for large desktops */
 }
+
+/* Phones in landscape */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Your styles here */
+    .imageDisplayContent{
+    margin-right: auto;
+    width: 100%;
+    margin-left: auto;
+    height: fit-content;
+    object-fit: contain;
+
+  }
+  .imageDisplayContainer{
+    width: fit-content;
+  }
+  .imageDisplayBody{
+    flex-direction: column;
+  }
+  
+  .imageDisplayColorBar{
+    grid-template-columns: repeat(9, 1.5ch); 
+    margin-bottom: 1ch;
+    column-gap: 1ch;
+    margin-left: auto;
+    margin-right: 1ch;
+
+  }
+
+  .paintSquare{
+    width: 1.5ch;
+    height: 1.5ch;
+  }
+
+  .imageDisplayToolbar{
+    width: 100%;
+  }
+  
+  .imageDisplayMenu{
+    font-size: 90%;
+  }
+
+}

@@ -89,3 +89,16 @@
 .pageBoxDivitRight{
     margin-right: 1ch;
 }
+
+/* Phones in landscape */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Your styles here */
+  .pageContainer{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .dropdownTab{
+    font-size: small;
+  }
+}
