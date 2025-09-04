@@ -31,5 +31,7 @@
 }
 
 @media screen and (orientation: landscape) and (max-height: 500px) {
-
+    .blogListContainer{
+        max-height: calc(90vh);
+    }
 }

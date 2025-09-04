@@ -203,8 +203,8 @@
     margin-right: auto;
     width: 100%;
     margin-left: auto;
-    height: fit-content;
-    object-fit: contain;
+    height: 25ch;
+    object-fit: scale-down;
 
   }
   .imageDisplayContainer{

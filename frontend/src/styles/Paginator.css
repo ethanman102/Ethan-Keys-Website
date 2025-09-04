@@ -73,3 +73,16 @@
     background-color: rgba(17, 142, 226, 0.288);
     cursor: pointer;
 }
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .paginatorDivit{
+        font-size: 1.5ch;
+    }
+
+    .paginatorTitle{
+        font-size: small;
+    }
+    .paginatorButton{
+        height: fit-content;
+    }
+}
