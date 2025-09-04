@@ -20,7 +20,7 @@ h4.singleBlogTitle{
 }
 
 #singleBlogPageImage{
-    width: 95%;
+    max-width: 95%;
     max-height: 30ch;
     margin-left: auto;
     margin-right: auto;
