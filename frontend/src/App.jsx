@@ -20,6 +20,10 @@ function App() {
 
     // Update on resize
     window.addEventListener("resize", setVh);
+    window.addEventListener("orientationchange", () => {
+    // asked chatgpt why my oritentation changes makes the vh var smaller!
+      setTimeout(setVh, 200);
+    });
 
     // Cleanup
     return () => window.removeEventListener("resize", setVh);
