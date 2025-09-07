@@ -7,6 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
 
 function App() {
+
+  // asked chatgpt why vh is different for safari and chrome mobile. it suggested setting the innterheight of the screen to be the vh var
   useEffect(() => {
     const setVh = () => {
       document.documentElement.style.setProperty(
@@ -24,6 +26,8 @@ function App() {
     // asked chatgpt why my oritentation changes makes the vh var smaller!
       setTimeout(setVh, 200);
     });
+    // asked chatgpt to fix the mobile chjrome error
+    window.visualViewport?.addEventListener("resize", setVh);
 
     // Cleanup
     return () => window.removeEventListener("resize", setVh);
