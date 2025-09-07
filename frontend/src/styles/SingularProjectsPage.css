@@ -129,6 +129,7 @@
     border-bottom: 3px solid rgb(211, 211, 211);
     border-right: 3px solid rgb(211, 211, 211);
     white-space: pre;
+    text-wrap: wrap;
 }
 
 .projectDescriptionMiddle{
