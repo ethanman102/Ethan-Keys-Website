@@ -3,6 +3,7 @@ import "../styles/EmailPopup.css"
 import axios from "axios";
 import Loader from "./Loader";
 import { apiURL } from "../../constants";
+import Cookies from "js-cookie";
 
 const EmailPopup = ({closeCallback}) => {
 
@@ -26,12 +27,16 @@ const EmailPopup = ({closeCallback}) => {
 
         let json = JSON.stringify(obj)
 
-        let response = await axios.post(`${apiURL}/api/email/`,
+        let response = await axios.post(
+            `${apiURL}/api/email/`,
             json,
             {
-                headers: {'Content-Type' : 'application/json'}
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": Cookies.get("csrftoken"),
+                },
             }
-        )
+        );
 
         if (response.status === 200){
             setSent(true)
