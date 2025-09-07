@@ -28,7 +28,7 @@ const EmailPopup = ({closeCallback}) => {
         let json = JSON.stringify(obj)
 
         let response = await axios.post(
-            `${apiURL}/api/email/`,
+            `${apiURL}api/email/`,
             json,
             {
                 headers: {
