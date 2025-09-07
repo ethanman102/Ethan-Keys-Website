@@ -49,7 +49,7 @@ const SingularBlogsPage = () => {
     return(
         <div className="pageContainer">
             <div className="pageTitleContainer">
-                <h6 className="pageTitle">Blog #</h6>
+                <h6 className="pageTitle">Blog #{blog.id}</h6>
                 <div className="pageButtonContainer">
                     <button className="pageButton">_</button>
                     <button className="pageButton">□</button>
