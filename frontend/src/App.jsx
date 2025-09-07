@@ -30,7 +30,11 @@ function App() {
     window.visualViewport?.addEventListener("resize", setVh);
 
     // Cleanup
-    return () => window.removeEventListener("resize", setVh);
+    return () =>{
+      window.removeEventListener("resize", setVh);  
+      window.removeEventListener("orientationchange", setVh);
+      window.visualViewport?.removeEventListener("resize", setVh);
+    }
   }, []);
 
   return (
