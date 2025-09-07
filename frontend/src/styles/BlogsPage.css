@@ -19,7 +19,7 @@
 
 @media screen and (orientation: portrait) and (max-height: 800px) {
     .blogListContainer{
-        max-height: calc(70 * var(--vh) - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
+        max-height: calc(65 * var(--vh) - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
     } 
 }
 
