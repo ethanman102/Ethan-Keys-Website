@@ -282,10 +282,11 @@
 }
 
 
-@media (max-width: 767.98px) {
+@media screen and (orientation: portrait) and  (max-width: 767.98px) {
   /* Styles for larger phones */
+    /* Styles for larger phones */
     .projectsShortcutContainer{
-        max-height: calc(70vh - var(--bottom-nav-height) - var(--top-nav-height));
+        max-height: calc(70 *var(--vh) - var(--bottom-nav-height) - var(--top-nav-height));
     }
     .projectToolbox{
         max-height: fit-content;   
@@ -294,10 +295,13 @@
     .projectDescriptionBody{
         max-height: fit-content;
     }
+
 }
 
-@media (max-height: 650px) {
-    .projectsShortcutContainer{
-        max-height: calc(100vh - var(--bottom-nav-height) - var(--top-nav-height) - 95px);
-    } 
+/* Phones in landscape */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Your styles here */
+  .projectsShortcutContainer{
+    max-height: 100vh;
+  }
 }

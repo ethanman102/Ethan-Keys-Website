@@ -39,3 +39,11 @@
     margin-bottom: 1ch;
     font-size: 1.4ch;
 }
+
+/* Phones in landscape */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .shortcutImage{
+        width: 5ch;
+        height: 5ch;
+    }
+}
