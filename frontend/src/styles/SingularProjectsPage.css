@@ -286,7 +286,7 @@
   /* Styles for larger phones */
     /* Styles for larger phones */
     .projectsShortcutContainer{
-        max-height: calc(70 *var(--vh) - var(--bottom-nav-height) - var(--top-nav-height));
+        max-height: calc(80 *var(--vh) - var(--bottom-nav-height) - var(--top-nav-height));
     }
     .projectToolbox{
         max-height: fit-content;   
