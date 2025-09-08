@@ -143,11 +143,11 @@ const AdminPageBlog = () => {
         setDeleteOpen(false)
         instance.delete(`api/blogs/${id}/`).then((response) => {
             setLoading(false)
-            navigate('/admin/')
+            navigate('/adminpage/')
         }).catch((error) => {
             setLoading(false)
             unauthorize()
-            navigate('/admin/')
+            navigate('/adminpage/')
         })
     }
 
